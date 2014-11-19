@@ -1,6 +1,7 @@
 wallabag-windows
 ================
 **Currently it's not in the Windows Store. It'll change that soon!**
+In the mean time, [use the old app from the Store](http://www.windowsphone.com/en-us/store/app/wallabag/ff890514-348c-4d0b-9b43-153fff3f7450).
 
 This is a windows app for [wallabag](http://wallabag.org).
 The old wallabag app for windows devices was crap on new devices (Windows Phone 8 and newer), so I started a new one.
