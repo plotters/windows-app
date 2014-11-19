@@ -9,6 +9,7 @@ using wallabag.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Web.Syndication;
+using wallabag.Views;
 
 namespace wallabag.ViewModels
 {
@@ -114,14 +115,14 @@ namespace wallabag.ViewModels
         public AsyncRelayCommand addLinkCommand { get; private set; }
         private async Task addLink()
         {
-            //if (Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null)
-            //    await new wallabag.Views.AddLink().ShowAsync();
+            if (Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null)
+                await new wallabag.Views.AddLink().ShowAsync();
         }
 
         public RelayCommand openSettingsCommand { get; private set; }
         private void openSettings()
         {
-            //((Frame)Window.Current.Content).Navigate(typeof(wallabag.Views.SettingsPage));
+            ((Frame)Window.Current.Content).Navigate(typeof(wallabag.Views.SettingsPage));
         }
         
         public MainPageViewModel()

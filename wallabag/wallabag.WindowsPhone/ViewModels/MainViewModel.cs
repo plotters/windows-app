@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MyToolkit.Command;
+using MyToolkit.Mvvm;
+using MyToolkit.Storage;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using MyToolkit.Command;
-using MyToolkit.Mvvm;
-using MyToolkit.Storage;
 using wallabag.Models;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -12,9 +12,9 @@ using Windows.Web.Syndication;
 
 namespace wallabag.ViewModels
 {
-    public class MainPageViewModel : ViewModelBase
+    public class MainViewModel : ViewModelBase
     {
-        public Visibility AddLinkButtonVisibility
+         public Visibility AddLinkButtonVisibility
         {
             get 
             {
@@ -124,7 +124,7 @@ namespace wallabag.ViewModels
             ((Frame)Window.Current.Content).Navigate(typeof(wallabag.Views.SettingsPage));
         }
         
-        public MainPageViewModel()
+        public MainViewModel()
         {
             unreadItems = new ObservableCollection<ArticleViewModel>();
             favouriteItems = new ObservableCollection<ArticleViewModel>();
@@ -135,6 +135,5 @@ namespace wallabag.ViewModels
             openSettingsCommand = new RelayCommand(() => openSettings());
 
         }
-
     }
 }

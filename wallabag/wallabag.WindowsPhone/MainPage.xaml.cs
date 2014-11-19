@@ -32,8 +32,8 @@ namespace wallabag
     {
         private NavigationHelper navigationHelper;
 
-        private MainPageViewModel _defaultViewModel = new MainPageViewModel();
-        public MainPageViewModel defaultViewModel
+        private MainViewModel _defaultViewModel = new MainViewModel();
+        public MainViewModel defaultViewModel
         {
             get { return this._defaultViewModel; }
         }
@@ -74,8 +74,8 @@ namespace wallabag
         {
             if (e.PageState != null && e.PageState.ContainsKey("defaultViewModel"))
             {
-                _defaultViewModel = (MainPageViewModel)e.PageState["defaultViewModel"];
-                Debug.WriteLine(((MainPageViewModel)e.PageState["defaultViewModel"]).unreadItems.Count);
+                _defaultViewModel = (MainViewModel)e.PageState["defaultViewModel"];
+                Debug.WriteLine(((MainViewModel)e.PageState["defaultViewModel"]).unreadItems.Count);
                 Debug.WriteLine(_defaultViewModel.unreadItems.Count);
             }
         }
