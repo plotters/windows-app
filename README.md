@@ -13,6 +13,7 @@ Unlike the old app, this app is an universal app. Sadly, it only supports Window
 ## Currently supported languages
 - English
 - German
+- French
 
 ## Screenshots
 ### Windows Phone
