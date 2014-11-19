@@ -1,0 +1,143 @@
+﻿@charset "UTF-8";
+@import url(reset.css);
+
+body {
+    font-family: 'Segoe UI';
+    font-size: 14pt;
+    color: #bdbdbd;
+    background: #000;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+h1, h2, h3, h5, h4, h5, h6 {
+    line-height: 1.2em;
+}
+    h1 a, h2 a, h3 a, h5 a, h4 a, h5 a, h6 a {
+        color: #3b6ea1;
+    }
+
+h1 {
+    font-size: 2.4em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+h3, h5 {
+    font-size: 1.45em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+h4 {
+    font-size: 1.2em;
+}
+
+h5 {
+    font-size: 1.1em;
+}
+
+h6 {
+    font-size: 1em;
+}
+
+a {
+    color: #3b6ea1;
+    text-decoration: none;
+    transition: all ease 0.3s;
+}
+
+    a:hover, a:focus {
+        color: #2f88e0;
+    }
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #d8dfe5;
+    margin: 3.2em 0;
+    padding: 0;
+}
+
+blockquote {
+    font-family: 'Times New Roman';
+}
+    blockquote p {
+        margin: 0.8em 0;
+        font-style: italic;
+    }
+    blockquote cite {
+        display: block;
+        font-style: normal;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-size: 11pt;
+    }
+        blockquote cite:before {
+            content: "—";
+            margin-right: 1px;
+        }
+
+small {
+    font-size: 12pt;
+    color: #45484d;
+}
+
+dl {  margin: 1.6em 0; }
+
+    dl dt {
+        float: left;
+        width: 180px;
+        overflow: hidden;
+        clear: left;
+        text-align: right;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+    dl dd {
+        margin-left: 200px;
+        margin-bottom: 1em;
+    }
+
+pre {
+    box-sizing: border-box;
+    margin: 64px 0;
+    border: 1px solid #efefef;
+    width: 100%;
+    padding: 16px;
+    font-family: Consolas, monospace;
+    white-space: pre;
+    overflow: auto;
+}
+
+    pre code, pre tt {
+        font-size: 0.8em;
+        line-height: 1.6em;
+        white-space: pre-wrap;
+        background: transparent;
+        border: none;
+        padding: 0;
+        vertical-align: inherit;
+    }
+
+code, tt {
+    padding: 2px 6px;
+    margin: 0 4px;
+    font-family: Consolas, monospace;
+    font-size: 0.8em;
+    white-space: pre;
+    border: 1px solid #efefef;
+    vertical-align: top;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: auto;
+}

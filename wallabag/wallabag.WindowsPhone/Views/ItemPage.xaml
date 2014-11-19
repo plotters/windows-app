@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="wallabag.Views.ItemPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:wallabag.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding defaultViewModel, Mode=TwoWay, RelativeSource={RelativeSource Mode=Self}}">
+    
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <!--TODO: Add translation-->
+            <AppBarButton Icon="Back" Label="previous" />
+            <AppBarButton Icon="Send" Label="share" />
+            <AppBarButton Icon="Forward" Label="next" />
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="LayoutRoot">
+
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Titelbereich -->
+        <StackPanel Grid.Row="0" Margin="19,0,19,5">
+            <TextBlock Text="{Binding Article.Title}" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
+            <WebView x:Name="webView" Visibility="Collapsed" NavigationCompleted="webView_NavigationCompleted" NavigationStarting="webView_NavigationStarting" />
+        </Grid>
+    </Grid>
+</Page>
