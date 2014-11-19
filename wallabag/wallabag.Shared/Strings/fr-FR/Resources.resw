@@ -166,7 +166,7 @@
     <value>default 1</value>
   </data>
   <data name="validateUrlButton.Content" xml:space="preserve">
-    <value>validere</value>
+    <value>validate</value>
   </data>
   <data name="wallabagUrlTextBox.Header" xml:space="preserve">
     <value>URL de wallabag</value>
