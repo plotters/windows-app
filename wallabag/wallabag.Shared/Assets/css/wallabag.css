@@ -57,20 +57,21 @@ hr {
     display: block;
     height: 1px;
     border: 0;
-    border-top: 1px solid #d8dfe5;
+    border-top: 5px solid #5b5b5b;
     margin: 3.2em 0;
     padding: 0;
 }
 
 blockquote {
     font-family: 'Times New Roman';
+    line-height: 1.25;
+    padding-left: 75px;
 }
     blockquote p {
         margin: 0.8em 0;
         font-style: italic;
     }
     blockquote cite {
-        display: block;
         font-style: normal;
         letter-spacing: 0.1em;
         text-transform: uppercase;
@@ -83,7 +84,6 @@ blockquote {
 
 small {
     font-size: 12pt;
-    color: #45484d;
 }
 
 dl {  margin: 1.6em 0; }
