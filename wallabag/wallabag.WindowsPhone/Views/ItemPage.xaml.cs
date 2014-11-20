@@ -137,8 +137,7 @@ namespace wallabag.Views
 
         private async void webView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
-            //BUG: This method produces a crash.
-            if (args != null && args.Uri.AbsoluteUri.StartsWith("http"))
+            if (args.Uri != null && args.Uri.AbsoluteUri.StartsWith("http"))
             {
                 args.Cancel = true;
                 await Launcher.LaunchUriAsync(new Uri(args.Uri.AbsoluteUri));

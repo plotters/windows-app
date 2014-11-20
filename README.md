@@ -23,8 +23,12 @@ And even if you're not a developer, **you can help to translate it!**
 - [ ] Offline mode
 - [ ] easily switch between articles (FlipView)
 - [x] share the URL of an article
-- [ ] Fix the app crashes.
+- [ ] Find a workaround for the bug (see below).
 
+## Known bugs
+If you're scrolling to fast on the single article page, the app crashes.
+Sadly, I can't do anything because [it is Microsoft's fault](https://social.msdn.microsoft.com/Forums/windowsapps/en-US/854abfa2-5312-4583-92d9-26430c7f5d9c/universal-app-webview-crashing-when-scrolling-windows-phone-81?forum=wpdevelop#006e77f5-474f-4162-8b90-86d4ea5c8d58).
+The bug is fixed in OS version **8.10.14176.xx**, the current version on the user devices is **8.10.14157.xx**
 
 ## Screenshots
 ### Windows Phone

@@ -37,7 +37,7 @@
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <WebView x:Name="webView" Visibility="Collapsed" NavigationCompleted="webView_NavigationCompleted" />
+            <WebView x:Name="webView" Visibility="Collapsed" NavigationCompleted="webView_NavigationCompleted" NavigationStarting="webView_NavigationStarting" />
         </Grid>
     </Grid>
 </Page>
