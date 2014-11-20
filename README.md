@@ -22,7 +22,7 @@ And even if you're not a developer, **you can help to translate it!**
 ## ToDo
 - [ ] Offline mode
 - [ ] easily switch between articles (FlipView)
-- [ ] share the URL of an article
+- [x] share the URL of an article
 - [ ] Fix the app crashes.
 
 

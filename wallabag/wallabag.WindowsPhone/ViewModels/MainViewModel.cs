@@ -14,7 +14,7 @@ namespace wallabag.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-         public Visibility AddLinkButtonVisibility
+        public Visibility AddLinkButtonVisibility
         {
             get 
             {

@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MyToolkit.Mvvm;
+using MyToolkit.Command;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
 
 namespace wallabag.ViewModels
 {
@@ -23,7 +26,21 @@ namespace wallabag.ViewModels
             }
         }
 
-        public ItemPageViewModel() { _Article = new ArticleViewModel(); }
-        public ItemPageViewModel(ArticleViewModel item) { Article = item; }
+        public RelayCommand shareCommand { get; private set; }
+        private void share()
+        {
+            DataTransferManager.ShowShareUI();
+        }
+
+        public ItemPageViewModel()
+        {
+            _Article = new ArticleViewModel();
+            shareCommand = new RelayCommand(() => share());
+        }
+        public ItemPageViewModel(ArticleViewModel item)
+        {
+            Article = item;
+            shareCommand = new RelayCommand(() => share());
+        }
     }
 }

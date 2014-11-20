@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using wallabag.ViewModels;
 using System.Diagnostics;
 using Windows.System;
+using Windows.ApplicationModel.DataTransfer;
 
 // Die Elementvorlage "Standardseite" ist unter "http://go.microsoft.com/fwlink/?LinkID=390556" dokumentiert.
 
@@ -106,6 +107,20 @@ namespace wallabag.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             this.navigationHelper.OnNavigatedTo(e);
+            DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += dataTransferManager_DataRequested;
+        }
+
+        void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            DataRequest request = args.Request;
+#if DEBUG
+            request.Data.Properties.Title = "Debug page";
+            request.Data.SetWebLink(new Uri("http://wallabag.org/"));
+#else
+            request.Data.Properties.Title = (((ItemPageViewModel)this.DataContext).Article).Title;
+            request.Data.SetWebLink((((ItemPageViewModel)this.DataContext).Article).Url);
+#endif
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -122,6 +137,7 @@ namespace wallabag.Views
 
         private async void webView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
+            //BUG: This method produces a crash.
             if (args != null && args.Uri.AbsoluteUri.StartsWith("http"))
             {
                 args.Cancel = true;
