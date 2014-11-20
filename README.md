@@ -15,14 +15,9 @@ Unlike the old app, this app is an universal app. Sadly, it only supports Window
 - German
 - French
 
-## Screenshots
-### Windows Phone
-![Start Screen](screenshots/phone/startscreen.png)
-![Main Page](screenshots/phone/mainpage.png)
-![Settings](screenshots/phone/settings.png)
-![Single article](screenshots/phone/article.png)
-And yes I know, the single article view is not very beautiful and 
-readable ;-)
+## Improve the app!
+You can simply fork this repository and add some nice features to it.
+And even if you're not a developer, **you can help to translate it!**
 
 ## ToDo
 - [ ] Offline mode
@@ -30,6 +25,14 @@ readable ;-)
 - [ ] share the URL of an article
 - [ ] Fix the app crashes.
 
-## Improve the app!
-You can simply fork this repository and add some nice features to it.
-And even if you're not a developer, **you can help to translate it!**
+
+## Screenshots
+### Windows Phone
+The app on the start screen.
+![Start Screen](screenshots/phone/startscreen.png)
+The main page.
+![Main Page](screenshots/phone/mainpage.png)
+The settings.
+![Settings](screenshots/phone/settings.png)
+An single article.
+![Single article](screenshots/phone/article.png)
