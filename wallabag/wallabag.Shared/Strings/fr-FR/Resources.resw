@@ -174,4 +174,7 @@
   <data name="wallabagUrlTextBox.PlaceholderText" xml:space="preserve">
     <value>http://...</value>
   </data>
+  <data name="shareButton.Label" xml:space="preserve">
+    <value />
+  </data>
 </root>
