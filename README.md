@@ -21,8 +21,8 @@ And even if you're not a developer, **you can help to translate it!**
 
 ## ToDo
 - [ ] Offline mode
+- [ ] more beautiful CSS
 - [ ] easily switch between articles (FlipView)
-- [x] share the URL of an article
 - [ ] Find a workaround for the bug (see below).
 
 ## Known bugs
