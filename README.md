@@ -25,10 +25,10 @@ And yes I know, the single article view is not very beautiful and
 readable ;-)
 
 ## ToDo
-[ ] Offline mode
-[ ] easily switch between articles (FlipView)
-[ ] share the URL of an article
-[ ] Fix the app crashes.
+- [ ] Offline mode
+- [ ] easily switch between articles (FlipView)
+- [ ] share the URL of an article
+- [ ] Fix the app crashes.
 
 ## Improve the app!
 You can simply fork this repository and add some nice features to it.
