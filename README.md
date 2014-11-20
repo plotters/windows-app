@@ -24,9 +24,11 @@ Unlike the old app, this app is an universal app. Sadly, it only supports Window
 And yes I know, the single article view is not very beautiful and 
 readable ;-)
 
-## Known bugs
-- Offline mode not implemented
-- sometimes the app crashes, don't know why :-(
+## ToDo
+[ ] Offline mode
+[ ] easily switch between articles (FlipView)
+[ ] share the URL of an article
+[ ] Fix the app crashes.
 
 ## Improve the app!
 You can simply fork this repository and add some nice features to it.
