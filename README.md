@@ -33,10 +33,10 @@ The bug is fixed in OS version **8.10.14176.xx**, the current version on the use
 ## Screenshots
 ### Windows Phone
 The app on the start screen.
-![Start Screen](screenshots/phone/startscreen.png)
+![Start Screen](additional/screenshots/phone/startscreen.png)
 The main page.
-![Main Page](screenshots/phone/mainpage.png)
+![Main Page](additional/screenshots/phone/mainpage.png)
 The settings.
-![Settings](screenshots/phone/settings.png)
+![Settings](additional/screenshots/phone/settings.png)
 An single article.
-![Single article](screenshots/phone/article.png)
+![Single article](additional/screenshots/phone/article.png)
