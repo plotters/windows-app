@@ -75,8 +75,6 @@ namespace wallabag
             if (e.PageState != null && e.PageState.ContainsKey("defaultViewModel"))
             {
                 _defaultViewModel = (MainViewModel)e.PageState["defaultViewModel"];
-                Debug.WriteLine(((MainViewModel)e.PageState["defaultViewModel"]).unreadItems.Count);
-                Debug.WriteLine(_defaultViewModel.unreadItems.Count);
             }
         }
 

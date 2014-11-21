@@ -34,12 +34,10 @@ namespace wallabag.ViewModels
 
             if (wallabagUrl != string.Empty || userId != 0 || token != string.Empty)
             {
-                Debug.WriteLine("buildUrl: " + string.Format("{0}?feed&type={1}&user_id={2}&token={3}", wallabagUrl, parameter, userId, token));
                 return string.Format("{0}?feed&type={1}&user_id={2}&token={3}", wallabagUrl, parameter, userId, token);
             }
             else
             {
-                Debug.WriteLine("buildUrl returns an empty string!");
                 return string.Empty;
             }
         }

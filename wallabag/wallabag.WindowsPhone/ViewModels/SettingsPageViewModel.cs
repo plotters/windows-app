@@ -96,12 +96,6 @@ namespace wallabag.ViewModels
             ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup, true);
             ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink);
 
-            Debug.WriteLine("wallabagUrl: " + ApplicationSettings.GetSetting<string>("wallabagUrl", "", true));
-            Debug.WriteLine("userId: " + ApplicationSettings.GetSetting<int>("userId", 1, true));
-            Debug.WriteLine("Token: " + ApplicationSettings.GetSetting<string>("Token", "", true));
-            Debug.WriteLine("refreshOnStartup: " + ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true));
-            Debug.WriteLine("enableAddLink: " + ApplicationSettings.GetSetting<bool>("enableAddLink"), false);
-
             ((Frame)Window.Current.Content).GoBack();
         }
 

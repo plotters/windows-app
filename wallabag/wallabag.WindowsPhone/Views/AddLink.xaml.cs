@@ -31,7 +31,6 @@ namespace wallabag.Views
         {
             string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
             string encodedUrl = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(link.Text));
-            Debug.WriteLine("finalUrl: " + string.Format("{0}?action=add&url={1}", wallabagUrl, encodedUrl));
             return string.Format("{0}?action=add&url={1}", wallabagUrl, encodedUrl);
         }
         

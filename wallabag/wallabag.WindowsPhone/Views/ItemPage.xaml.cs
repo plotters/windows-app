@@ -72,9 +72,6 @@ namespace wallabag.Views
                 this._defaultViewModel = new ItemPageViewModel((ArticleViewModel)e.NavigationParameter);
                 this.webView.NavigateToString((((ItemPageViewModel)this.DataContext).Article).Content);
             }
-#if DEBUG
-            this.webView.Navigate(new Uri("ms-appx-web:///Assets/test.html"));
-#endif
         }
 
         /// <summary>
@@ -114,13 +111,8 @@ namespace wallabag.Views
         void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataRequest request = args.Request;
-#if DEBUG
-            request.Data.Properties.Title = "Debug page";
-            request.Data.SetWebLink(new Uri("http://wallabag.org/"));
-#else
             request.Data.Properties.Title = (((ItemPageViewModel)this.DataContext).Article).Title;
             request.Data.SetWebLink((((ItemPageViewModel)this.DataContext).Article).Url);
-#endif
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
