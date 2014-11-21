@@ -1,5 +1,5 @@
-wallabag is a self hosted read-it-later app. Unlike to other services, wallabag is free and open source. It's made for you to comfortably read and archive your articles.
+wallabag (formerly poche) is a self hostable application for saving web pages. Unlike other services, wallabag is free (as in freedom) and open source.
 
-You can download wallabag on wallabag.org and follow the instructions to install it on your own server, or you can directly sign up on framabag.org
+With this application you will not miss content anymore. Click, save, read it when you want. It saves the content you select so that you can read it when you have time.
 
-This windows phone application allows you to read your bagged articles. You can also put a link in your wallabag instance.
+There are two ways to use wallabag: you can install it on your web server or you can create an account at Framabag (we install and upgrade wallabag for you).

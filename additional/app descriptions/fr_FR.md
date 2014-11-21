@@ -1,5 +1,5 @@
-wallabag is a self hosted read-it-later app. Unlike to other services, wallabag is free and open source. It's made for you to comfortably read and archive your articles.
+wallabag (anciennement poche) est une application auto hébergeable pour sauvegarder des pages web. Contrairement aux autres services, wallabag est libre et open source.
 
-You can download wallabag on wallabag.org and follow the instructions to install it on your own server, or you can directly sign up on framabag.org
+Grâce à cette application, vous ne raterez plus aucun contenu. Sauvegardez quand vous surfez ; lisez où vous voulez quand vous voulez. wallabag sauvegarde le contenu que vous avez choisi, vous pourrez le lire quand vous aurez le temps.
 
-This windows phone application allows you to read your bagged articles. You can also put a link in your wallabag instance.
+Il y a deux manières : vous installez wallabag sur votre serveur web ou alors vous vous créez un compte gratuit sur Framabag (nous gérons l’installation et la mise à jour pour vous).
