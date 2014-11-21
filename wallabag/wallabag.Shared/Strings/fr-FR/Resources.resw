@@ -175,6 +175,6 @@
     <value>http://...</value>
   </data>
   <data name="shareButton.Label" xml:space="preserve">
-    <value>Partager<value/>
+    <value>Partager</value>
   </data>
 </root>
