@@ -26,26 +26,34 @@ namespace wallabag.ViewModels
         public ObservableCollection<ArticleViewModel> favouriteItems { get; set; }
         public ObservableCollection<ArticleViewModel> archivedItems { get; set; }
 
+        private bool everythingOkay
+        {
+            get
+            {
+                string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
+                int userId = ApplicationSettings.GetSetting<int>("userId", 1, true);
+                string token = ApplicationSettings.GetSetting<string>("Token", "", true);
+
+                return wallabagUrl != string.Empty && userId != 0 && token != string.Empty;
+            }
+        }
+
         private string buildUrl(string parameter)
         {
             string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
             int userId = ApplicationSettings.GetSetting<int>("userId", 1, true);
             string token = ApplicationSettings.GetSetting<string>("Token", "", true);
 
-            if (wallabagUrl != string.Empty || userId != 0 || token != string.Empty)
-            {
+            if (everythingOkay)        
                 return string.Format("{0}?feed&type={1}&user_id={2}&token={3}", wallabagUrl, parameter, userId, token);
-            }
-            else
-            {
-                return string.Empty;
-            }
+            
+            return string.Empty;
         }
 
         public AsyncRelayCommand refreshCommand { get; private set; }
         private async Task refresh()
         {
-            if (Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null)
+            if (Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null && everythingOkay)
             {
                 IsLoading = true;
 
@@ -98,7 +106,7 @@ namespace wallabag.ViewModels
                                 }
                             }
                         }
-                        IsLoading = false;
+                        IsLoading = false;                            
                     }
                     catch (Exception e)
                     {
