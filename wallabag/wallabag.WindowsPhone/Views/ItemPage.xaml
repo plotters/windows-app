@@ -11,7 +11,6 @@
     
     <Page.BottomAppBar>
         <CommandBar ClosedDisplayMode="Minimal">
-            <!--TODO: Add translation-->
             <!--<AppBarButton Icon="Back" Label="previous" />-->
             <AppBarButton x:Uid="shareButton" Icon="Send" Label="share" Command="{Binding shareCommand}"/>
             <!--<AppBarButton Icon="Forward" Label="next" />-->
@@ -37,7 +36,7 @@
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <WebView x:Name="webView" Visibility="Collapsed" NavigationCompleted="webView_NavigationCompleted" NavigationStarting="webView_NavigationStarting" />
+            <WebView x:Name="webView" NavigationStarting="webView_NavigationStarting" />
         </Grid>
     </Grid>
 </Page>

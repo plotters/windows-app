@@ -111,8 +111,8 @@ namespace wallabag.Views
         void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataRequest request = args.Request;
-            request.Data.Properties.Title = (((ItemPageViewModel)this.DataContext).Article).Title;
-            request.Data.SetWebLink((((ItemPageViewModel)this.DataContext).Article).Url);
+            request.Data.Properties.Title = (((ItemPageViewModel)this.defaultViewModel).Article).Title;
+            request.Data.SetWebLink((((ItemPageViewModel)this.defaultViewModel).Article).Url);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -121,11 +121,6 @@ namespace wallabag.Views
         }
 
         #endregion
-
-        private void webView_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
-        {
-            if (args.IsSuccess) { webView.Visibility = Windows.UI.Xaml.Visibility.Visible; }
-        }
 
         private async void webView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
