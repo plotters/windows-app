@@ -1,4 +1,5 @@
 ﻿using MyToolkit.Storage;
+using MyToolkit.Command;
 using System;
 using wallabag.Common;
 using wallabag.ViewModels;
@@ -17,8 +18,8 @@ namespace wallabag
     {
         private NavigationHelper navigationHelper;
 
-        private MainViewModel _defaultViewModel = new MainViewModel();
-        public MainViewModel defaultViewModel
+        private ObservableDictionary _defaultViewModel = new ObservableDictionary();
+        public ObservableDictionary defaultViewModel
         {
             get { return this._defaultViewModel; }
         }
@@ -31,8 +32,8 @@ namespace wallabag
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true))
-                _defaultViewModel.refreshCommand.TryExecute();
+            if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true) && defaultViewModel.ContainsKey("refreshCommand"))
+                ((AsyncRelayCommand)defaultViewModel["refreshCommand"]).TryExecute();
         }
 
         /// <summary>
@@ -57,10 +58,25 @@ namespace wallabag
         /// beibehalten wurde.  Der Zustand ist beim ersten Aufrufen einer Seite NULL.</param>
         private void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            if (e.PageState != null && e.PageState.ContainsKey("defaultViewModel"))
+            if (e.PageState != null && e.PageState.ContainsKey("VM"))
             {
-                _defaultViewModel = (MainViewModel)e.PageState["defaultViewModel"];
+                _defaultViewModel["VM"] = (MainViewModel)e.PageState["VM"];
+
+                if (e.PageState.ContainsKey("selectedPivotItem"))
+                    mainPivot.SelectedIndex = Convert.ToInt32(e.PageState["selectedPivotItem"]);
             }
+            else
+            {
+                _defaultViewModel["VM"] = new MainViewModel();
+            }
+
+            _defaultViewModel["unreadItems"] = ((MainViewModel)defaultViewModel["VM"]).unreadItems;
+            _defaultViewModel["favouriteItems"] = ((MainViewModel)defaultViewModel["VM"]).favouriteItems;
+            _defaultViewModel["archivedItems"] = ((MainViewModel)defaultViewModel["VM"]).archivedItems;
+            _defaultViewModel["refreshCommand"] = ((MainViewModel)defaultViewModel["VM"]).refreshCommand;
+            _defaultViewModel["addLinkCommand"] = ((MainViewModel)defaultViewModel["VM"]).addLinkCommand;
+            _defaultViewModel["openSettingsCommand"] = ((MainViewModel)defaultViewModel["VM"]).openSettingsCommand;
+            _defaultViewModel["AddLinkButtonVisibility"] = ((MainViewModel)defaultViewModel["VM"]).AddLinkButtonVisibility;
         }
 
         /// <summary>
@@ -73,7 +89,8 @@ namespace wallabag
         /// serialisierbarer Zustand.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            e.PageState["defaultViewModel"] = defaultViewModel;
+            e.PageState["VM"] = defaultViewModel["VM"];
+            e.PageState["selectedPivotItem"] = mainPivot.SelectedIndex;
         }
 
         #region NavigationHelper-Registrierung

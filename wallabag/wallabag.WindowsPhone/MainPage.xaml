@@ -35,7 +35,7 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Pivot Title="WALLABAG" Grid.RowSpan="2">
+        <Pivot x:Name="mainPivot" Title="WALLABAG" Grid.RowSpan="2">
             <PivotItem x:Uid="unread" Header="unread">
                 <ListBox ItemsSource="{Binding unreadItems}" ItemTemplate="{StaticResource ArticleTemplate}" Background="{x:Null}" SelectionChanged="ListBox_SelectionChanged" />
             </PivotItem>

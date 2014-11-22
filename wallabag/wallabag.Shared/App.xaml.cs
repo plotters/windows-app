@@ -46,19 +46,21 @@ namespace wallabag
         /// von Suchergebnissen usw. gestartet wird.
         /// </summary>
         /// <param name="e">Details über Startanforderung und -prozess.</param>
-        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
             if (rootFrame == null)
             {
                 rootFrame = new Frame();
+                wallabag.Common.SuspensionManager.RegisterFrame(rootFrame, "appFrame");
 
                 rootFrame.CacheSize = 1;
 
-                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
-                {  
-                    //TODO: Restore previous state!
+                if (e.PreviousExecutionState == ApplicationExecutionState.Terminated 
+                    || e.PreviousExecutionState == ApplicationExecutionState.Suspended)
+                {
+                    await wallabag.Common.SuspensionManager.RestoreAsync();
                 }
 
                 Window.Current.Content = rootFrame;
@@ -115,11 +117,10 @@ namespace wallabag
         /// </summary>
         /// <param name="sender">Die Quelle der Anhalteanforderung.</param>
         /// <param name="e">Details zur Anhalteanforderung.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            // TODO: Anwendungszustand speichern und alle Hintergrundaktivitäten beenden
-            //await wallabag.Common.SuspensionManager.SaveAsync();            
+            await wallabag.Common.SuspensionManager.SaveAsync();            
             deferral.Complete();
         }
     }

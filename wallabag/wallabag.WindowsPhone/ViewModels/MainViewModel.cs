@@ -33,7 +33,7 @@ namespace wallabag.ViewModels
                 int userId = ApplicationSettings.GetSetting<int>("userId", 1, true);
                 string token = ApplicationSettings.GetSetting<string>("Token", "", true);
 
-                return wallabagUrl != string.Empty && userId != 0 && token != string.Empty;
+                return wallabagUrl != string.Empty && userId != 0 && token != string.Empty && Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null;
             }
         }
 
@@ -52,7 +52,7 @@ namespace wallabag.ViewModels
         public AsyncRelayCommand refreshCommand { get; private set; }
         private async Task refresh()
         {
-            if (Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null && everythingOkay)
+            if (everythingOkay)
             {
                 IsLoading = true;
 
