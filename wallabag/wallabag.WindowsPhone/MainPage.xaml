@@ -8,7 +8,7 @@
     xmlns:vm="using:wallabag.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding defaultViewModel, Mode=TwoWay, RelativeSource={RelativeSource Mode=Self}}">
+    DataContext="{Binding DefaultViewModel, Mode=TwoWay, RelativeSource={RelativeSource Mode=Self}}">
     <Page.Resources>
         <DataTemplate x:Key="ArticleTemplate">
             <Grid>
