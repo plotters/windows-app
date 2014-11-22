@@ -32,7 +32,7 @@
 
         <!-- Titelbereich -->
         <StackPanel Grid.Row="0" Margin="19,0,19,5">
-            <TextBlock Text="{Binding Article.Title}" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+            <TextBlock Text="{Binding Title}" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">

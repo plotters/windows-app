@@ -31,8 +31,8 @@ namespace wallabag.Views
     {
         private NavigationHelper navigationHelper;
 
-        private ItemPageViewModel _defaultViewModel = new ItemPageViewModel();
-        public ItemPageViewModel defaultViewModel
+        private ObservableDictionary _defaultViewModel = new ObservableDictionary();
+        public ObservableDictionary defaultViewModel
         {
             get { return this._defaultViewModel; }
         }
@@ -44,6 +44,9 @@ namespace wallabag.Views
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
+
+            this.shareCommand = new RelayCommand(() => share());
+            this.defaultViewModel["shareCommand"] = shareCommand;
         }
 
         /// <summary>
@@ -69,8 +72,9 @@ namespace wallabag.Views
         {
             if (e.NavigationParameter != null)
             {
-                this._defaultViewModel = new ItemPageViewModel((ArticleViewModel)e.NavigationParameter);
-                this.webView.NavigateToString((((ItemPageViewModel)this.defaultViewModel).Article).Content);
+                this._defaultViewModel["Item"] = (ArticleViewModel)e.NavigationParameter;
+                this._defaultViewModel["Title"] = ((ArticleViewModel)e.NavigationParameter).Title;
+                this.webView.NavigateToString(((ArticleViewModel)e.NavigationParameter).Content);
             }
         }
 
@@ -111,8 +115,8 @@ namespace wallabag.Views
         void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataRequest request = args.Request;
-            request.Data.Properties.Title = (((ItemPageViewModel)this.defaultViewModel).Article).Title;
-            request.Data.SetWebLink((((ItemPageViewModel)this.defaultViewModel).Article).Url);
+            request.Data.Properties.Title = this.defaultViewModel["Title"].ToString();
+            request.Data.SetWebLink(((ArticleViewModel)this.defaultViewModel["Item"]).Url);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
@@ -130,5 +134,12 @@ namespace wallabag.Views
                 await Launcher.LaunchUriAsync(new Uri(args.Uri.AbsoluteUri));
             }
         }
+
+        public RelayCommand shareCommand { get; private set; }
+        private void share()
+        {
+            DataTransferManager.ShowShareUI();
+        }
+
     }
 }
