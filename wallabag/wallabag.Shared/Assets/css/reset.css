@@ -42,9 +42,6 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
-/* Yes, the following styles are required... */
-
 b, strong { 
     font-weight: bold;
 }
