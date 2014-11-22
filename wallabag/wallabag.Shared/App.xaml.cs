@@ -123,5 +123,16 @@ namespace wallabag
             await wallabag.Common.SuspensionManager.SaveAsync();            
             deferral.Complete();
         }
+
+/*#if WINDOWS_PHONE_APP
+ * 
+ * This function will be implemented and activated when wallabag 2.0 is published.
+ * 
+protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
+{
+    var shareTargetPage = new wallabag.Views.ShareTarget();
+    shareTargetPage.Activate(e);
+}
+#endif */
     }
 }
