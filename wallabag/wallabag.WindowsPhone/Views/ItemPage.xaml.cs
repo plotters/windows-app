@@ -70,7 +70,7 @@ namespace wallabag.Views
             if (e.NavigationParameter != null)
             {
                 this._defaultViewModel = new ItemPageViewModel((ArticleViewModel)e.NavigationParameter);
-                this.webView.NavigateToString((((ItemPageViewModel)this.DataContext).Article).Content);
+                this.webView.NavigateToString((((ItemPageViewModel)this.defaultViewModel).Article).Content);
             }
         }
 
