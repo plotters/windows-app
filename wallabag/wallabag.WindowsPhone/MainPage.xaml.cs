@@ -19,7 +19,7 @@ namespace wallabag
         private NavigationHelper navigationHelper;
 
         private ObservableDictionary _defaultViewModel = new ObservableDictionary();
-        public ObservableDictionary defaultViewModel
+        public ObservableDictionary DefaultViewModel
         {
             get { return this._defaultViewModel; }
         }
@@ -32,8 +32,8 @@ namespace wallabag
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
             this.navigationHelper.SaveState += this.NavigationHelper_SaveState;
 
-            if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true) && defaultViewModel.ContainsKey("refreshCommand"))
-                ((AsyncRelayCommand)defaultViewModel["refreshCommand"]).TryExecute();
+            if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true) && DefaultViewModel.ContainsKey("refreshCommand"))
+                ((AsyncRelayCommand)DefaultViewModel["refreshCommand"]).TryExecute();
         }
 
         /// <summary>
@@ -60,23 +60,23 @@ namespace wallabag
         {
             if (e.PageState != null && e.PageState.ContainsKey("VM"))
             {
-                _defaultViewModel["VM"] = (MainViewModel)e.PageState["VM"];
+                DefaultViewModel["VM"] = (MainViewModel)e.PageState["VM"];
 
                 if (e.PageState.ContainsKey("selectedPivotItem"))
                     mainPivot.SelectedIndex = Convert.ToInt32(e.PageState["selectedPivotItem"]);
             }
             else
             {
-                _defaultViewModel["VM"] = new MainViewModel();
+                DefaultViewModel["VM"] = new MainViewModel();
             }
 
-            _defaultViewModel["unreadItems"] = ((MainViewModel)defaultViewModel["VM"]).unreadItems;
-            _defaultViewModel["favouriteItems"] = ((MainViewModel)defaultViewModel["VM"]).favouriteItems;
-            _defaultViewModel["archivedItems"] = ((MainViewModel)defaultViewModel["VM"]).archivedItems;
-            _defaultViewModel["refreshCommand"] = ((MainViewModel)defaultViewModel["VM"]).refreshCommand;
-            _defaultViewModel["addLinkCommand"] = ((MainViewModel)defaultViewModel["VM"]).addLinkCommand;
-            _defaultViewModel["openSettingsCommand"] = ((MainViewModel)defaultViewModel["VM"]).openSettingsCommand;
-            _defaultViewModel["AddLinkButtonVisibility"] = ((MainViewModel)defaultViewModel["VM"]).AddLinkButtonVisibility;
+            DefaultViewModel["unreadItems"] = ((MainViewModel)DefaultViewModel["VM"]).unreadItems;
+            DefaultViewModel["favouriteItems"] = ((MainViewModel)DefaultViewModel["VM"]).favouriteItems;
+            DefaultViewModel["archivedItems"] = ((MainViewModel)DefaultViewModel["VM"]).archivedItems;
+            DefaultViewModel["refreshCommand"] = ((MainViewModel)DefaultViewModel["VM"]).refreshCommand;
+            DefaultViewModel["addLinkCommand"] = ((MainViewModel)DefaultViewModel["VM"]).addLinkCommand;
+            DefaultViewModel["openSettingsCommand"] = ((MainViewModel)DefaultViewModel["VM"]).openSettingsCommand;
+            DefaultViewModel["AddLinkButtonVisibility"] = ((MainViewModel)DefaultViewModel["VM"]).AddLinkButtonVisibility;
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace wallabag
         /// serialisierbarer Zustand.</param>
         private void NavigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            e.PageState["VM"] = defaultViewModel["VM"];
+            e.PageState["VM"] = DefaultViewModel["VM"];
             e.PageState["selectedPivotItem"] = mainPivot.SelectedIndex;
         }
 
