@@ -48,9 +48,6 @@ namespace wallabag.ViewModel
             }
         }
 
-#if WINDOWS
-        public ObservableCollection<ArticleViewModel> currentItems { get; set; }                       
-#endif
         public ObservableCollection<ArticleViewModel> unreadItems { get; set; }
         public ObservableCollection<ArticleViewModel> favouriteItems { get; set; }
         public ObservableCollection<ArticleViewModel> archivedItems { get; set; }
@@ -181,9 +178,7 @@ namespace wallabag.ViewModel
             unreadItems = new ObservableCollection<ArticleViewModel>();
             favouriteItems = new ObservableCollection<ArticleViewModel>();
             archivedItems = new ObservableCollection<ArticleViewModel>();
-#if WINDOWS
-            currentItems = new ObservableCollection<ArticleViewModel>();
-#endif
+
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
             addLinkCommand = new RelayCommand(() => addLink(), () => IsRunning);
             openSettingsCommand = new RelayCommand(() => openSettings(), () => IsRunning);
