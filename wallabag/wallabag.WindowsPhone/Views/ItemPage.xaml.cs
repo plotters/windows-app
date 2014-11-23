@@ -1,10 +1,11 @@
 ﻿using System;
 using wallabag.Common;
-using wallabag.ViewModels;
+using wallabag.ViewModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using GalaSoft.MvvmLight.Command;
 
 // Die Elementvorlage "Standardseite" ist unter "http://go.microsoft.com/fwlink/?LinkID=390556" dokumentiert.
 

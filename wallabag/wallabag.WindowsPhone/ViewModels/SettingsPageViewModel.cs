@@ -1,8 +1,8 @@
-﻿using MyToolkit.Command;
-using MyToolkit.Mvvm;
-using MyToolkit.Storage;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using wallabag.Common;
 
 namespace wallabag.ViewModels
 {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MyToolkit.Mvvm;
-using MyToolkit.Command;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
-namespace wallabag.ViewModels
+namespace wallabag.ViewModel
 {
     public class ArticleViewModel : ViewModelBase
     {

@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
-using wallabag.ViewModels;
+using wallabag.ViewModel;
 
 // Die Vorlage "Leere Anwendung" ist unter http://go.microsoft.com/fwlink/?LinkId=234227 dokumentiert.
 
@@ -126,7 +126,7 @@ namespace wallabag
 
 /*#if WINDOWS_PHONE_APP
  * 
- * This function will be implemented and activated when wallabag 2.0 is published.
+ * TODO: This function will be implemented and activated when wallabag 2.0 is published.
  * 
 protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
 {
