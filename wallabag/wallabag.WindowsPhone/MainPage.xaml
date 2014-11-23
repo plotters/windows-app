@@ -11,7 +11,7 @@
     <Page.Resources>
         <DataTemplate x:Key="ArticleTemplate">
             <Grid>
-                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" Style="{StaticResource ListViewItemTextBlockStyle}"/>
+                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" Style="{StaticResource ListViewItemTextBlockStyle}" Margin="0,7.5"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -36,13 +36,13 @@
 
         <Pivot x:Name="mainPivot" Title="WALLABAG" Grid.RowSpan="2" SelectedIndex="{Binding selectedPivotItem}">
             <PivotItem x:Uid="unread" Header="unread">
-                <ListBox ItemsSource="{Binding unreadItems}" ItemTemplate="{StaticResource ArticleTemplate}" Background="{x:Null}" SelectionChanged="ListBox_SelectionChanged" />
+                <ListView ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
             </PivotItem>
             <PivotItem x:Uid="favourites" Header="favourites">
-                <ListBox ItemsSource="{Binding favouriteItems}" ItemTemplate="{StaticResource ArticleTemplate}" Background="{x:Null}" SelectionChanged="ListBox_SelectionChanged" />
+                <ListView ItemsSource="{Binding favouriteItems}" ItemClick="ListView_ItemClick"  IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
             </PivotItem>
             <PivotItem x:Uid="archive" Header="archive">
-                <ListBox ItemsSource="{Binding archivedItems}" ItemTemplate="{StaticResource ArticleTemplate}" Background="{x:Null}" SelectionChanged="ListBox_SelectionChanged" />
+                <ListView ItemsSource="{Binding archivedItems}" ItemClick="ListView_ItemClick" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
             </PivotItem>
         </Pivot>
     </Grid>

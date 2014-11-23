@@ -20,15 +20,9 @@ namespace wallabag
             this.InitializeComponent();
         }
 
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            ListBox l = (ListBox)sender;
-
-            if (l.SelectedIndex > -1)
-            {
-                ArticleViewModel a = (ArticleViewModel)e.AddedItems[0];
-                this.Frame.Navigate(typeof(ItemPage), a);
-            }
+            this.Frame.Navigate(typeof(ItemPage), e.ClickedItem);
         }
 
     }
