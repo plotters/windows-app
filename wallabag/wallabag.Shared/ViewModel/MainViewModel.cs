@@ -25,8 +25,6 @@ namespace wallabag.ViewModel
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private INavigationService navigationService;
-
         private bool _IsRunning = true;
         public bool IsRunning
         {
@@ -149,10 +147,8 @@ namespace wallabag.ViewModel
         }
         #endregion
 
-        public MainViewModel(INavigationService navigationService)
+        public MainViewModel()
         {
-            this.navigationService = navigationService;
-
             unreadItems = new ObservableCollection<ArticleViewModel>();
             favouriteItems = new ObservableCollection<ArticleViewModel>();
             archivedItems = new ObservableCollection<ArticleViewModel>();

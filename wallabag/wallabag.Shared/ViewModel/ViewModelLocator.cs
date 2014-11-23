@@ -31,22 +31,7 @@ namespace wallabag.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            var navigationService = this.CreateNavigationService();
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-
             SimpleIoc.Default.Register<MainViewModel>();
-        }
-
-        private INavigationService CreateNavigationService()
-        {
-            var navigationService = new NavigationService();
-            navigationService.Configure("addLink", typeof(string));
-            navigationService.Configure("addLinkWP", typeof(string));
-            navigationService.Configure("settings", typeof(string));
-            navigationService.Configure("settingsWP", typeof(string));
-
-            return navigationService;
         }
         
         public static void Cleanup()
@@ -55,7 +40,6 @@ namespace wallabag.ViewModel
         }
 
         // -----------------------------------
-
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
     }
 }
