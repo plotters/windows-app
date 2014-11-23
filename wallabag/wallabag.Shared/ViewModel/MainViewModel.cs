@@ -187,6 +187,9 @@ namespace wallabag.ViewModel
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
             addLinkCommand = new RelayCommand(() => addLink(), () => IsRunning);
             openSettingsCommand = new RelayCommand(() => openSettings(), () => IsRunning);
+
+            if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true))
+                refreshCommand.Execute(0);
         }
     }
 }
