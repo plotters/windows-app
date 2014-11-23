@@ -5,7 +5,6 @@
     xmlns:local="using:wallabag"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:vm="using:wallabag.ViewModels"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
@@ -20,10 +19,10 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="settingsButton" Label="settings" Command="{Binding openSettingsCommand}"/>
+                <AppBarButton x:Uid="settingsButton" Label="settings" Command="{Binding openSettingsCommand, Mode=OneWay}"/>
             </CommandBar.SecondaryCommands>
-            <AppBarButton x:Uid="addItemButton" Icon="Add" IsCompact="True" Label="add" Command="{Binding addLinkCommand}" Visibility="{Binding addLinkButtonVisibility, Mode=OneWay}"/>
-            <AppBarButton x:Uid="refreshButton" Icon="Refresh" IsCompact="True" Label="refresh" Command="{Binding refreshCommand}"/>
+            <AppBarButton x:Uid="addItemButton" Icon="Add" IsCompact="True" Label="add" Command="{Binding addLinkCommand, Mode=OneWay}" Visibility="{Binding addLinkButtonVisibility, Mode=OneWay}"/>
+            <AppBarButton x:Uid="refreshButton" Icon="Refresh" IsCompact="True" Label="refresh" Command="{Binding refreshCommand, Mode=OneWay}"/>
         </CommandBar>
     </Page.BottomAppBar>
 
@@ -46,6 +45,5 @@
                 <ListBox ItemsSource="{Binding archivedItems}" ItemTemplate="{StaticResource ArticleTemplate}" Background="{x:Null}" SelectionChanged="ListBox_SelectionChanged" />
             </PivotItem>
         </Pivot>
-        <ProgressBar VerticalAlignment="Top" IsIndeterminate="{Binding IsLoading}"/>
     </Grid>
 </Page>

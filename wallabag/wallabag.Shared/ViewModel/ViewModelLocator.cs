@@ -63,5 +63,9 @@ namespace wallabag.ViewModel
         {
             // TODO Clear the ViewModels
         }
+
+        // -----------------------------------
+
+        public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
     }
 }
