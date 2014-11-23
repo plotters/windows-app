@@ -25,5 +25,15 @@ namespace wallabag
             this.Frame.Navigate(typeof(ItemPage), e.ClickedItem);
         }
 
+        private void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(AddLink));
+        }
+
+        private void AppBarButton_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(SettingsPage));
+        }
+
     }
 }

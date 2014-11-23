@@ -35,8 +35,6 @@ namespace wallabag.ViewModel
             {
                 Set(() => IsRunning, ref _IsRunning, value ? false : true);
                 refreshCommand.RaiseCanExecuteChanged();
-                addLinkCommand.RaiseCanExecuteChanged();
-                openSettingsCommand.RaiseCanExecuteChanged();
             }
         }
         
@@ -142,26 +140,6 @@ namespace wallabag.ViewModel
             }
         }
 
-        public RelayCommand addLinkCommand { get; private set; }
-        private void addLink()
-        {
-#if WINDOWS_PHONE
-            this.navigationService.NavigateTo("addLinkWP");
-#else
-            this.navigationService.NavigateTo("addLink");
-#endif
-        }
-
-        public RelayCommand openSettingsCommand { get; private set; }
-        private void openSettings()
-        {
-#if WINDOWS_PHONE
-            this.navigationService.NavigateTo("settingsWP");
-#else
-            this.navigationService.NavigateTo("settings");
-#endif
-        }
-
         #region Windows Phone related
         private int _selectedPivotItem;
         public int selectedPivotItem
@@ -180,8 +158,6 @@ namespace wallabag.ViewModel
             archivedItems = new ObservableCollection<ArticleViewModel>();
 
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
-            addLinkCommand = new RelayCommand(() => addLink(), () => IsRunning);
-            openSettingsCommand = new RelayCommand(() => openSettings(), () => IsRunning);
 
             if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true))
                 refreshCommand.Execute(0);
