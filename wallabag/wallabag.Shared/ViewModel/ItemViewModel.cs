@@ -6,9 +6,9 @@ using GalaSoft.MvvmLight.Command;
 
 namespace wallabag.ViewModel
 {
-    public class ArticleViewModel : ViewModelBase
+    public class ItemViewModel : ViewModelBase
     {
-        public Models.Article Model { get; set; }
+        public Models.Item Model { get; set; }
         
         public string Title
         {
@@ -19,32 +19,6 @@ namespace wallabag.ViewModel
                 {
                     Model.Title = value;
                     RaisePropertyChanged(() => Title);
-                }
-            }
-        }
-
-        public bool Favourite
-        {
-            get { return Model.Favourite; }
-            set
-            {
-                if (value != Model.Favourite)
-                {
-                    Model.Favourite = value;
-                    RaisePropertyChanged(() => Favourite);
-                }
-            }
-        }
-
-        public bool Read
-        {
-            get { return Model.Read; }
-            set
-            {
-                if (value != Model.Read)
-                {
-                    Model.Read = value;
-                    RaisePropertyChanged(() => Read);
                 }
             }
         }
@@ -81,20 +55,16 @@ namespace wallabag.ViewModel
             }
         }
 
-        public DateTime PublishedDate
+        //TODO: Implement the excerpt for the Windows version (and maybe the WP version)
+        private string _Excerpt;
+        public string Excerpt
         {
-            get { return Model.PublishedDate; }
-            set
-            {
-                if (value != Model.PublishedDate)
-                {
-                    Model.PublishedDate = value;
-                    RaisePropertyChanged(() => PublishedDate);
-                }
-            }
+            get { return _Excerpt; }
+            set { Set(() => Excerpt, ref _Excerpt, value); }
         }
+        
 
-        public ArticleViewModel() { Model = new Models.Article(); }
-        public ArticleViewModel(Models.Article M) { Model = M; }
+        public ItemViewModel() { Model = new Models.Item(); }
+        public ItemViewModel(Models.Item M) { Model = M; }
     }
 }
