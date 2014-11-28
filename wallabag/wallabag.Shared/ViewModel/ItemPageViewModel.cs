@@ -4,6 +4,7 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Windows.ApplicationModel.DataTransfer;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace wallabag.ViewModel
 {
@@ -15,21 +16,22 @@ namespace wallabag.ViewModel
             get { return _Item; }
             set { Set(() => Item, ref _Item, value); }
         }
-
-        public string Title
-        {
-            get { return Item.Title; }
-        }
-
+        
         public RelayCommand shareCommand { get; private set; }
         private void share()
         {
             DataTransferManager.ShowShareUI();
         }
 
+        [PreferredConstructor]
         public ItemPageViewModel()
         {
             shareCommand = new RelayCommand(() => share());
+        }
+        public ItemPageViewModel(ItemViewModel item)
+        {
+            shareCommand = new RelayCommand(() => DataTransferManager.ShowShareUI());
+            Item = item;
         }
 
     }
