@@ -5,6 +5,7 @@
     xmlns:local="using:wallabag.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:common="using:wallabag.Common"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=ItemPage}">
@@ -32,11 +33,11 @@
 
         <!-- Titelbereich -->
         <StackPanel Grid.Row="0" Margin="19,0,19,5">
-            <TextBlock Text="{Binding Title}" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
+            <TextBlock Text="{Binding Item.Title}" Style="{StaticResource SubheaderTextBlockStyle}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis"/>
         </StackPanel>
 
         <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <WebView x:Name="webView" NavigationStarting="webView_NavigationStarting" />
+            <WebView x:Name="webView" NavigationStarting="webView_NavigationStarting" common:WebViewExtensions.HTML="{Binding Item.Content}"/>
         </Grid>
     </Grid>
 </Page>
