@@ -42,9 +42,8 @@ namespace wallabag.ViewModel
         private INavigationService CreateNavigationService()
         {
             var navigationService = new NavigationService();
-            navigationService.Configure("ItemWP", System.Type.GetType("wallabag.WindowsPhone.Views.ItemPage"));
-            // navigationService.Configure("key1", typeof(OtherPage1));
-            // navigationService.Configure("key2", typeof(OtherPage2));
+            navigationService.Configure("singleItem", typeof(Views.ItemPage));
+            navigationService.Configure("Settings", typeof(Views.SettingsPage));
 
             return navigationService;
         }
