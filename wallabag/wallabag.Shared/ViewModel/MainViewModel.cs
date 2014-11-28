@@ -13,6 +13,8 @@ namespace wallabag.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
+        private INavigationService navigationService;
+
         private bool _IsRunning = true;
         public bool IsRunning
         {
@@ -23,7 +25,7 @@ namespace wallabag.ViewModel
                 refreshCommand.RaiseCanExecuteChanged();
             }
         }
-
+        
         public Visibility addLinkButtonVisibility
         {
             get
@@ -122,8 +124,16 @@ namespace wallabag.ViewModel
             }
         }
 
-        public MainViewModel()
+        public RelayCommand openItemCommand { get; private set; }
+        private void openItem(ItemViewModel item)
         {
+            this.navigationService.NavigateTo("singleItem", item);
+        }
+
+        public MainViewModel(INavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+
             unreadItems = new ObservableCollection<ItemViewModel>();
             favouriteItems = new ObservableCollection<ItemViewModel>();
             archivedItems = new ObservableCollection<ItemViewModel>();
