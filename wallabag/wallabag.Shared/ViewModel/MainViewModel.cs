@@ -44,9 +44,9 @@ namespace wallabag.ViewModel
             }
         }
 
-        public ObservableCollection<ArticleViewModel> unreadItems { get; set; }
-        public ObservableCollection<ArticleViewModel> favouriteItems { get; set; }
-        public ObservableCollection<ArticleViewModel> archivedItems { get; set; }
+        public ObservableCollection<ItemViewModel> unreadItems { get; set; }
+        public ObservableCollection<ItemViewModel> favouriteItems { get; set; }
+        public ObservableCollection<ItemViewModel> archivedItems { get; set; }
 
         private bool everythingOkay
         {
@@ -96,33 +96,29 @@ namespace wallabag.ViewModel
                         {
                             foreach (SyndicationItem item in feed.Items)
                             {
-                                Article article = new Article();
+                                Item tmpItem = new Item();
                                 if (item.Title != null && item.Title.Text != null)
                                 {
-                                    article.Title = item.Title.Text;
-                                }
-                                if (item.PublishedDate != null)
-                                {
-                                    article.PublishedDate = item.PublishedDate.DateTime;
+                                    tmpItem.Title = item.Title.Text;
                                 }
                                 if (item.Summary != null && item.Summary.Text != null)
                                 {
-                                    article.Content = item.Summary.Text;
+                                    tmpItem.Content = item.Summary.Text;
                                 }
                                 if (item.Links != null && item.Links.Count > 0)
                                 {
-                                    article.Url = item.Links[0].Uri;
+                                    tmpItem.Url = item.Links[0].Uri;
                                 }
                                 switch (param)
                                 {
                                     case "home":
-                                        unreadItems.Add(new ArticleViewModel(article));
+                                        unreadItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "fav":
-                                        favouriteItems.Add(new ArticleViewModel(article));
+                                        favouriteItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "archive":
-                                        archivedItems.Add(new ArticleViewModel(article));
+                                        archivedItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                 }
                             }
@@ -149,9 +145,9 @@ namespace wallabag.ViewModel
 
         public MainViewModel()
         {
-            unreadItems = new ObservableCollection<ArticleViewModel>();
-            favouriteItems = new ObservableCollection<ArticleViewModel>();
-            archivedItems = new ObservableCollection<ArticleViewModel>();
+            unreadItems = new ObservableCollection<ItemViewModel>();
+            favouriteItems = new ObservableCollection<ItemViewModel>();
+            archivedItems = new ObservableCollection<ItemViewModel>();
 
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
 
