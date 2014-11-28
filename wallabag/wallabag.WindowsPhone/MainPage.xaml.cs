@@ -20,11 +20,6 @@ namespace wallabag
             this.InitializeComponent();
         }
 
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.Frame.Navigate(typeof(ItemPage), e.ClickedItem);
-        }
-
         private void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(AddLink));
