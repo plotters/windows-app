@@ -124,7 +124,7 @@ namespace wallabag.ViewModel
             }
         }
 
-        public RelayCommand openItemCommand { get; private set; }
+        public RelayCommand<ItemViewModel> openItemCommand { get; private set; }
         private void openItem(ItemViewModel item)
         {
             this.navigationService.NavigateTo("singleItem", item);
@@ -139,6 +139,7 @@ namespace wallabag.ViewModel
             archivedItems = new ObservableCollection<ItemViewModel>();
 
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
+            openItemCommand = new RelayCommand<ItemViewModel>((item) => openItem(item));
 
             if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true))
                 refreshCommand.Execute(0);
