@@ -122,15 +122,6 @@ namespace wallabag.ViewModel
             }
         }
 
-        #region Windows Phone related
-        private int _selectedPivotItem;
-        public int selectedPivotItem
-        {
-            get { return _selectedPivotItem; }
-            set { Set(() => selectedPivotItem, ref _selectedPivotItem, value); }
-        }
-        #endregion
-
         public MainViewModel()
         {
             unreadItems = new ObservableCollection<ItemViewModel>();
