@@ -31,7 +31,22 @@ namespace wallabag.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+
+            var navigationService = this.CreateNavigationService();
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<ItemPageViewModel>();
+        }
+
+        private INavigationService CreateNavigationService()
+        {
+            var navigationService = new NavigationService();
+            navigationService.Configure("ItemWP", System.Type.GetType("wallabag.WindowsPhone.Views.ItemPage"));
+            // navigationService.Configure("key1", typeof(OtherPage1));
+            // navigationService.Configure("key2", typeof(OtherPage2));
+
+            return navigationService;
         }
         
         public static void Cleanup()
@@ -41,5 +56,6 @@ namespace wallabag.ViewModel
 
         // -----------------------------------
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
+        public ItemPageViewModel ItemPage { get { return ServiceLocator.Current.GetInstance<ItemPageViewModel>(); } }
     }
 }

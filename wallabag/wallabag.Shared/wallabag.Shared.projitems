@@ -4,6 +4,7 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
     <SharedGUID>7270c2b6-a08f-4c9e-873d-53188da786c3</SharedGUID>
+    <ExpressionBlendVersion>12.0.51020.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>wallabag</Import_RootNamespace>
@@ -21,8 +22,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Article.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ArticleViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
