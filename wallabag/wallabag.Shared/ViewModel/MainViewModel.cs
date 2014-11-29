@@ -13,8 +13,6 @@ namespace wallabag.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private INavigationService navigationService;
-
         private bool _IsRunning = true;
         public bool IsRunning
         {
@@ -123,23 +121,14 @@ namespace wallabag.ViewModel
                 }
             }
         }
-
-        public RelayCommand<ItemViewModel> openItemCommand { get; private set; }
-        private void openItem(ItemViewModel item)
+        
+        public MainViewModel()
         {
-            this.navigationService.NavigateTo("singleItem", item);
-        }
-
-        public MainViewModel(INavigationService navigationService)
-        {
-            this.navigationService = navigationService;
-
             unreadItems = new ObservableCollection<ItemViewModel>();
             favouriteItems = new ObservableCollection<ItemViewModel>();
             archivedItems = new ObservableCollection<ItemViewModel>();
 
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
-            openItemCommand = new RelayCommand<ItemViewModel>((item) => openItem(item));
 
             if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true))
                 refreshCommand.Execute(0);

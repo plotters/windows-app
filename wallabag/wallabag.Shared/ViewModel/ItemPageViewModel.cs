@@ -30,7 +30,7 @@ namespace wallabag.ViewModel
         }
         public ItemPageViewModel(ItemViewModel item)
         {
-            shareCommand = new RelayCommand(() => DataTransferManager.ShowShareUI());
+            shareCommand = new RelayCommand(() => share());
             Item = item;
         }
 

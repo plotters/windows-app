@@ -1,4 +1,4 @@
-﻿<Page
+﻿<common:basicPage
     x:Class="wallabag.Views.ItemPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -49,4 +49,4 @@
             <WebView x:Name="webView" NavigationStarting="webView_NavigationStarting" common:WebViewExtensions.HTML="{Binding Item.Content}"/>
         </Grid>
     </Grid>
-</Page>
+</common:basicPage>

@@ -14,16 +14,21 @@ namespace wallabag.Views
     /// <summary>
     /// Eine leere Seite, die eigenständig verwendet werden kann oder auf die innerhalb eines Frames navigiert werden kann.
     /// </summary>
-    public sealed partial class ItemPage : Page
+    public sealed partial class ItemPage : basicPage
     {
         public ItemPage()
         {
             this.InitializeComponent();
+
+            var dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += dataTransferManager_DataRequested;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null) { this.DataContext = new ItemPageViewModel(e.Parameter as ItemViewModel); }
+            if (e.Parameter != null)
+                this.DataContext = new ItemPageViewModel(e.Parameter as ItemViewModel);
+            
             base.OnNavigatedTo(e);
         }
 
@@ -43,8 +48,5 @@ namespace wallabag.Views
                 await Launcher.LaunchUriAsync(new Uri(args.Uri.AbsoluteUri));
             }
         }
-
-        
-
     }
 }

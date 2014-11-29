@@ -17,14 +17,13 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Common\ApplicationSettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\basicPage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\WebViewExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ItemClickEventArgsToItemViewModelConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemPageViewModel.cs" />

@@ -13,7 +13,7 @@ namespace wallabag
     /// <summary>
     /// Eine leere Seite, die eigenständig verwendet werden kann oder auf die innerhalb eines Frames navigiert werden kann.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class MainPage : basicPage
     {
         public MainPage()
         {
@@ -28,6 +28,11 @@ namespace wallabag
         private void AppBarButton_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(SettingsPage));
+        }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemPage), e.ClickedItem);
         }
 
     }

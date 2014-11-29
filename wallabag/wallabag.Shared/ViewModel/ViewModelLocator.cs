@@ -31,26 +31,9 @@ namespace wallabag.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            var navigationService = this.CreateNavigationService();
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-
+            
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ItemPageViewModel>();
-        }
-
-        private INavigationService CreateNavigationService()
-        {
-            var navigationService = new NavigationService();
-            navigationService.Configure("singleItem", typeof(Views.ItemPage));
-            navigationService.Configure("Settings", typeof(Views.SettingsPage));
-
-            return navigationService;
-        }
-        
-        public static void Cleanup()
-        {
-            // TODO Clear the ViewModels
         }
 
         // -----------------------------------
