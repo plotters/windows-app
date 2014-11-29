@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using wallabag.Common;
+using System.Collections.ObjectModel;
 
 namespace wallabag.ViewModel
 {
@@ -42,7 +43,28 @@ namespace wallabag.ViewModel
             get { return _enableAddLink; }
             set { Set(() => enableAddLink, ref _enableAddLink, value); }
         }
-               
+
+        private ObservableCollection<string> _Fonts;
+        public ObservableCollection<string> Fonts
+        {
+            get { return _Fonts; }
+            set { Set(() => Fonts, ref _Fonts, value); }
+        }
+
+        private int _fontSize = 20;
+        public int fontSize
+        {
+            get { return _fontSize; }
+            set { Set(() => fontSize, ref _fontSize, value); }
+        }
+
+        private double _lineHeight = 1.5;
+        public double lineHeight
+        {
+            get { return _lineHeight; }
+            set { Set(() => lineHeight, ref _lineHeight, value); }
+        }
+
         public RelayCommand saveCommand { get; private set; }
         private void saveSettings()
         {
@@ -54,6 +76,8 @@ namespace wallabag.ViewModel
             ApplicationSettings.SetSetting<string>("Token", Token, true);
             ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup, true);
             ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink);
+            ApplicationSettings.SetSetting<int>("fontSize", fontSize, true);
+            ApplicationSettings.SetSetting<double>("lineHeight", lineHeight, true);
         }
 
         private void loadSettings()
@@ -63,6 +87,8 @@ namespace wallabag.ViewModel
             Token = ApplicationSettings.GetSetting<string>("Token", "", true);
             refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true);
             enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false);
+            fontSize = ApplicationSettings.GetSetting<int>("fontSize", 20, true);
+            lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5, true);
         }
 
         public SettingsPageViewModel()

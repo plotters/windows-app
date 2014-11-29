@@ -34,7 +34,7 @@
                     <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding saveCommand, Mode=OneWay}" />
                 </Grid>
             </PivotItem>
-            <PivotItem Header="read">
+            <PivotItem Header="text">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -42,8 +42,8 @@
                     </Grid.RowDefinitions>
                     <StackPanel>
                         <ComboBox x:Uid="FontComboBox" Header="Font" />
-                        <Slider Header="Font size" />
-                        <Slider Header="Line height" />
+                        <Slider x:Uid="fontSizeSlider" Header="Font size" Value="{Binding fontSize, Mode=TwoWay}" Minimum="16" Maximum="32" />
+                        <Slider x:Uid="lineHeightSlider" Header="Line height" SmallChange="0.1" Maximum="2" Minimum="1" Value="{Binding lineHeight, Mode=TwoWay}" StepFrequency="0.1" />
                     </StackPanel>
                     <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding saveCommand, Mode=OneWay}" />
                 </Grid>
