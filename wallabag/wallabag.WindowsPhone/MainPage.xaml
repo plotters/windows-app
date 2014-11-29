@@ -20,10 +20,10 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="settingsButton" Label="settings" Command="{Binding openSettingsCommand, Mode=OneWay}" Click="AppBarButton_Click_1"/>
+                <AppBarButton x:Uid="settingsButton" Label="settings" Click="AppBarButton_Click_1"/>
             </CommandBar.SecondaryCommands>
-            <AppBarButton x:Uid="addItemButton" Icon="Add" IsCompact="True" Label="add" Command="{Binding addLinkCommand, Mode=OneWay}" Visibility="{Binding addLinkButtonVisibility, Mode=OneWay}" Click="AppBarButton_Click"/>
-            <AppBarButton x:Uid="refreshButton" Icon="Refresh" IsCompact="True" Label="refresh" Command="{Binding refreshCommand, Mode=OneWay}"/>
+            <AppBarButton x:Uid="addItemButton" Icon="Add" IsCompact="True" Label="add" Visibility="{Binding addLinkButtonVisibility, Mode=OneWay}" Click="AppBarButton_Click"/>
+            <AppBarButton x:Uid="refreshButton" Icon="Refresh" IsCompact="True" Label="refresh"/>
         </CommandBar>
     </Page.BottomAppBar>
 
