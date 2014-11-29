@@ -77,7 +77,7 @@ namespace wallabag.ViewModel
             ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup);
             ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink, false);
             ApplicationSettings.SetSetting<int>("fontSize", fontSize);
-            ApplicationSettings.SetSetting<double>("lineHeight", lineHeight;
+            ApplicationSettings.SetSetting<double>("lineHeight", lineHeight);
         }
 
         private void loadSettings()
