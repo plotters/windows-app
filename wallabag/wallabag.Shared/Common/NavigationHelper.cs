@@ -59,12 +59,6 @@ namespace wallabag.Common
         private Page Page { get; set; }
         private Frame Frame { get { return this.Page.Frame; } }
 
-        /// <summary>
-        /// Initialisiert eine neue Instanz der <see cref="NavigationHelper"/>-Klasse.
-        /// </summary>
-        /// <param name="page">Ein Verweis auf die aktuelle für die Navigation verwendete Seite.  
-        /// Dieser Verweis ermöglicht eine Änderung des Rahmens und stellt sicher, dass die Tastatur 
-        /// Navigationsanforderungen treten nur auf, wenn die Seite das gesamte Fenster einnimmt.</param>
         public NavigationHelper(Page page)
         {
             this.Page = page;
@@ -104,19 +98,11 @@ namespace wallabag.Common
             };
         }
 
-        #region Navigationsunterstützung dient.
+        #region Navigationsunterstützung
 
         RelayCommand _goBackCommand;
         RelayCommand _goForwardCommand;
 
-        /// <summary>
-        /// <see cref="RelayCommand"/> zum Binden der Command-Eigenschaft der Schaltfläche "Zurück"
-        /// zum Navigieren zum neuesten Element im Rückwärtsnavigationsverlauf, wenn ein Frame
-        /// verwaltet einen eigenen Navigationsverlauf.
-        /// 
-        /// <see cref="RelayCommand"/> ist für die Verwendung der virtuellen Methode <see cref="GoBack"/> eingerichtet
-        /// als Ausführungsaktion und <see cref="CanGoBack"/> für CanExecute.
-        /// </summary>
         public RelayCommand GoBackCommand
         {
             get
@@ -134,13 +120,6 @@ namespace wallabag.Common
                 _goBackCommand = value;
             }
         }
-        /// <summary>
-        /// <see cref="RelayCommand"/> zum Navigieren zum letzten Element im 
-        /// der Vorwärtsnavigationsverlauf, wenn ein Frame seinen eigenen Navigationsverlauf verwaltet.
-        /// 
-        /// <see cref="RelayCommand"/> ist für die Verwendung der virtuellen Methode <see cref="GoForward"/> eingerichtet
-        /// als Ausführungsaktion und <see cref="CanGoForward"/> für CanExecute.
-        /// </summary>
         public RelayCommand GoForwardCommand
         {
             get
@@ -154,55 +133,26 @@ namespace wallabag.Common
                 return _goForwardCommand;
             }
         }
-
-        /// <summary>
-        /// Von der <see cref="GoBackCommand"/>-Eigenschaft verwendete virtuelle Methode
-        /// um zu bestimmen, ob <see cref="Frame"/> zurückgesetzt werden kann.
-        /// </summary>
-        /// <returns>
-        /// "True", wenn <see cref="Frame"/> mindestens einen Eintrag aufweist 
-        /// im Rückwärtsnavigationsverlauf.
-        /// </returns>
+        
         public virtual bool CanGoBack()
         {
             return this.Frame != null && this.Frame.CanGoBack;
         }
-        /// <summary>
-        /// Von der <see cref="GoForwardCommand"/>-Eigenschaft verwendete virtuelle Methode
-        /// um zu bestimmen, ob <see cref="Frame"/> fortgesetzt werden kann.
-        /// </summary>
-        /// <returns>
-        /// "True", wenn <see cref="Frame"/> mindestens einen Eintrag aufweist 
-        /// im Vorwärtsnavigationsverlauf.
-        /// </returns>
         public virtual bool CanGoForward()
         {
             return this.Frame != null && this.Frame.CanGoForward;
         }
 
-        /// <summary>
-        /// Von der <see cref="GoBackCommand"/>-Eigenschaft verwendete virtuelle Methode
-        /// um die <see cref="Windows.UI.Xaml.Controls.Frame.GoBack"/>-Methode aufzurufen.
-        /// </summary>
         public virtual void GoBack()
         {
             if (this.Frame != null && this.Frame.CanGoBack) this.Frame.GoBack();
         }
-        /// <summary>
-        /// Von der <see cref="GoForwardCommand"/>-Eigenschaft verwendete virtuelle Methode
-        /// um die <see cref="Windows.UI.Xaml.Controls.Frame.GoForward"/>-Methode aufzurufen.
-        /// </summary>
         public virtual void GoForward()
         {
             if (this.Frame != null && this.Frame.CanGoForward) this.Frame.GoForward();
         }
 
 #if WINDOWS_PHONE_APP
-        /// <summary>
-        /// Wird aufgerufen, wenn die Hardware-Zurück-Taste gedrückt wird. Nur Windows Phone.
-        /// </summary>
-        /// <param name="sender">Instanz, von der das Ereignis ausgelöst wurde.</param>
-        /// <param name="e">Ereignisdaten, die die Bedingungen beschreiben, die zu dem Ereignis geführt haben.</param>
         private void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
         {
             if (this.GoBackCommand.CanExecute(null))
@@ -289,28 +239,9 @@ namespace wallabag.Common
         #region Verwaltung der Prozesslebensdauer
 
         private String _pageKey;
-
-        /// <summary>
-        /// Dieses Ereignis auf der aktuellen Seite registrieren, um die Seite zu füllen
-        /// mit Inhalten, die während der Navigation übergeben werden , sowie nicht gespeicherte
-        /// Zustand bereitgestellt, wenn eine Seite aus einer vorherigen Sitzung neu erstellt wird.
-        /// </summary>
         public event LoadStateEventHandler LoadState;
-        /// <summary>
-        /// Dieses Ereignis auf der aktuellen Seite registrieren, um
-        /// Zustand, der der aktuellen Seite zugeordnet ist, wenn
-        /// Anwendung wird angehalten, oder die Seite wird aus
-        /// Navigationscache.
-        /// </summary>
         public event SaveStateEventHandler SaveState;
 
-        /// <summary>
-        /// Wird aufgerufen, wenn diese Seite in einem Rahmen angezeigt werden soll.  
-        /// Diese Methode ruft <see cref="LoadState"/> auf, wobei alle seitenspezifischen
-        /// Logik für Navigation und Verwaltung der Prozesslebensdauer sollten platziert werden.
-        /// </summary>
-        /// <param name="e">Ereignisdaten, die beschreiben, wie diese Seite erreicht wurde.  Die
-        /// Parametereigenschaft stellt die anzuzeigende Gruppe bereit.</param>
         public void OnNavigatedTo(NavigationEventArgs e)
         {
             var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
@@ -346,13 +277,6 @@ namespace wallabag.Common
             }
         }
 
-        /// <summary>
-        /// Wird aufgerufen, wenn diese Seite nicht mehr in einem Rahmen angezeigt wird.
-        /// Diese Methode ruft <see cref="SaveState"/> auf, wobei alle seitenspezifischen
-        /// Logik für Navigation und Verwaltung der Prozesslebensdauer sollten platziert werden.
-        /// </summary>
-        /// <param name="e">Ereignisdaten, die beschreiben, wie diese Seite erreicht wurde.  Die
-        /// Parametereigenschaft stellt die anzuzeigende Gruppe bereit.</param>
         public void OnNavigatedFrom(NavigationEventArgs e)
         {
             var frameState = SuspensionManager.SessionStateForFrame(this.Frame);
@@ -371,6 +295,7 @@ namespace wallabag.Common
     /// Repräsentiert die Methode, mit der das <see cref="NavigationHelper.LoadState"/>-Ereignis behandelt wird
     /// </summary>
     public delegate void LoadStateEventHandler(object sender, LoadStateEventArgs e);
+    
     /// <summary>
     /// Repräsentiert die Methode, mit der das <see cref="NavigationHelper.SaveState"/>-Ereignis behandelt wird
     /// </summary>
@@ -381,28 +306,9 @@ namespace wallabag.Common
     /// </summary>
     public class LoadStateEventArgs : EventArgs
     {
-        /// <summary>
-        /// Der an <see cref="Frame.Navigate(Type, Object)"/> übergebene Parameterwert 
-        /// übergeben wurde, als diese Seite ursprünglich angefordert wurde.
-        /// </summary>
         public Object NavigationParameter { get; private set; }
-        /// <summary>
-        /// Ein Wörterbuch des Zustands, der von dieser Seite während einer früheren
-        /// beibehalten wurde.  Beim ersten Aufrufen einer Seite ist dieser Wert NULL.
-        /// </summary>
         public Dictionary<string, Object> PageState { get; private set; }
 
-        /// <summary>
-        /// Initialisiert eine neue Instanz der <see cref="LoadStateEventArgs"/>-Klasse.
-        /// </summary>
-        /// <param name="navigationParameter">
-        /// Der an <see cref="Frame.Navigate(Type, Object)"/> übergebene Parameterwert 
-        /// übergeben wurde, als diese Seite ursprünglich angefordert wurde.
-        /// </param>
-        /// <param name="pageState">
-        /// Ein Wörterbuch des Zustands, der von dieser Seite während einer früheren
-        /// beibehalten wurde.  Beim ersten Aufrufen einer Seite ist dieser Wert NULL.
-        /// </param>
         public LoadStateEventArgs(Object navigationParameter, Dictionary<string, Object> pageState)
             : base()
         {
@@ -410,20 +316,14 @@ namespace wallabag.Common
             this.PageState = pageState;
         }
     }
+    
     /// <summary>
     /// Klasse, die zum Speichern der erforderlichen Ereignisdaten verwendet wird, wenn eine Seite versucht, den Zustand zu speichern.
     /// </summary>
     public class SaveStateEventArgs : EventArgs
     {
-        /// <summary>
-        /// Ein leeres Wörterbuch, das mit dem serialisierbaren Zustand aufgefüllt wird.
-        /// </summary>
         public Dictionary<string, Object> PageState { get; private set; }
 
-        /// <summary>
-        /// Initialisiert eine neue Instanz der <see cref="SaveStateEventArgs"/>-Klasse.
-        /// </summary>
-        /// <param name="pageState">Ein leeres Wörterbuch, das mit dem serialisierbaren Zustand aufgefüllt wird.</param>
         public SaveStateEventArgs(Dictionary<string, Object> pageState)
             : base()
         {
