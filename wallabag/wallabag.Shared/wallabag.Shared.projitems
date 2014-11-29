@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\WebViewExtensions.cs" />
