@@ -49,10 +49,10 @@
                 </ListView>
             </PivotItem>
             <PivotItem x:Uid="favourites" Header="favourites">
-                <ListView ItemsSource="{Binding favouriteItems}" ItemClick="ListView_ItemClick"  IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
+                <ListView ItemsSource="{Binding favouriteItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
             </PivotItem>
             <PivotItem x:Uid="archive" Header="archive">
-                <ListView ItemsSource="{Binding archivedItems}" ItemClick="ListView_ItemClick" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
+                <ListView ItemsSource="{Binding archivedItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" />
             </PivotItem>
         </Pivot>
     </Grid>

@@ -16,30 +16,38 @@
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="0" Margin="19,0,0,0">
-            <TextBlock Text="WALLABAG" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,12,0,0"/>
-            <TextBlock x:Uid="settingsHeader" Text="settings" Margin="0,-6.5,0,26.5" Style="{ThemeResource HeaderTextBlockStyle}" CharacterSpacing="{ThemeResource PivotHeaderItemCharacterSpacing}"/>
-        </StackPanel>
-
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <StackPanel>
-                <TextBox x:Uid="wallabagUrlTextBox" Header="Wallabag URL" PlaceholderText="http://..." InputScope="Url" Text="{Binding wallabagUrl, Mode=TwoWay}"/>
-                <TextBox x:Uid="userIdTextBox" Header="User ID" PlaceholderText="default 1" InputScope="Number" Text="{Binding userId, Mode=TwoWay}" />
-                <TextBox x:Uid="TokenTextBox" Header="Token" PlaceholderText="a crazy-looking string (e.g. j90/Ggdf)" Text="{Binding Token, Mode=TwoWay}"/>
-                <ToggleSwitch x:Uid="refreshOnStartupSwitch" Header="refresh on startup" Margin="0,25,0,0" IsOn="{Binding refreshOnStartup, Mode=TwoWay}" />
-                <ToggleSwitch x:Uid="enableAddLinkSwitch" Header="enable &quot;add link&quot;" IsOn="{Binding enableAddLink, Mode=TwoWay}" />
-            </StackPanel>
-            <Button x:Uid="saveSettingsButton" Content="save settings" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding saveCommand, Mode=OneWay}" />
-        </Grid>
+        
+        <Pivot Title="SETTINGS" >
+            <PivotItem Header="general">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <TextBox x:Uid="wallabagUrlTextBox" Header="Wallabag URL" PlaceholderText="http://..." InputScope="Url" Text="{Binding wallabagUrl, Mode=TwoWay}"/>
+                        <TextBox x:Uid="userIdTextBox" Header="User ID" PlaceholderText="default 1" InputScope="Number" Text="{Binding userId, Mode=TwoWay}" />
+                        <TextBox x:Uid="TokenTextBox" Header="Token" PlaceholderText="a crazy-looking string (e.g. j90/Ggdf)" Text="{Binding Token, Mode=TwoWay}"/>
+                        <ToggleSwitch x:Uid="refreshOnStartupSwitch" Header="refresh on startup" Margin="0,25,0,0" IsOn="{Binding refreshOnStartup, Mode=TwoWay}" />
+                        <ToggleSwitch x:Uid="enableAddLinkSwitch" Header="enable &quot;add link&quot;" IsOn="{Binding enableAddLink, Mode=TwoWay}" />
+                    </StackPanel>
+                    <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding saveCommand, Mode=OneWay}" />
+                </Grid>
+            </PivotItem>
+            <PivotItem Header="read">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <StackPanel>
+                        <ComboBox x:Uid="FontComboBox" Header="Font" />
+                        <Slider Header="Font size" />
+                        <Slider Header="Line height" />
+                    </StackPanel>
+                    <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding saveCommand, Mode=OneWay}" />
+                </Grid>
+            </PivotItem>
+        </Pivot>
     </Grid>
 </Page>
