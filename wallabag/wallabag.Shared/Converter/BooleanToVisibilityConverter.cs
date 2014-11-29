@@ -11,7 +11,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
 
-namespace wallabag.Common
+namespace wallabag.Converter
 {
     /// <summary>
     /// Wertkonverter, der TRUE in <see cref="Visibility.Visible"/> und FALSE in

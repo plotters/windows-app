@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 
-namespace wallabag.Common
+namespace wallabag.Converter
 {
     /// <summary>
     /// Wertkonverter, der TRUE in FALSE übersetzt und umgekehrt.
