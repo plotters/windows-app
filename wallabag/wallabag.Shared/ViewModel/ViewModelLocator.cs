@@ -34,10 +34,12 @@ namespace wallabag.ViewModel
             
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<ItemPageViewModel>();
+            SimpleIoc.Default.Register<SettingsPageViewModel>();
         }
 
         // -----------------------------------
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
         public ItemPageViewModel ItemPage { get { return ServiceLocator.Current.GetInstance<ItemPageViewModel>(); } }
+        public SettingsPageViewModel SettingsPage { get { return ServiceLocator.Current.GetInstance<SettingsPageViewModel>(); } }
     }
 }
