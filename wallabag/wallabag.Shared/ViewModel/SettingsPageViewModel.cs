@@ -71,24 +71,24 @@ namespace wallabag.ViewModel
             //TODO: Check for framabag!
             string wlbgUrl = "http://" + wallabagUrl;
             if (wallabagUrl.StartsWith("http://") || wallabagUrl.StartsWith("https://")) wlbgUrl = wallabagUrl;
-            ApplicationSettings.SetSetting<string>("wallabagUrl", wlbgUrl, true);
-            ApplicationSettings.SetSetting<int>("userId", userId, true);
-            ApplicationSettings.SetSetting<string>("Token", Token, true);
-            ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup, true);
-            ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink);
-            ApplicationSettings.SetSetting<int>("fontSize", fontSize, true);
-            ApplicationSettings.SetSetting<double>("lineHeight", lineHeight, true);
+            ApplicationSettings.SetSetting<string>("wallabagUrl", wlbgUrl);
+            ApplicationSettings.SetSetting<int>("userId", userId);
+            ApplicationSettings.SetSetting<string>("Token", Token);
+            ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup);
+            ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink, false);
+            ApplicationSettings.SetSetting<int>("fontSize", fontSize);
+            ApplicationSettings.SetSetting<double>("lineHeight", lineHeight;
         }
 
         private void loadSettings()
         {
-            wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
-            userId = ApplicationSettings.GetSetting<int>("userId", 1, true);
-            Token = ApplicationSettings.GetSetting<string>("Token", "", true);
-            refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false, true);
-            enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false);
-            fontSize = ApplicationSettings.GetSetting<int>("fontSize", 20, true);
-            lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5, true);
+            wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
+            userId = ApplicationSettings.GetSetting<int>("userId", 1);
+            Token = ApplicationSettings.GetSetting<string>("Token", "");
+            refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false);
+            enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false, false);
+            fontSize = ApplicationSettings.GetSetting<int>("fontSize", 20);
+            lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
         }
 
         public SettingsPageViewModel()

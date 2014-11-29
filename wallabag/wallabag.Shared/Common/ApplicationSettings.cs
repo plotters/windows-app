@@ -7,7 +7,7 @@ namespace wallabag.Common
 {
     public static class ApplicationSettings
     {
-        public static void SetSetting<T>(string key, T value, bool roaming = false)
+        public static void SetSetting<T>(string key, T value, bool roaming = true)
         {
             if (roaming)
             {
@@ -26,7 +26,7 @@ namespace wallabag.Common
             return GetSetting(key, default(T));
         }
 
-        public static T GetSetting<T>(string key, T defaultValue, bool roaming = false)
+        public static T GetSetting<T>(string key, T defaultValue, bool roaming = true)
         {
             if (roaming)
             {
