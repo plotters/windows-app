@@ -2,10 +2,10 @@
 @import url(reset.css);
 
 body {
-    font-family: Georgia;
-    font-size: 20px;
-    color: #000;
-    background: #faf7ee;  
+    font-family: 'Segoe UI';
+    font-size: 14pt;
+    color: #bdbdbd;
+    background: #000;
     word-wrap: break-word;
     line-height: 1.5;
 }
@@ -14,19 +14,21 @@ h1, h2, h3, h5, h4, h5, h6 {
     line-height: 1.2em;
 }
     h1 a, h2 a, h3 a, h5 a, h4 a, h5 a, h6 a {
-        color: #114da4;
+        color: #3b6ea1;
     }
 
 h1 {
-    font-size: 30px;
+    font-size: 2.4em;
 }
 
 h2 {
-    font-size: 26px;
+    font-size: 2em;
 }
 
 h3, h5 {
     font-size: 1.45em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 h4 {
@@ -42,7 +44,7 @@ h6 {
 }
 
 a {
-    color: #114da4;
+    color: #3b6ea1;
     text-decoration: none;
     transition: all ease 0.3s;
 }
