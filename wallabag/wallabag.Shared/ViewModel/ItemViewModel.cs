@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using wallabag.Common;
 
 namespace wallabag.ViewModel
 {
@@ -27,7 +28,7 @@ namespace wallabag.ViewModel
         {
             get {
                 var content =
-                    "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/css/wallabag.css\" type=\"text/css\" media=\"screen\" /></head>" +
+                    "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/css/wallabag.css\" type=\"text/css\" media=\"screen\" />" + generateCSS() + "</head>" +
                         Model.Content +
                     "</html>";
                 return content; 
@@ -62,7 +63,18 @@ namespace wallabag.ViewModel
             get { return _Excerpt; }
             set { Set(() => Excerpt, ref _Excerpt, value); }
         }
-        
+
+        private string generateCSS()
+        {
+            double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20.0);
+            double lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
+
+            string css = "body {" +
+                "font-size: " + fontSize + "px;" +
+                "line-height: " + lineHeight.ToString().Replace(",",".") +
+                "}";
+            return "<style>" + css + "</style>";
+        }
 
         public ItemViewModel() { Model = new Models.Item(); }
         public ItemViewModel(Models.Item M) { Model = M; }

@@ -16,7 +16,7 @@ namespace wallabag.ViewModel
             set { Set(() => wallabagUrl, ref _wallabagUrl, value); }
         }
 
-        private int _userId = 1;
+        private int _userId;
         public int userId
         {
             get { return _userId; }
@@ -51,14 +51,14 @@ namespace wallabag.ViewModel
             set { Set(() => Fonts, ref _Fonts, value); }
         }
 
-        private int _fontSize = 20;
-        public int fontSize
+        private double _fontSize;
+        public double fontSize
         {
             get { return _fontSize; }
             set { Set(() => fontSize, ref _fontSize, value); }
         }
 
-        private double _lineHeight = 1.5;
+        private double _lineHeight;
         public double lineHeight
         {
             get { return _lineHeight; }
@@ -76,7 +76,7 @@ namespace wallabag.ViewModel
             ApplicationSettings.SetSetting<string>("Token", Token);
             ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup);
             ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink, false);
-            ApplicationSettings.SetSetting<int>("fontSize", fontSize);
+            ApplicationSettings.SetSetting<double>("fontSize", fontSize);
             ApplicationSettings.SetSetting<double>("lineHeight", lineHeight);
         }
 
@@ -87,7 +87,7 @@ namespace wallabag.ViewModel
             Token = ApplicationSettings.GetSetting<string>("Token", "");
             refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false);
             enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false, false);
-            fontSize = ApplicationSettings.GetSetting<int>("fontSize", 20);
+            fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20);
             lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
         }
 
