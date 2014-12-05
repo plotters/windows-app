@@ -9,16 +9,10 @@ namespace wallabag.Common
     {
         public static void SetSetting<T>(string key, T value, bool roaming = true)
         {
-            if (roaming)
-            {
-                if (!ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
-                    ApplicationData.Current.RoamingSettings.Values[key] = value;
-            }
-            else
-            {
-                if (!ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
-                    ApplicationData.Current.LocalSettings.Values[key] = value;
-            }
+            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
+            if (roaming) settings = ApplicationData.Current.RoamingSettings;
+
+            settings.Values[key] = value;
         }
 
         public static T GetSetting<T>(string key)
@@ -28,17 +22,29 @@ namespace wallabag.Common
 
         public static T GetSetting<T>(string key, T defaultValue, bool roaming = true)
         {
-            if (roaming)
-            {
-                if (ApplicationData.Current.RoamingSettings.Values.ContainsKey(key))
-                    return (T)ApplicationData.Current.RoamingSettings.Values[key];
-            }
-            else
-            {
-                if (ApplicationData.Current.LocalSettings.Values.ContainsKey(key))
-                    return (T)ApplicationData.Current.LocalSettings.Values[key];
-            }
+            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
+            if (roaming) settings = ApplicationData.Current.RoamingSettings;
+
+            if (settings.Values.ContainsKey(key))
+                return (T)settings.Values[key];
+
             return (T)defaultValue;
+        }
+
+        public static void RemoveSetting(string key, bool roaming = true)
+        {
+            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
+            if (roaming) settings = ApplicationData.Current.RoamingSettings;
+
+            if (!settings.Values.ContainsKey(key))
+                settings.Values.Remove(key);
+        }
+
+        public static void ClearSettings(bool roaming = true)
+        {
+            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
+            if (roaming) settings = ApplicationData.Current.RoamingSettings;
+            settings.Values.Clear();
         }
     }
 }
