@@ -80,6 +80,13 @@ namespace wallabag.ViewModel
             ApplicationSettings.SetSetting<double>("lineHeight", lineHeight);
         }
 
+        public RelayCommand resetCommand { get; private set; }
+        private void resetSettings()
+        {
+            ApplicationSettings.ClearSettings();
+            loadSettings();
+        }
+
         private void loadSettings()
         {
             wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
@@ -95,6 +102,7 @@ namespace wallabag.ViewModel
         {
             loadSettings();
             saveCommand = new RelayCommand(() => saveSettings());
+            resetCommand = new RelayCommand(() => resetSettings());
         }
     }
 }
