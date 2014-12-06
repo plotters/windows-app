@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using wallabag.Common;
 using System.Collections.ObjectModel;
+using wallabag.Common;
+using Windows.UI;
+using Windows.UI.Xaml.Media;
 
 namespace wallabag.ViewModel
 {
@@ -65,6 +65,33 @@ namespace wallabag.ViewModel
             set { Set(() => lineHeight, ref _lineHeight, value); }
         }
 
+        private bool _isLightMode;
+        public bool isLightMode
+        {
+            get { return _isLightMode; }
+            set { Set(() => isLightMode, ref _isLightMode, value); }
+        }
+
+        public SolidColorBrush textColor
+        {
+            get {
+                if (isLightMode)            
+                    return new SolidColorBrush(ColorHelper.FromArgb(255, 0, 0, 0)); // #000000
+                else
+                    return new SolidColorBrush(ColorHelper.FromArgb(255, 189, 189, 189)); // #bdbdbd
+            }
+        }
+
+        public SolidColorBrush Background
+        {
+            get {
+                if (isLightMode)
+                    return new SolidColorBrush(ColorHelper.FromArgb(255, 250, 247, 238)); // #faf7ee
+                else
+                    return new SolidColorBrush(ColorHelper.FromArgb(255, 0, 0, 0)); // #000000
+            }
+        }
+        
         public RelayCommand saveCommand { get; private set; }
         private void saveSettings()
         {
@@ -78,6 +105,7 @@ namespace wallabag.ViewModel
             ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink, false);
             ApplicationSettings.SetSetting<double>("fontSize", fontSize);
             ApplicationSettings.SetSetting<double>("lineHeight", lineHeight);
+            ApplicationSettings.SetSetting<bool>("isLightMode", isLightMode);
         }
 
         public RelayCommand resetCommand { get; private set; }
@@ -96,6 +124,7 @@ namespace wallabag.ViewModel
             enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false, false);
             fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20);
             lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
+            isLightMode = ApplicationSettings.GetSetting<bool>("IsLightMode", false);
         }
 
         public SettingsPageViewModel()

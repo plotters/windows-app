@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using Windows.ApplicationModel.DataTransfer;
 using GalaSoft.MvvmLight.Ioc;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.UI.Xaml.Media;
 
 namespace wallabag.ViewModel
 {
@@ -15,6 +13,16 @@ namespace wallabag.ViewModel
         {
             get { return _Item; }
             set { Set(() => Item, ref _Item, value); }
+        }
+
+        public SolidColorBrush Background
+        {
+            get { return new SettingsPageViewModel().Background; }
+        }
+
+        public SolidColorBrush textColor
+        {
+            get { return new SettingsPageViewModel().textColor; }
         }
         
         public RelayCommand shareCommand { get; private set; }

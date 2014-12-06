@@ -18,7 +18,7 @@
         </CommandBar>
     </Page.BottomAppBar>
 
-    <Grid x:Name="LayoutRoot" Background="#FFFAF7EE">
+    <Grid x:Name="LayoutRoot" Background="{Binding Background, Mode=OneWay}">
 
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -33,7 +33,7 @@
 
         <!-- Titelbereich -->
         <StackPanel Grid.Row="0" Margin="19,0,19,5">
-            <TextBlock Text="{Binding Item.Title}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" RequestedTheme="Light">
+            <TextBlock Text="{Binding Item.Title}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="{Binding textColor, Mode=OneWay}">
                 <TextBlock.Style>
                     <Style BasedOn="{StaticResource SubheaderTextBlockStyle}" TargetType="TextBlock">
                         <Setter Property="FontSize" Value="30"/>

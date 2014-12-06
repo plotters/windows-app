@@ -4,6 +4,8 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using wallabag.Common;
+using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace wallabag.ViewModel
 {
@@ -56,14 +58,30 @@ namespace wallabag.ViewModel
             }
         }
 
+        private string CSSproperty(string name, object value)
+        {
+            if (value.GetType() != typeof(Color))
+            {
+                return string.Format("{0}: {1};", name, value.ToString());
+            }
+            else
+            {
+                var color = (Color)value;
+                var tmpColor = string.Format("rgba({0}, {1}, {2}, {3})", color.R, color.G, color.B, color.A);
+                return string.Format("{0}: {1};", name, tmpColor);
+            }
+        }
         private string generateCSS()
         {
             double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20.0);
             double lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
 
+            var tmpSettingsVM = new SettingsPageViewModel();
             string css = "body {" +
-                "font-size: " + fontSize + "px;" +
-                "line-height: " + lineHeight.ToString().Replace(",",".") +
+                CSSproperty("font-size", fontSize + "px") +
+                CSSproperty("line-height", lineHeight.ToString().Replace(",", ".")) +
+                CSSproperty("color", tmpSettingsVM.textColor.Color) +
+                CSSproperty("background", tmpSettingsVM.Background.Color) +
                 "}";
             return "<style>" + css + "</style>";
         }
