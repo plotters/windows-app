@@ -1,9 +1,7 @@
-﻿using wallabag.Common;
-using System;
+﻿using System;
+using wallabag.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-
-// Die Elementvorlage "Inhaltsdialog" ist unter "http://go.microsoft.com/fwlink/?LinkID=390556" dokumentiert.
 
 namespace wallabag.Views
 {

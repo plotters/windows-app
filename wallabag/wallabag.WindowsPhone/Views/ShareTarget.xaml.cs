@@ -5,18 +5,10 @@ using Windows.ApplicationModel.DataTransfer.ShareTarget;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-// Die Elementvorlage "Freigabezielvertrag" ist unter http://go.microsoft.com/fwlink/?LinkID=390556 dokumentiert.
-
 namespace wallabag.Views
 {
-    /// <summary>
-    /// Über diese Seite können andere Anwendungen Inhalte durch diese Anwendung freigeben.
-    /// </summary>
     public sealed partial class ShareTarget : Page
     {
-        /// <summary>
-        /// Stellt einen Kanal zum Kommunizieren mit Windows über den Freigabevorgang bereit.
-        /// </summary>
         private ShareOperation shareOperation;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
@@ -38,7 +30,6 @@ namespace wallabag.Views
         {
             this.shareOperation = e.ShareOperation;
 
-            // Metadaten über den freigegebenen Inhalt durch das Anzeigemodell kommunizieren
             var shareProperties = this.shareOperation.Data.Properties;
             this.DefaultViewModel["Title"] = shareProperties.Title;
             this.DefaultViewModel["Description"] = shareProperties.Description;

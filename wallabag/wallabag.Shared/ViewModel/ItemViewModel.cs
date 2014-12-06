@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using System;
 using wallabag.Common;
-using Windows.UI.Xaml.Media;
 using Windows.UI;
 
 namespace wallabag.ViewModel
