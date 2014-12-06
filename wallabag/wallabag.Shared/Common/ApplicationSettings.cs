@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.Storage;
+﻿using Windows.Storage;
 
 namespace wallabag.Common
 {
@@ -25,7 +22,7 @@ namespace wallabag.Common
             ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
             if (roaming) settings = ApplicationData.Current.RoamingSettings;
 
-            if (settings.Values.ContainsKey(key))
+            if (settings.Values.ContainsKey(key) && settings.Values[key].GetType() == typeof(T))
                 return (T)settings.Values[key];
 
             return (T)defaultValue;
