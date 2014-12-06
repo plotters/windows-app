@@ -20,7 +20,7 @@ You can simply fork this repository and add some nice features to it.
 And even if you're not a developer, **you can help to translate it!**
 
 ## ToDo
-- [ ] Offline mode
+- [x] Offline mode
 - [ ] more beautiful CSS (especially for lists, code and blockquotes)
 - [ ] easily switch between articles (FlipView)
 - [ ] Find a workaround for the bug (see below).
