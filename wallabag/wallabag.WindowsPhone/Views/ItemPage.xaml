@@ -19,25 +19,6 @@
     </Page.BottomAppBar>
 
     <Grid x:Name="LayoutRoot" Background="{Binding Background, Mode=OneWay}">
-
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!-- Titelbereich -->
-        <StackPanel Grid.Row="0" Margin="19,0,19,5">
-            <TextBlock Text="{Binding Item.Title}" Margin="0" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" Foreground="{Binding textColor, Mode=OneWay}" Style="{StaticResource SubheaderTextBlockStyle}" FontFamily="Segoe WP" FontWeight="SemiBold" />
-        </StackPanel>
-
-        <Grid Grid.Row="1" x:Name="ContentRoot" Margin="19,9.5,19,0">
-            <WebView x:Name="webView" NavigationStarting="webView_NavigationStarting" common:WebViewExtensions.HTML="{Binding Item.Content}"/>
-        </Grid>
+        <WebView x:Name="webView" Margin="19,0" NavigationStarting="webView_NavigationStarting" common:WebViewExtensions.HTML="{Binding Item.ContentWithTitle}"/>
     </Grid>
 </common:basicPage>

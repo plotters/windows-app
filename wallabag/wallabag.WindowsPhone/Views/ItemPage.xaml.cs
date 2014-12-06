@@ -5,7 +5,6 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using GalaSoft.MvvmLight.Command;
 
 // Die Elementvorlage "Standardseite" ist unter "http://go.microsoft.com/fwlink/?LinkID=390556" dokumentiert.
 
@@ -24,12 +23,15 @@ namespace wallabag.Views
             dataTransferManager.DataRequested += dataTransferManager_DataRequested;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
                 this.DataContext = new ItemPageViewModel(e.Parameter as ItemViewModel);
             
             base.OnNavigatedTo(e);
+
+            var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+            await statusBar.HideAsync();
         }
 
         void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)

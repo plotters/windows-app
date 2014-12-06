@@ -45,6 +45,19 @@ namespace wallabag.ViewModel
             }
         }
 
+        public string ContentWithTitle
+        {
+            get
+            {
+                var content =
+                    "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/css/wallabag.css\" type=\"text/css\" media=\"screen\" />" + generateCSS() + "</head>" +
+                        "<h1 class=\"wallabag-header\">" + Title + "</h1>" +
+                        Model.Content +
+                    "</html>";
+                return content;
+            }
+        }
+       
         public Uri Url
         {
             get { return Model.Url; }

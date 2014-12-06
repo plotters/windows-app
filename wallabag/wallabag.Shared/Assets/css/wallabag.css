@@ -15,6 +15,11 @@ h1, h2, h3, h5, h4, h5, h6 {
 h1 {
     font-size: 2em;
 }
+    h1.wallabag-header {
+        font-size: 1.25em;
+        font-weight: bolder;
+        margin-bottom: 1em;
+    }
 
 h2 {
     font-size: 1.7em;
@@ -130,7 +135,7 @@ code, tt {
 
 img {
     display: block;
-    width: 100%;
+    max-width: 100%;
     height: auto;
     margin: auto;
 }
