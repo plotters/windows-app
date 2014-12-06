@@ -7,13 +7,17 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using wallabag.ViewModel;
 
 namespace wallabag.Common
 {
     internal sealed class SuspensionManager
     {
         private static Dictionary<string, object> _sessionState = new Dictionary<string, object>();
-        private static List<Type> _knownTypes = new List<Type>();
+        private static List<Type> _knownTypes = new List<Type>() {typeof(MainViewModel), 
+            typeof(ItemPageViewModel),
+            typeof(ItemViewModel),
+            typeof(SettingsPageViewModel)};
         private const string sessionStateFilename = "_sessionState.xml";
 
         public static Dictionary<string, object> SessionState
@@ -40,8 +44,7 @@ namespace wallabag.Common
                     }
                 }
 
-                // Sitzungszustand synchron serialisieren, um einen asynchronen Zugriff auf den freigegebenen
-                // Zustand
+                // Sitzungszustand synchron serialisieren, um einen asynchronen Zugriff auf den freigegebenen Zustand zu bieten
                 MemoryStream sessionData = new MemoryStream();
                 DataContractSerializer serializer = new DataContractSerializer(typeof(Dictionary<string, object>), _knownTypes);
                 serializer.WriteObject(sessionData, _sessionState);
@@ -127,7 +130,7 @@ namespace wallabag.Common
             RestoreFrameNavigationState(frame);
         }
 
-       public static void UnregisterFrame(Frame frame)
+        public static void UnregisterFrame(Frame frame)
         {
             // Sitzungszustand und Rahmen aus der Liste der Rahmen entfernen, deren Navigationszustand
             // gespeichert wird (gemeinsam mit allen schwachen Verweisen, die nicht mehr erreichbar sind)
