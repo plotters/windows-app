@@ -56,14 +56,6 @@ namespace wallabag.ViewModel
             }
         }
 
-        //TODO: Implement the excerpt for the Windows version (and maybe the WP version)
-        private string _Excerpt;
-        public string Excerpt
-        {
-            get { return _Excerpt; }
-            set { Set(() => Excerpt, ref _Excerpt, value); }
-        }
-
         private string generateCSS()
         {
             double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20.0);
