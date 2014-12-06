@@ -2,8 +2,7 @@
 @import url(reset.css);
 
 body {
-    font-family: Georgia;
-    word-wrap: break-word;
+    font-family: 'Segoe UI';
 }
 
 h1, h2, h3, h5, h4, h5, h6 {

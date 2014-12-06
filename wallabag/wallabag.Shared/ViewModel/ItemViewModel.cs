@@ -73,7 +73,7 @@ namespace wallabag.ViewModel
         }
         private string generateCSS()
         {
-            double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20.0);
+            double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 16);
             double lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
 
             var tmpSettingsVM = new SettingsPageViewModel();

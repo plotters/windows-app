@@ -122,7 +122,7 @@ namespace wallabag.ViewModel
             Token = ApplicationSettings.GetSetting<string>("Token", "");
             refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false);
             enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false, false);
-            fontSize = ApplicationSettings.GetSetting<double>("fontSize", 20);
+            fontSize = ApplicationSettings.GetSetting<double>("fontSize", 16);
             lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
             isLightMode = ApplicationSettings.GetSetting<bool>("IsLightMode", false);
         }
