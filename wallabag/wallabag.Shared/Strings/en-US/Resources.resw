@@ -147,9 +147,6 @@
   <data name="settingsButton.Label" xml:space="preserve">
     <value>settings</value>
   </data>
-  <data name="settingsHeader.Text" xml:space="preserve">
-    <value>settings</value>
-  </data>
   <data name="TokenTextBox.Header" xml:space="preserve">
     <value>Token</value>
   </data>
@@ -176,5 +173,38 @@
   </data>
   <data name="shareButton.Label" xml:space="preserve">
     <value>share</value>
+  </data>
+  <data name="fontComboBox.Header" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="fontSizeSlider.Header" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="generalSettingsPivotItem.Header" xml:space="preserve">
+    <value>general</value>
+  </data>
+  <data name="lineHeightSlider.Header" xml:space="preserve">
+    <value>Line height</value>
+  </data>
+  <data name="moreSettingsPivotItem.Header" xml:space="preserve">
+    <value>more</value>
+  </data>
+  <data name="resetSettingsButton.Content" xml:space="preserve">
+    <value>reset settings</value>
+  </data>
+  <data name="settingsPivot.Title" xml:space="preserve">
+    <value>SETTINGS</value>
+  </data>
+  <data name="textSettingsPivotItem.Header" xml:space="preserve">
+    <value>text</value>
+  </data>
+  <data name="modeToggleSwitch.Header" xml:space="preserve">
+    <value>Mode</value>
+  </data>
+  <data name="modeToggleSwitch.OffContent" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="modeToggleSwitch.OnContent" xml:space="preserve">
+    <value>Light</value>
   </data>
 </root>

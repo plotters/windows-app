@@ -44,7 +44,7 @@
                         <ComboBox x:Uid="fontComboBox" Header="Font" Visibility="Collapsed" />
                         <Slider x:Uid="fontSizeSlider" Header="Font size" Value="{Binding fontSize, Mode=TwoWay}" Minimum="16" Maximum="32" />
                         <Slider x:Uid="lineHeightSlider" Header="Line height" SmallChange="0.1" Maximum="2" Minimum="1" Value="{Binding lineHeight, Mode=TwoWay}" StepFrequency="0.1" />
-                        <ToggleSwitch Header="View" OnContent="Light" OffContent="Dark" IsOn="{Binding isLightMode, Mode=TwoWay}" />
+                        <ToggleSwitch x:Uid="modeToggleSwitch" Header="Mode" OnContent="Light" OffContent="Dark" IsOn="{Binding isLightMode, Mode=TwoWay}" />
                     </StackPanel>
                     <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" Command="{Binding saveCommand, Mode=OneWay}" />
                 </Grid>
