@@ -12,15 +12,11 @@ namespace wallabag.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
-        private bool _IsRunning = true;
+        private bool _IsRunning;
         public bool IsRunning
         {
             get { return _IsRunning; }
-            set
-            {
-                Set(() => IsRunning, ref _IsRunning, value ? false : true);
-                refreshCommand.RaiseCanExecuteChanged();
-            }
+            set { Set(() => IsRunning, ref _IsRunning, value); }
         }
         
         public Visibility addLinkButtonVisibility
