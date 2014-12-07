@@ -112,6 +112,12 @@ namespace wallabag.ViewModel
         private void resetSettings()
         {
             ApplicationSettings.ClearSettings();
+            ApplicationSettings.ClearSettings(false);
+
+            ApplicationSettings.SetSetting<string>("wallabagUrl", "http://wallabag.jlnostr.de/");
+            ApplicationSettings.SetSetting<int>("userId", 1);
+            ApplicationSettings.SetSetting<string>("Token", "sHrDinhrsLk6cCD");
+
             loadSettings();
         }
 

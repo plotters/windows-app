@@ -112,7 +112,13 @@ namespace wallabag.ViewModel
                         }
                         IsRunning = false;
                     }
-                    catch { IsRunning = false; }
+                    catch (Exception e)
+                    {
+                        IsRunning = false;
+#if DEBUG
+                        throw (e);
+#endif
+                    }
                 }
             }
         }
