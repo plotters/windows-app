@@ -18,6 +18,7 @@ namespace wallabag.ViewModel
             get { return _IsRunning; }
             set { 
                 Set(() => IsRunning, ref _IsRunning, value);
+                refreshCommand.RaiseCanExecuteChanged();
                                 
                 var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
                 if (value)
@@ -135,7 +136,7 @@ namespace wallabag.ViewModel
             favouriteItems = new ObservableCollection<ItemViewModel>();
             archivedItems = new ObservableCollection<ItemViewModel>();
 
-            refreshCommand = new RelayCommand(async () => await refresh());
+            refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning ? false : true);
 
             if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false))
                 refreshCommand.Execute(0);
