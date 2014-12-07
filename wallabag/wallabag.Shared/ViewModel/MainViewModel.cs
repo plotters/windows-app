@@ -36,7 +36,7 @@ namespace wallabag.ViewModel
         {
             get
             {
-                if (ApplicationSettings.GetSetting<bool>("enableAddLink", false, false)) { return Visibility.Visible; } else { return Visibility.Collapsed; }
+                if (ApplicationSettings.GetSetting<bool>("enableAddLink", false)) { return Visibility.Visible; } else { return Visibility.Collapsed; }
             }
         }
 

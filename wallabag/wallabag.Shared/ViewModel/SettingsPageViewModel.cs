@@ -102,7 +102,7 @@ namespace wallabag.ViewModel
             ApplicationSettings.SetSetting<int>("userId", userId);
             ApplicationSettings.SetSetting<string>("Token", Token);
             ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup);
-            ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink, false);
+            ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink);
             ApplicationSettings.SetSetting<double>("fontSize", fontSize);
             ApplicationSettings.SetSetting<double>("lineHeight", lineHeight);
             ApplicationSettings.SetSetting<bool>("isLightMode", isLightMode);
@@ -127,7 +127,7 @@ namespace wallabag.ViewModel
             userId = ApplicationSettings.GetSetting<int>("userId", 1);
             Token = ApplicationSettings.GetSetting<string>("Token", "");
             refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false);
-            enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false, false);
+            enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false);
             fontSize = ApplicationSettings.GetSetting<double>("fontSize", 16);
             lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
             isLightMode = ApplicationSettings.GetSetting<bool>("IsLightMode", false);
