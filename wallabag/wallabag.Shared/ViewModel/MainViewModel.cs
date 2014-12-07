@@ -19,7 +19,8 @@ namespace wallabag.ViewModel
             set { 
                 Set(() => IsRunning, ref _IsRunning, value);
                 refreshCommand.RaiseCanExecuteChanged();
-                                
+
+#if WINDOWS_PHONE_APP    
                 var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
                 if (value)
                 {
@@ -27,6 +28,7 @@ namespace wallabag.ViewModel
                     statusBar.ProgressIndicator.ShowAsync();
                 }
                 else { statusBar.ProgressIndicator.HideAsync(); }
+#endif
             }
         }
         
