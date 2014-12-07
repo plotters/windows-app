@@ -16,7 +16,17 @@ namespace wallabag.ViewModel
         public bool IsRunning
         {
             get { return _IsRunning; }
-            set { Set(() => IsRunning, ref _IsRunning, value); }
+            set { 
+                Set(() => IsRunning, ref _IsRunning, value);
+                                
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                if (value)
+                {
+                    statusBar.ProgressIndicator.Text = "Updating...";
+                    statusBar.ProgressIndicator.ShowAsync();
+                }
+                else { statusBar.ProgressIndicator.HideAsync(); }
+            }
         }
         
         public Visibility addLinkButtonVisibility
