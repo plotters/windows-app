@@ -27,7 +27,7 @@ namespace wallabag.ViewModel
         {
             get
             {
-                if (ApplicationSettings.GetSetting<bool>("enableAddLink", false)) { return Visibility.Visible; } else { return Visibility.Collapsed; }
+                if (ApplicationSettings.GetSetting<bool>("enableAddLink", false, false)) { return Visibility.Visible; } else { return Visibility.Collapsed; }
             }
         }
 
@@ -39,9 +39,9 @@ namespace wallabag.ViewModel
         {
             get
             {
-                string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
-                int userId = ApplicationSettings.GetSetting<int>("userId", 1, true);
-                string token = ApplicationSettings.GetSetting<string>("Token", "", true);
+                string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
+                int userId = ApplicationSettings.GetSetting<int>("userId", 1);
+                string token = ApplicationSettings.GetSetting<string>("Token", "");
 
                 return wallabagUrl != string.Empty && userId != 0 && token != string.Empty && Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null;
             }
@@ -49,9 +49,9 @@ namespace wallabag.ViewModel
 
         private string buildUrl(string parameter)
         {
-            string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
-            int userId = ApplicationSettings.GetSetting<int>("userId", 1, true);
-            string token = ApplicationSettings.GetSetting<string>("Token", "", true);
+            string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
+            int userId = ApplicationSettings.GetSetting<int>("userId", 1);
+            string token = ApplicationSettings.GetSetting<string>("Token", "");
 
             if (everythingOkay)
                 return string.Format("{0}?feed&type={1}&user_id={2}&token={3}", wallabagUrl, parameter, userId, token);
@@ -129,7 +129,7 @@ namespace wallabag.ViewModel
             favouriteItems = new ObservableCollection<ItemViewModel>();
             archivedItems = new ObservableCollection<ItemViewModel>();
 
-            refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning);
+            refreshCommand = new RelayCommand(async () => await refresh());
 
             if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false))
                 refreshCommand.Execute(0);
