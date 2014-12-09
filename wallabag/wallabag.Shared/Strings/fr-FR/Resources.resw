@@ -207,4 +207,7 @@
   <data name="modeToggleSwitch.OnContent" xml:space="preserve">
     <value />
   </data>
+  <data name="UpdatingText" xml:space="preserve">
+    <value />
+  </data>
 </root>

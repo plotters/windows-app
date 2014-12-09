@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using wallabag.Common;
 using wallabag.Models;
+using Windows.ApplicationModel.Resources;
 using Windows.UI.Xaml;
 using Windows.Web.Syndication;
 
@@ -24,7 +25,8 @@ namespace wallabag.ViewModel
                 var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
                 if (value)
                 {
-                    statusBar.ProgressIndicator.Text = "Updating...";
+                    var resourceLoader = ResourceLoader.GetForCurrentView();
+                    statusBar.ProgressIndicator.Text = resourceLoader.GetString("UpdatingText");
                     statusBar.ProgressIndicator.ShowAsync();
                 }
                 else { statusBar.ProgressIndicator.HideAsync(); }
