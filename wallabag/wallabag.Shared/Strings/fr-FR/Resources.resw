@@ -175,37 +175,37 @@
     <value>Partager</value>
   </data>
   <data name="fontComboBox.Header" xml:space="preserve">
-    <value />
+    <value>Police<value />
   </data>
   <data name="fontSizeSlider.Header" xml:space="preserve">
-    <value />
+    <value>Taille de la police<value />
   </data>
   <data name="generalSettingsPivotItem.Header" xml:space="preserve">
-    <value />
+    <value>général<value />
   </data>
   <data name="lineHeightSlider.Header" xml:space="preserve">
-    <value />
+    <value>Hauteur de ligne<value />
   </data>
   <data name="moreSettingsPivotItem.Header" xml:space="preserve">
-    <value />
+    <value>plus<value />
   </data>
   <data name="resetSettingsButton.Content" xml:space="preserve">
-    <value />
+    <value>Réinitialiser les paramètres<value />
   </data>
   <data name="settingsPivot.Title" xml:space="preserve">
     <value>PARAMÈTRES</value>
   </data>
   <data name="textSettingsPivotItem.Header" xml:space="preserve">
-    <value />
+    <value>texte<value />
   </data>
   <data name="modeToggleSwitch.Header" xml:space="preserve">
-    <value />
+    <value>Mode<value />
   </data>
   <data name="modeToggleSwitch.OffContent" xml:space="preserve">
-    <value />
+    <value>Sombre<value />
   </data>
   <data name="modeToggleSwitch.OnContent" xml:space="preserve">
-    <value />
+    <value>Clair<value />
   </data>
   <data name="UpdatingText" xml:space="preserve">
     <value />
