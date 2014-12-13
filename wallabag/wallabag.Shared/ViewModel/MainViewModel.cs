@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using wallabag.Common;
 using wallabag.Models;
 using Windows.ApplicationModel.Resources;
+using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 using Windows.Web.Syndication;
 
@@ -54,7 +55,10 @@ namespace wallabag.ViewModel
                 int userId = ApplicationSettings.GetSetting<int>("userId", 1);
                 string token = ApplicationSettings.GetSetting<string>("Token", "");
 
-                return wallabagUrl != string.Empty && userId != 0 && token != string.Empty && Windows.Networking.Connectivity.NetworkInformation.GetInternetConnectionProfile() != null;
+                ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+                bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+
+                return wallabagUrl != string.Empty && userId != 0 && token != string.Empty && internet;
             }
         }
 
