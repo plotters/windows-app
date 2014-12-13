@@ -43,9 +43,25 @@ namespace wallabag.ViewModel
             }
         }
 
-        public ObservableCollection<ItemViewModel> unreadItems { get; set; }
-        public ObservableCollection<ItemViewModel> favouriteItems { get; set; }
-        public ObservableCollection<ItemViewModel> archivedItems { get; set; }
+        private ObservableCollection<ItemViewModel> _unreadItems;
+        private ObservableCollection<ItemViewModel> _favouriteItems;
+        private ObservableCollection<ItemViewModel> _archivedItems;
+
+        public ObservableCollection<ItemViewModel> unreadItems
+        {
+            get { return _unreadItems; }
+            set { Set(() => unreadItems, ref _unreadItems, value); }
+        }
+        public ObservableCollection<ItemViewModel> favouriteItems
+        {
+            get { return _favouriteItems; }
+            set { Set(() => favouriteItems, ref _favouriteItems, value); }
+        }
+        public ObservableCollection<ItemViewModel> archivedItems
+        {
+            get { return _archivedItems; }
+            set { Set(() => archivedItems, ref _archivedItems, value); }
+        }
 
         private bool everythingOkay
         {
@@ -80,9 +96,10 @@ namespace wallabag.ViewModel
             if (everythingOkay)
             {
                 IsRunning = true;
-                unreadItems.Clear();
-                favouriteItems.Clear();
-                archivedItems.Clear();
+
+                var tmpUnread = new ObservableCollection<ItemViewModel>();
+                var tmpFavourites = new ObservableCollection<ItemViewModel>();
+                var tmpArchive = new ObservableCollection<ItemViewModel>();
 
                 Windows.Web.Syndication.SyndicationClient client = new SyndicationClient();
                 string[] parameters = new string[] { "home", "fav", "archive" };
@@ -114,17 +131,21 @@ namespace wallabag.ViewModel
                                 switch (param)
                                 {
                                     case "home":
-                                        unreadItems.Add(new ItemViewModel(tmpItem));
+                                        tmpUnread.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "fav":
-                                        favouriteItems.Add(new ItemViewModel(tmpItem));
+                                        tmpFavourites.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "archive":
-                                        archivedItems.Add(new ItemViewModel(tmpItem));
+                                        tmpArchive.Add(new ItemViewModel(tmpItem));
                                         break;
                                 }
                             }
                         }
+                        unreadItems = tmpUnread;
+                        favouriteItems = tmpFavourites;
+                        archivedItems = tmpArchive;
+                        
                         IsRunning = false;
                     }
                     catch (Exception e)
