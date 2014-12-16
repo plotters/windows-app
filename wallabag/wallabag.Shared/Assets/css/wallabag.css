@@ -9,7 +9,7 @@ h1, h2, h3, h5, h4, h5, h6 {
     line-height: 1.2em;
 }
     h1 a, h2 a, h3 a, h5 a, h4 a, h5 a, h6 a {
-        color: #114da4;
+        text-decoration: underline;
     }
 
 h1 {
@@ -43,14 +43,8 @@ h6 {
 }
 
 a {
-    color: #114da4;
-    text-decoration: none;
-    transition: all ease 0.3s;
+    color: inherit;
 }
-
-    a:hover, a:focus {
-        color: #2f88e0;
-    }
 
 hr {
     display: block;
