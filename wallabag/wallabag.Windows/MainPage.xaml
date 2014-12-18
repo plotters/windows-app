@@ -15,40 +15,24 @@
         <Style x:Key="MenuButton" TargetType="RadioButton">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="{ThemeResource RadioButtonContentForegroundThemeBrush}"/>
-            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Padding" Value="30,15"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
             <Setter Property="VerticalContentAlignment" Value="Top"/>
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Semilight" />
+
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
-                                    <VisualState x:Name="Normal">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ArrowPolygon">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF333333"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="PointerOver">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ArrowPolygon">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#1D1D1D1D"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Pressed">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ArrowPolygon">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver" />
+                                    <VisualState x:Name="Pressed" />
                                     <VisualState x:Name="Disabled">
                                         <Storyboard>
                                             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
@@ -58,20 +42,8 @@
                                     </VisualState>
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="CheckStates">
-                                    <VisualState x:Name="Checked">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ArrowPolygon">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
-                                    <VisualState x:Name="Unchecked">
-                                        <Storyboard>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="ArrowPolygon">
-                                                <DiscreteObjectKeyFrame KeyTime="0" Value="#FF333333"/>
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualState>
+                                    <VisualState x:Name="Checked" />
+                                    <VisualState x:Name="Unchecked" />
                                     <VisualState x:Name="Indeterminate"/>
                                 </VisualStateGroup>
                                 <VisualStateGroup x:Name="FocusStates">
@@ -81,15 +53,6 @@
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="29"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="1">
-                                    <Viewbox HorizontalAlignment="Center" VerticalAlignment="Center">
-                                        <Polygon x:Name="ArrowPolygon" Points="1,1 2,0 2,2 1,1" Fill="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
-                                    </Viewbox>
-                                </Grid>
                                 <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" Grid.Column="0" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Grid>
                         </Border>
@@ -97,8 +60,16 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="ItemHeaderTemplate" BasedOn="{StaticResource BaseTextBlockStyle}" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="26.667"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="Margin" Value="0,15"/>
+        </Style>
+        <DataTemplate x:Key="ItemTemplate">
+            <TextBlock Text="{Binding Title}" Style="{StaticResource ItemHeaderTemplate}" />
+        </DataTemplate>
     </Page.Resources>
-    
+
     <Page.BottomAppBar>
         <AppBar>
             <Grid>
@@ -145,8 +116,8 @@
                 <RadioButton x:Name="archiveMenuButton" Content="archive" Style="{StaticResource MenuButton}"/>
             </StackPanel>
         </Grid>
-        <GridView Grid.Column="1" ItemsSource="{Binding unreadItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadMenuButton}"/>
-        <GridView Grid.Column="1" ItemsSource="{Binding favouriteItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouriteMenuButton}"/>
-        <GridView Grid.Column="1" ItemsSource="{Binding archivedItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archiveMenuButton}"/>
+        <GridView Grid.Column="1" ItemsSource="{Binding unreadItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadMenuButton}" ItemTemplate="{StaticResource ItemTemplate}"/>
+        <GridView Grid.Column="1" ItemsSource="{Binding favouriteItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouriteMenuButton}" ItemTemplate="{StaticResource ItemTemplate}"/>
+        <GridView Grid.Column="1" ItemsSource="{Binding archivedItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archiveMenuButton}" ItemTemplate="{StaticResource ItemTemplate}"/>
     </Grid>
 </common:basicPage>
