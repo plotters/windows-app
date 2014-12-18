@@ -116,8 +116,8 @@
                 <RadioButton x:Name="archiveMenuButton" Content="archive" Style="{StaticResource MenuButton}"/>
             </StackPanel>
         </Grid>
-        <GridView Grid.Column="1" ItemsSource="{Binding unreadItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadMenuButton}" ItemTemplate="{StaticResource ItemTemplate}"/>
-        <GridView Grid.Column="1" ItemsSource="{Binding favouriteItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouriteMenuButton}" ItemTemplate="{StaticResource ItemTemplate}"/>
-        <GridView Grid.Column="1" ItemsSource="{Binding archivedItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archiveMenuButton}" ItemTemplate="{StaticResource ItemTemplate}"/>
+        <ListView Grid.Column="1" ItemsSource="{Binding unreadItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadMenuButton}" ItemTemplate="{StaticResource ItemTemplate}" ItemClick="ListView_ItemClick" IsItemClickEnabled="True"/>
+        <ListView Grid.Column="1" ItemsSource="{Binding favouriteItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouriteMenuButton}" ItemTemplate="{StaticResource ItemTemplate}" ItemClick="ListView_ItemClick" IsItemClickEnabled="True"/>
+        <ListView Grid.Column="1" ItemsSource="{Binding archivedItems}" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archiveMenuButton}" ItemTemplate="{StaticResource ItemTemplate}" ItemClick="ListView_ItemClick" IsItemClickEnabled="True"/>
     </Grid>
 </common:basicPage>
