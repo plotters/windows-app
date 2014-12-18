@@ -1,0 +1,30 @@
+﻿<SettingsFlyout
+    x:Class="wallabag.Views.generalSettingsFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:wallabag.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="general settings"
+    d:DesignWidth="346"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Settings}">
+    
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="Connection settings" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Here you define required settings for the connection to your wallabag instance." Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,25" />
+
+            <TextBox x:Uid="wallabagUrlTextBox" Header="Wallabag URL" PlaceholderText="http://..." InputScope="Url" Text="{Binding wallabagUrl, Mode=TwoWay}" />
+            <TextBox x:Uid="userIdTextBox" Header="User ID" PlaceholderText="default 1" InputScope="Number" Text="{Binding userId, Mode=TwoWay}" />
+            <TextBox x:Uid="TokenTextBox" Header="Token" PlaceholderText="a crazy-looking string (e.g. j90/Ggdf)" Text="{Binding Token, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
+            <TextBlock Text="App start settings" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="The settings below are modifying the startup appereance." Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,25" />
+            <ToggleSwitch x:Uid="refreshOnStartupSwitch" Header="refresh on startup" Margin="0,10,0,0" IsOn="{Binding refreshOnStartup, Mode=TwoWay}" />
+            <ToggleSwitch x:Uid="enableAddLinkSwitch" Header="enable &quot;add link&quot;" IsOn="{Binding enableAddLink, Mode=TwoWay}" />
+        </StackPanel>
+    </StackPanel>
+</SettingsFlyout>
