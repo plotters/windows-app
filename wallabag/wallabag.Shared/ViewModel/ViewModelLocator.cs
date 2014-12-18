@@ -32,7 +32,7 @@ namespace wallabag.ViewModel
 
         // -----------------------------------
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
-        public ItemPageViewModel ItemPage { get { return ServiceLocator.Current.GetInstance<ItemPageViewModel>(); } }
-        public SettingsPageViewModel SettingsPage { get { return ServiceLocator.Current.GetInstance<SettingsPageViewModel>(); } }
+        public ItemPageViewModel Item { get { return ServiceLocator.Current.GetInstance<ItemPageViewModel>(); } }
+        public SettingsPageViewModel Settings { get { return ServiceLocator.Current.GetInstance<SettingsPageViewModel>(); } }
     }
 }
