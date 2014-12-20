@@ -6,7 +6,8 @@ body {
 }
 
 h1, h2, h3, h5, h4, h5, h6 {
-    line-height: 1.2em;
+    margin: 0 0 0.4em 0;
+    line-height: 1.15em;
 }
     h1 a, h2 a, h3 a, h5 a, h4 a, h5 a, h6 a {
         text-decoration: underline;
@@ -45,6 +46,11 @@ h6 {
 a {
     color: inherit;
 }
+
+p, ul, ol, dl {
+    margin: 0 0 1.75em 0;
+}
+
 
 hr {
     display: block;
@@ -118,7 +124,7 @@ pre {
         vertical-align: inherit;
     }
 
-code, tt {
+code {
     padding: 2px 6px;
     margin: 0 4px;
     font-family: Consolas, monospace;
