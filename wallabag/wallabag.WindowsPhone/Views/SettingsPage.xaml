@@ -25,13 +25,12 @@
                         <RowDefinition Height="auto" />
                     </Grid.RowDefinitions>
                     <StackPanel>
-                        <TextBox x:Uid="wallabagUrlTextBox" Header="Wallabag URL" PlaceholderText="http://..." InputScope="Url" Text="{Binding wallabagUrl, Mode=TwoWay}" />
-                        <TextBox x:Uid="userIdTextBox" Header="User ID" PlaceholderText="default 1" InputScope="Number" Text="{Binding userId, Mode=TwoWay}" />
-                        <TextBox x:Uid="TokenTextBox" Header="Token" PlaceholderText="a crazy-looking string (e.g. j90/Ggdf)" Text="{Binding Token, Mode=TwoWay}"/>
-                        <ToggleSwitch x:Uid="refreshOnStartupSwitch" Header="refresh on startup" Margin="0,25,0,0" IsOn="{Binding refreshOnStartup, Mode=TwoWay}" />
+                        <TextBox x:Uid="wallabagUrlTextBox" Header="Wallabag URL" PlaceholderText="http://..." InputScope="Url" Text="{Binding wallabagUrl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox x:Uid="userIdTextBox" Header="User ID" PlaceholderText="default 1" InputScope="Number" Text="{Binding userId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBox x:Uid="TokenTextBox" Header="Token" PlaceholderText="a crazy-looking string (e.g. j90/Ggdf)" Text="{Binding Token, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <ToggleSwitch x:Uid="refreshOnStartupSwitch" Header="refresh on startup" Margin="0,25,0,0" IsOn="{Binding refreshOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         <ToggleSwitch x:Uid="enableAddLinkSwitch" Header="enable &quot;add link&quot;" IsOn="{Binding enableAddLink, Mode=TwoWay}" />
                     </StackPanel>
-                    <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Command="{Binding saveCommand, Mode=OneWay}" />
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="textSettingsPivotItem" Header="text">
@@ -42,11 +41,10 @@
                     </Grid.RowDefinitions>
                     <StackPanel>
                         <ComboBox x:Uid="fontComboBox" Header="Font" Visibility="Collapsed" />
-                        <Slider x:Uid="fontSizeSlider" Header="Font size" Value="{Binding fontSize, Mode=TwoWay}" Minimum="16" Maximum="32" />
-                        <Slider x:Uid="lineHeightSlider" Header="Line height" SmallChange="0.1" Maximum="2" Minimum="1" Value="{Binding lineHeight, Mode=TwoWay}" StepFrequency="0.1" />
-                        <ToggleSwitch x:Uid="modeToggleSwitch" Header="Mode" OnContent="Light" OffContent="Dark" IsOn="{Binding isLightMode, Mode=TwoWay}" />
+                        <Slider x:Uid="fontSizeSlider" Header="Font size" Value="{Binding fontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="16" Maximum="32" />
+                        <Slider x:Uid="lineHeightSlider" Header="Line height" SmallChange="0.1" Maximum="2" Minimum="1" Value="{Binding lineHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" StepFrequency="0.1" />
+                        <ToggleSwitch x:Uid="modeToggleSwitch" Header="Mode" OnContent="Light" OffContent="Dark" IsOn="{Binding isLightMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
-                    <Button x:Uid="saveSettingsButton" Grid.Row="1" Content="save settings" HorizontalAlignment="Stretch" Command="{Binding saveCommand, Mode=OneWay}" />
                 </Grid>
             </PivotItem>
             <PivotItem x:Uid="moreSettingsPivotItem" Header="more">

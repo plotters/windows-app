@@ -15,9 +15,9 @@
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
             <TextBlock Text="In this section, you can define several settings for the text appereance when reading an saved article." Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,25" />
             <ComboBox x:Uid="fontComboBox" Header="Font" Visibility="Collapsed" />
-            <Slider x:Uid="fontSizeSlider" Header="Font size" Value="{Binding fontSize, Mode=TwoWay}" Minimum="16" Maximum="32" />
-            <Slider x:Uid="lineHeightSlider" Header="Line height" SmallChange="0.1" Maximum="2" Minimum="1" Value="{Binding lineHeight, Mode=TwoWay}" StepFrequency="0.1" />
-            <ToggleSwitch x:Uid="modeToggleSwitch" Header="Mode" OnContent="Light" OffContent="Dark" IsOn="{Binding isLightMode, Mode=TwoWay}" />
+            <Slider x:Uid="fontSizeSlider" Header="Font size" Value="{Binding fontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Minimum="16" Maximum="32" />
+            <Slider x:Uid="lineHeightSlider" Header="Line height" SmallChange="0.1" Maximum="2" Minimum="1" Value="{Binding lineHeight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" StepFrequency="0.1" />
+            <ToggleSwitch x:Uid="modeToggleSwitch" Header="Mode" OnContent="Light" OffContent="Dark" IsOn="{Binding isLightMode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </StackPanel>
 </SettingsFlyout>

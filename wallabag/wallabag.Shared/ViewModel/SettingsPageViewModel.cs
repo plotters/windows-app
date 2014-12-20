@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Collections.ObjectModel;
 using wallabag.Common;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
@@ -9,67 +8,79 @@ namespace wallabag.ViewModel
 {
     public class SettingsPageViewModel : ViewModelBase
     {
-        private string _wallabagUrl;
         public string wallabagUrl
         {
-            get { return _wallabagUrl; }
-            set { Set(() => wallabagUrl, ref _wallabagUrl, value); }
+            get { return ApplicationSettings.GetSetting<string>("wallabagUrl", ""); }
+            set
+            {
+                string tmp = "http://" + value;
+                if (value.StartsWith("http://") || value.StartsWith("https://")) tmp = value;
+                ApplicationSettings.SetSetting<string>("wallabagUrl", tmp);
+                RaisePropertyChanged(() => wallabagUrl);
+            }
         }
-
-        private int _userId;
         public int userId
         {
-            get { return _userId; }
-            set { Set(() => userId, ref _userId, value); }
+            get { return ApplicationSettings.GetSetting<int>("userId", 1); }
+            set
+            {
+                ApplicationSettings.SetSetting<int>("userId", value);
+                RaisePropertyChanged(() => userId);
+            }
         }
-
-        private string _Token;
         public string Token
         {
-            get { return _Token; }
-            set { Set(() => Token, ref _Token, value); }
+            get { return ApplicationSettings.GetSetting<string>("Token", ""); }
+            set
+            {
+                ApplicationSettings.SetSetting<string>("Token", value);
+                RaisePropertyChanged(() => Token);
+            }
         }
-
-        private bool _refreshOnStartup;
         public bool refreshOnStartup
         {
-            get { return _refreshOnStartup; }
-            set { Set(() => refreshOnStartup, ref _refreshOnStartup, value); }
+            get { return ApplicationSettings.GetSetting<bool>("refreshOnStartup", false); }
+            set
+            {
+                ApplicationSettings.SetSetting<bool>("refreshOnStartup", value);
+                RaisePropertyChanged(() => refreshOnStartup);
+            }
         }
-
-        private bool _enableAddLink;
         public bool enableAddLink
         {
-            get { return _enableAddLink; }
-            set { Set(() => enableAddLink, ref _enableAddLink, value); }
+            get { return ApplicationSettings.GetSetting<bool>("enableAddLink", false); }
+            set
+            {
+                ApplicationSettings.SetSetting<bool>("enableAddLink", value);
+                RaisePropertyChanged(() => enableAddLink);
+            }
         }
-
-        private ObservableCollection<string> _Fonts;
-        public ObservableCollection<string> Fonts
-        {
-            get { return _Fonts; }
-            set { Set(() => Fonts, ref _Fonts, value); }
-        }
-
-        private double _fontSize;
         public double fontSize
         {
-            get { return _fontSize; }
-            set { Set(() => fontSize, ref _fontSize, value); }
+            get { return ApplicationSettings.GetSetting<double>("fontSize", 16); }
+            set
+            {
+                ApplicationSettings.SetSetting<double>("fontSize", value);
+                RaisePropertyChanged(() => fontSize);
+            }
         }
-
-        private double _lineHeight;
         public double lineHeight
         {
-            get { return _lineHeight; }
-            set { Set(() => lineHeight, ref _lineHeight, value); }
+            get { return ApplicationSettings.GetSetting<double>("lineHeight", 1.5); }
+            set
+            {
+                ApplicationSettings.SetSetting<double>("lineHeight", value);
+                RaisePropertyChanged(() => lineHeight);
+            }
         }
-
-        private bool _isLightMode;
         public bool isLightMode
         {
-            get { return _isLightMode; }
-            set { Set(() => isLightMode, ref _isLightMode, value); }
+            get { return ApplicationSettings.GetSetting<bool>("isLightMode", false); }
+            set
+            {
+                ApplicationSettings.SetSetting<bool>("isLightMode", value);
+                RaisePropertyChanged(() => isLightMode);
+            }
         }
 
         public SolidColorBrush textColor
@@ -81,7 +92,6 @@ namespace wallabag.ViewModel
                     return new SolidColorBrush(ColorHelper.FromArgb(255, 189, 189, 189)); // #bdbdbd
             }
         }
-
         public SolidColorBrush Background
         {
             get {
@@ -99,48 +109,11 @@ namespace wallabag.ViewModel
             }
         }
         
-        public RelayCommand saveCommand { get; private set; }
-        private void saveSettings()
-        {
-            //TODO: Check for framabag!
-            string wlbgUrl = "http://" + wallabagUrl;
-            if (wallabagUrl.StartsWith("http://") || wallabagUrl.StartsWith("https://")) wlbgUrl = wallabagUrl;
-            ApplicationSettings.SetSetting<string>("wallabagUrl", wlbgUrl);
-            ApplicationSettings.SetSetting<int>("userId", userId);
-            ApplicationSettings.SetSetting<string>("Token", Token);
-            ApplicationSettings.SetSetting<bool>("refreshOnStartup", refreshOnStartup);
-            ApplicationSettings.SetSetting<bool>("enableAddLink", enableAddLink);
-            ApplicationSettings.SetSetting<double>("fontSize", fontSize);
-            ApplicationSettings.SetSetting<double>("lineHeight", lineHeight);
-            ApplicationSettings.SetSetting<bool>("isLightMode", isLightMode);
-        }
-
         public RelayCommand resetCommand { get; private set; }
-        private void resetSettings()
-        {
-            ApplicationSettings.ClearSettings();
-            ApplicationSettings.ClearSettings(false);
-
-            loadSettings();
-        }
-
-        private void loadSettings()
-        {
-            wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
-            userId = ApplicationSettings.GetSetting<int>("userId", 1);
-            Token = ApplicationSettings.GetSetting<string>("Token", "");
-            refreshOnStartup = ApplicationSettings.GetSetting<bool>("refreshOnStartup", false);
-            enableAddLink = ApplicationSettings.GetSetting<bool>("enableAddLink", false);
-            fontSize = ApplicationSettings.GetSetting<double>("fontSize", 16);
-            lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
-            isLightMode = ApplicationSettings.GetSetting<bool>("IsLightMode", false);
-        }
 
         public SettingsPageViewModel()
         {
-            loadSettings();
-            saveCommand = new RelayCommand(() => saveSettings());
-            resetCommand = new RelayCommand(() => resetSettings());
+            resetCommand = new RelayCommand(() => ApplicationSettings.ClearSettings());
         }
     }
 }
