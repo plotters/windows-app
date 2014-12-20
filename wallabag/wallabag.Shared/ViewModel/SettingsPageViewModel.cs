@@ -85,10 +85,17 @@ namespace wallabag.ViewModel
         public SolidColorBrush Background
         {
             get {
+#if WINDOWS_PHONE_APP
                 if (isLightMode)
                     return new SolidColorBrush(ColorHelper.FromArgb(255, 250, 247, 238)); // #faf7ee
                 else
                     return new SolidColorBrush(ColorHelper.FromArgb(255, 0, 0, 0)); // #000000
+#else
+                if (isLightMode)
+                    return new SolidColorBrush(ColorHelper.FromArgb(255, 250, 247, 238)); // #faf7ee
+                else
+                    return new SolidColorBrush(ColorHelper.FromArgb(255, 29, 29, 29)); // #1D1D1D
+#endif
             }
         }
         
