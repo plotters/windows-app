@@ -90,12 +90,11 @@ namespace wallabag
             deferral.Complete();
         }
 
-#if WINDOWS_PHONE_APP  
+  
 protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
 {
     var shareTargetPage = new wallabag.Views.ShareTarget();
     shareTargetPage.Activate(e);
 }
-#endif
     }
 }
