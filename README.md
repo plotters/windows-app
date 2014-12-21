@@ -10,6 +10,8 @@ It's not perfect, but on a good way ;-)
 
 Unlike the old app, this app is an universal app. Sadly, it only supports Windows Phone at the moment, but I am working on the Desktop app.
 
+You can see the screenshots [here](/additional/screenshots/phone).
+
 ## Currently supported languages
 - English
 - German
@@ -20,5 +22,4 @@ You can simply fork this repository and add some nice features to it.
 And even if you're not a developer, **you can help to translate it!**
 
 ## ToDo
-- [x] Translate "Updating..." in MainViewModel.cs
 - [ ] more beautiful CSS (especially for lists, code and blockquotes)
