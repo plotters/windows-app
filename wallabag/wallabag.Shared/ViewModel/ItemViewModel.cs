@@ -91,7 +91,7 @@ namespace wallabag.ViewModel
             double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 16);
             double lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
 
-            var tmpSettingsVM = new SettingsPageViewModel();
+            var tmpSettingsVM = new SettingsViewModel();
             string css = "body {" +
                 CSSproperty("font-size", fontSize + "px") +
                 CSSproperty("line-height", lineHeight.ToString().Replace(",", ".")) +

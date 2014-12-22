@@ -28,7 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SettingsPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SettingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>

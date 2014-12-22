@@ -17,12 +17,12 @@ namespace wallabag.ViewModel
 
         public SolidColorBrush Background
         {
-            get { return new SettingsPageViewModel().Background; }
+            get { return new SettingsViewModel().Background; }
         }
 
         public SolidColorBrush textColor
         {
-            get { return new SettingsPageViewModel().textColor; }
+            get { return new SettingsViewModel().textColor; }
         }
         
         public RelayCommand shareCommand { get; private set; }

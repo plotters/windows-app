@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Media;
 
 namespace wallabag.ViewModel
 {
-    public class SettingsPageViewModel : ViewModelBase
+    public class SettingsViewModel : ViewModelBase
     {
         public string wallabagUrl
         {
@@ -111,7 +111,7 @@ namespace wallabag.ViewModel
         
         public RelayCommand resetCommand { get; private set; }
 
-        public SettingsPageViewModel()
+        public SettingsViewModel()
         {
             resetCommand = new RelayCommand(() => ApplicationSettings.ClearSettings());
         }

@@ -17,7 +17,7 @@ namespace wallabag.Common
         private static List<Type> _knownTypes = new List<Type>() {typeof(MainViewModel), 
             typeof(ItemPageViewModel),
             typeof(ItemViewModel),
-            typeof(SettingsPageViewModel)};
+            typeof(SettingsViewModel)};
         private const string sessionStateFilename = "_sessionState.xml";
 
         public static Dictionary<string, object> SessionState
