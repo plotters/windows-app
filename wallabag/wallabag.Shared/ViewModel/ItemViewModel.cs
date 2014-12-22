@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
+using System.Text.RegularExpressions;
 using wallabag.Common;
 using Windows.UI;
 
@@ -11,7 +12,12 @@ namespace wallabag.ViewModel
         
         public string Title
         {
-            get { return Model.Title; }
+            get
+            {
+                // RegExp to remove multiple whitespaces (including newline etc.) in title.
+                Regex r = new Regex("\\s+");
+                return r.Replace(Model.Title, " ");
+            }
             set
             {
                 if (value != Model.Title)
