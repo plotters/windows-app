@@ -26,19 +26,15 @@ namespace wallabag.ViewModel
         }
         
         public RelayCommand shareCommand { get; private set; }
-        private void share()
-        {
-            DataTransferManager.ShowShareUI();
-        }
 
         [PreferredConstructor]
         public ItemPageViewModel()
         {
-            shareCommand = new RelayCommand(() => share());
+            shareCommand = new RelayCommand(() => DataTransferManager.ShowShareUI());
         }
         public ItemPageViewModel(ItemViewModel item)
         {
-            shareCommand = new RelayCommand(() => share());
+            shareCommand = new RelayCommand(() => DataTransferManager.ShowShareUI());
             Item = item;
         }
 
