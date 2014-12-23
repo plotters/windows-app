@@ -3,10 +3,11 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Xaml.Media;
+using wallabag.Common;
 
 namespace wallabag.ViewModel
 {
-    public class ItemPageViewModel : ViewModelBase
+    public class ItemPageViewModel : viewModelBase
     {
         private ItemViewModel _Item;
         public ItemViewModel Item

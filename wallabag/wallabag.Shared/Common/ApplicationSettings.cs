@@ -1,47 +1,61 @@
 ﻿using Windows.Storage;
+using System;
+using System.ComponentModel;
 
 namespace wallabag.Common
 {
-    public static class ApplicationSettings
+    public class ApplicationSettings : INotifyPropertyChanged
     {
-        public static void SetSetting<T>(string key, T value, bool roaming = true)
-        {
-            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
-            if (roaming) settings = ApplicationData.Current.RoamingSettings;
+        private static ApplicationSettings _instance;
+        private ApplicationSettings() { }
+        public static ApplicationSettings Instance { get { return _instance ?? (_instance = new ApplicationSettings()); } }
 
-            settings.Values[key] = value;
+        private ApplicationDataContainer roamingSettings = ApplicationData.Current.RoamingSettings;
+
+        private ObservableDictionary _settings;
+        public ObservableDictionary Settings
+        {
+            get
+            {
+                if (_settings == null || _settings.Count == 0)
+                {
+                    _settings = new ObservableDictionary();
+                    foreach (var s in ApplicationData.Current.RoamingSettings.Values)
+                    {
+                        _settings.Add(s.Key, s.Value);
+                    }
+                }
+                return _settings;
+            }
         }
 
-        public static T GetSetting<T>(string key)
+        public dynamic this[string key, object defaultValue = default(object)]
         {
-            return GetSetting(key, default(T));
+            get
+            {
+                if (Settings.ContainsKey(key))
+                {
+                    return Settings[key];
+                }
+                return defaultValue;
+            }
+            set
+            {
+                Settings[key] = value;
+                RaisePropertyChanged(key);
+                roamingSettings.Values[key] = value;
+            }
         }
 
-        public static T GetSetting<T>(string key, T defaultValue, bool roaming = true)
+        private void RaisePropertyChanged(string propertyName)
         {
-            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
-            if (roaming) settings = ApplicationData.Current.RoamingSettings;
-
-            if (settings.Values.ContainsKey(key) && settings.Values[key].GetType() == typeof(T))
-                return (T)settings.Values[key];
-
-            return (T)defaultValue;
+            if (PropertyChanged != null)
+            {
+                var e = new PropertyChangedEventArgs(propertyName);
+                PropertyChanged(this, e);
+                System.Diagnostics.Debug.WriteLine("Set property: " + propertyName );
+            }
         }
-
-        public static void RemoveSetting(string key, bool roaming = true)
-        {
-            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
-            if (roaming) settings = ApplicationData.Current.RoamingSettings;
-
-            if (!settings.Values.ContainsKey(key))
-                settings.Values.Remove(key);
-        }
-
-        public static void ClearSettings(bool roaming = true)
-        {
-            ApplicationDataContainer settings = ApplicationData.Current.LocalSettings;
-            if (roaming) settings = ApplicationData.Current.RoamingSettings;
-            settings.Values.Clear();
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

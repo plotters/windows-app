@@ -7,6 +7,8 @@ namespace wallabag.Views
 {
     public sealed partial class AddLink : ContentDialog
     {
+        public ApplicationSettings AppSettings { get { return ApplicationSettings.Instance; } }
+
         public AddLink()
         {
             this.InitializeComponent();
@@ -14,7 +16,7 @@ namespace wallabag.Views
         
         private string finalUrl()
         {
-            string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "", true);
+            string wallabagUrl = AppSettings["wallabagUrl", string.Empty];
             string encodedUrl = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(link.Text));
             return string.Format("{0}?action=add&url={1}", wallabagUrl, encodedUrl);
         }

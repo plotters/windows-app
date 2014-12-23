@@ -12,7 +12,7 @@ using Windows.Web.Syndication;
 
 namespace wallabag.ViewModel
 {
-    public class MainViewModel : ViewModelBase
+    public class MainViewModel : viewModelBase
     {
         private bool _IsRunning;
         public bool IsRunning
@@ -39,7 +39,7 @@ namespace wallabag.ViewModel
         {
             get
             {
-                if (ApplicationSettings.GetSetting<bool>("enableAddLink", false)) { return Visibility.Visible; } else { return Visibility.Collapsed; }
+                if ((bool)AppSettings["enableAddLink", false]) { return Visibility.Visible; } else { return Visibility.Collapsed; }
             }
         }
 
@@ -67,9 +67,9 @@ namespace wallabag.ViewModel
         {
             get
             {
-                string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
-                int userId = ApplicationSettings.GetSetting<int>("userId", 1);
-                string token = ApplicationSettings.GetSetting<string>("Token", "");
+                string wallabagUrl = AppSettings["wallabagUrl", string.Empty];
+                int userId = AppSettings["userId", 1];
+                string token = AppSettings["Token", string.Empty];
 
                 ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
                 bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
@@ -80,9 +80,9 @@ namespace wallabag.ViewModel
 
         private string buildUrl(string parameter)
         {
-            string wallabagUrl = ApplicationSettings.GetSetting<string>("wallabagUrl", "");
-            int userId = ApplicationSettings.GetSetting<int>("userId", 1);
-            string token = ApplicationSettings.GetSetting<string>("Token", "");
+            string wallabagUrl = AppSettings["wallabagUrl", string.Empty];
+            int userId = AppSettings["userId", 1];
+            string token = AppSettings["Token", string.Empty];
 
             if (everythingOkay)
                 return string.Format("{0}?feed&type={1}&user_id={2}&token={3}", wallabagUrl, parameter, userId, token);
@@ -167,7 +167,7 @@ namespace wallabag.ViewModel
 
             refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning ? false : true);
 
-            if (ApplicationSettings.GetSetting<bool>("refreshOnStartup", false))
+            if (AppSettings["refreshOnStartup", false])
                 refreshCommand.Execute(0);
         }
     }

@@ -6,7 +6,7 @@ using Windows.UI;
 
 namespace wallabag.ViewModel
 {
-    public class ItemViewModel : ViewModelBase
+    public class ItemViewModel : viewModelBase
     {
         public Models.Item Model { get; set; }
         
@@ -88,8 +88,8 @@ namespace wallabag.ViewModel
         }
         private string generateCSS()
         {
-            double fontSize = ApplicationSettings.GetSetting<double>("fontSize", 16);
-            double lineHeight = ApplicationSettings.GetSetting<double>("lineHeight", 1.5);
+            double fontSize = AppSettings["fontSize", 18];
+            double lineHeight = AppSettings["lineHeight", 1.5];
 
             var tmpSettingsVM = new SettingsViewModel();
             string css = "body {" +

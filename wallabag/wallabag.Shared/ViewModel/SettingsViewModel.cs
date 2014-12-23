@@ -6,79 +6,79 @@ using Windows.UI.Xaml.Media;
 
 namespace wallabag.ViewModel
 {
-    public class SettingsViewModel : ViewModelBase
+    public class SettingsViewModel : viewModelBase
     {
         public string wallabagUrl
         {
-            get { return ApplicationSettings.GetSetting<string>("wallabagUrl", ""); }
+            get { return AppSettings["wallabagUrl", string.Empty]; }
             set
             {
                 string tmp = "http://" + value;
                 if (value.StartsWith("http://") || value.StartsWith("https://")) tmp = value;
-                ApplicationSettings.SetSetting<string>("wallabagUrl", tmp);
+                AppSettings["wallabagUrl"] = tmp;
                 RaisePropertyChanged(() => wallabagUrl);
             }
         }
         public int userId
         {
-            get { return ApplicationSettings.GetSetting<int>("userId", 1); }
+            get { return AppSettings["userId", 1]; }
             set
             {
-                ApplicationSettings.SetSetting<int>("userId", value);
+                AppSettings["userId"] = value;
                 RaisePropertyChanged(() => userId);
             }
         }
         public string Token
         {
-            get { return ApplicationSettings.GetSetting<string>("Token", ""); }
+            get { return AppSettings["Token", string.Empty]; }
             set
             {
-                ApplicationSettings.SetSetting<string>("Token", value);
+                AppSettings["Token"] = value;
                 RaisePropertyChanged(() => Token);
             }
         }
         public bool refreshOnStartup
         {
-            get { return ApplicationSettings.GetSetting<bool>("refreshOnStartup", false); }
+            get { return AppSettings["refreshOnStartup", false]; }
             set
             {
-                ApplicationSettings.SetSetting<bool>("refreshOnStartup", value);
+                AppSettings["refreshOnStartup"] = value;
                 RaisePropertyChanged(() => refreshOnStartup);
             }
         }
         public bool enableAddLink
         {
-            get { return ApplicationSettings.GetSetting<bool>("enableAddLink", false); }
+            get { return AppSettings["enableAddLink", false]; }
             set
             {
-                ApplicationSettings.SetSetting<bool>("enableAddLink", value);
+                AppSettings["enableAddLink"] = value;
                 RaisePropertyChanged(() => enableAddLink);
             }
         }
         public double fontSize
         {
-            get { return ApplicationSettings.GetSetting<double>("fontSize", 16); }
+            get { return AppSettings["fontSize", 18]; }
             set
             {
-                ApplicationSettings.SetSetting<double>("fontSize", value);
+                AppSettings["fontSize"] = value;
                 RaisePropertyChanged(() => fontSize);
             }
         }
         public double lineHeight
         {
-            get { return ApplicationSettings.GetSetting<double>("lineHeight", 1.5); }
+            get { return AppSettings["lineHeight", 1.5]; }
             set
             {
-                ApplicationSettings.SetSetting<double>("lineHeight", value);
+                AppSettings["lineHeight"] = value;
                 RaisePropertyChanged(() => lineHeight);
             }
         }
         public bool isLightMode
         {
-            get { return ApplicationSettings.GetSetting<bool>("isLightMode", false); }
+            get { return AppSettings["isLightMode", false]; }
             set
             {
-                ApplicationSettings.SetSetting<bool>("isLightMode", value);
+                AppSettings["isLightMode"] = value;
                 RaisePropertyChanged(() => isLightMode);
             }
         }
@@ -113,7 +113,7 @@ namespace wallabag.ViewModel
 
         public SettingsViewModel()
         {
-            resetCommand = new RelayCommand(() => ApplicationSettings.ClearSettings());
+            resetCommand = new RelayCommand(() => AppSettings.Settings.Clear());
         }
     }
 }
