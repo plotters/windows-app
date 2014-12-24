@@ -124,7 +124,7 @@
     <value>archive</value>
   </data>
   <data name="enableAddLinkSwitch.Header" xml:space="preserve">
-    <value>activer l'ajout de liens (ce n'est pas ce à quoi vous vous attendez)</value>
+    <value>activer l'ajout de liens</value>
   </data>
   <data name="favourites.Header" xml:space="preserve">
     <value>favoris</value>
@@ -208,6 +208,6 @@
     <value>Clair</value>
   </data>
   <data name="UpdatingText" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
 </root>

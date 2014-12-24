@@ -124,7 +124,7 @@
     <value>archive</value>
   </data>
   <data name="enableAddLinkSwitch.Header" xml:space="preserve">
-    <value>enable link adding (it's not that what you might expect)</value>
+    <value>enable link adding</value>
   </data>
   <data name="favourites.Header" xml:space="preserve">
     <value>favourites</value>
