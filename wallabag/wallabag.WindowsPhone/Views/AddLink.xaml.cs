@@ -13,18 +13,5 @@ namespace wallabag.Views
         {
             this.InitializeComponent();
         }
-        
-        private string finalUrl()
-        {
-            string wallabagUrl = AppSettings["wallabagUrl", string.Empty];
-            string encodedUrl = System.Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(link.Text));
-            return string.Format("{0}?action=add&url={1}", wallabagUrl, encodedUrl);
-        }
-        
-        private void ContentDialog_PrimaryButtonClick(object sender, RoutedEventArgs e)
-        {
-            webView.Visibility = Windows.UI.Xaml.Visibility.Visible;
-            webView.Navigate(new Uri(finalUrl()));
-        }
     }
 }

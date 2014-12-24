@@ -8,13 +8,9 @@
     mc:Ignorable="d"
     x:Uid="saveLinkDialog"
     Title="SAVE LINK"
-    PrimaryButtonText="close" FullSizeDesired="True">
+    PrimaryButtonText="save">
 
     <Grid>
-        <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <TextBox Name="link" Header="URL" InputScope="Url" PlaceholderText="http://"/>
-            <Button x:Uid="validateUrlButton" Content="validate" Click="ContentDialog_PrimaryButtonClick" />
-            <WebView x:Name="webView" MinHeight="400"/>
-        </StackPanel>
+        <TextBox Name="saveUrlTextBox" Header="URL" InputScope="Url" PlaceholderText="http://"/>
     </Grid>
 </ContentDialog>
