@@ -113,7 +113,10 @@ namespace wallabag.ViewModel
 
         public SettingsViewModel()
         {
-            resetCommand = new RelayCommand(() => AppSettings.Settings.Clear());
+            resetCommand = new RelayCommand(() => {
+                AppSettings.Settings.Clear();
+                Windows.Storage.ApplicationData.Current.RoamingSettings.Values.Clear();
+            });
         }
     }
 }
