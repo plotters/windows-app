@@ -8,24 +8,24 @@
     xmlns:Converter="using:wallabag.Converter"
     x:Class="wallabag.MainPage"
     mc:Ignorable="d"
-    >
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
     <common:basicPage.Resources>
         <Converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
-        <Style x:Key="MenuButton" TargetType="Button">
+        <Style x:Key="MenuButton" TargetType="RadioButton">
             <Setter Property="Background" Value="{ThemeResource ButtonBackgroundThemeBrush}"/>
             <Setter Property="Foreground" Value="{ThemeResource ButtonForegroundThemeBrush}"/>
             <Setter Property="BorderBrush" Value="{ThemeResource ButtonBorderThemeBrush}"/>
             <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12"/>
+            <Setter Property="Padding" Value="24,12"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
+                    <ControlTemplate TargetType="RadioButton">
                         <Grid>
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
@@ -74,8 +74,22 @@
                                     <VisualState x:Name="Unfocused"/>
                                     <VisualState x:Name="PointerFocused"/>
                                 </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPointerOverBackgroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ButtonPointerOverForegroundThemeBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked"/>
+                                    <VisualState x:Name="Indeterminate"/>
+                                </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="3">
+                            <Border x:Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="0,3">
                                 <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                             </Border>
                             <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{ThemeResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
@@ -86,10 +100,6 @@
             </Setter>
         </Style>
     </common:basicPage.Resources>
-
-    <common:basicPage.DataContext>
-        <Binding Path="Main" Source="{StaticResource Locator}"/>
-    </common:basicPage.DataContext>
 
     <common:basicPage.BottomAppBar>
         <AppBar>
@@ -165,13 +175,13 @@
                 </Canvas>
             </Viewbox>
             <StackPanel Grid.Row="1" Margin="0,30,0,0">
-                <Button Content="Unread" Style="{StaticResource MenuButton}"/>
-                <Button Content="Favourites" Style="{StaticResource MenuButton}"/>
-                <Button Content="Archive" Style="{StaticResource MenuButton}"/>
+                <RadioButton x:Name="unreadItemsMenuButton" Content="Unread" Style="{StaticResource MenuButton}" IsChecked="True"/>
+                <RadioButton x:Name="favouriteItemsMenuButton" Content="Favourites" Style="{StaticResource MenuButton}"/>
+                <RadioButton x:Name="archivedItemsMenuButton" Content="Archive" Style="{StaticResource MenuButton}"/>
             </StackPanel>
         </Grid>
-        <ListView Grid.Column="1" ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick" />
-        <ListView Grid.Column="1" ItemsSource="{Binding favouriteItems}" ItemClick="ListView_ItemClick" />
-        <ListView Grid.Column="1" ItemsSource="{Binding archivedItems}" ItemClick="ListView_ItemClick" />
+        <ListView x:Name="unreadItems" Grid.Column="1" ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadItemsMenuButton}" />
+        <ListView x:Name="favouriteItems" Grid.Column="1" ItemsSource="{Binding favouriteItems}" ItemClick="ListView_ItemClick" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouriteItemsMenuButton}" />
+        <ListView x:Name="archivedItems" Grid.Column="1" ItemsSource="{Binding archivedItems}" ItemClick="ListView_ItemClick" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archivedItemsMenuButton}" />
     </Grid>
 </common:basicPage>
