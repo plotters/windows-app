@@ -13,28 +13,7 @@ using Windows.Web.Syndication;
 namespace wallabag.ViewModel
 {
     public class MainViewModel : viewModelBase
-    {
-        private bool _IsRunning;
-        public bool IsRunning
-        {
-            get { return _IsRunning; }
-            set { 
-                Set(() => IsRunning, ref _IsRunning, value);
-                refreshCommand.RaiseCanExecuteChanged();
-
-#if WINDOWS_PHONE_APP    
-                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
-                if (value)
-                {
-                    var resourceLoader = ResourceLoader.GetForCurrentView();
-                    statusBar.ProgressIndicator.Text = resourceLoader.GetString("UpdatingText");
-                    statusBar.ProgressIndicator.ShowAsync();
-                }
-                else { statusBar.ProgressIndicator.HideAsync(); }
-#endif
-            }
-        }
-        
+    {        
         private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _archivedItems = new ObservableCollection<ItemViewModel>();
@@ -75,7 +54,8 @@ namespace wallabag.ViewModel
         {
             if (everythingOkay)
             {
-                IsRunning = true;
+                StatusText = LocalizedString("UpdatingText");
+                IsActive = true;
 
                 Windows.Web.Syndication.SyndicationClient client = new SyndicationClient();
                 string[] parameters = new string[] { "home", "fav", "archive" };
@@ -117,12 +97,12 @@ namespace wallabag.ViewModel
                                         break;
                                 }
                             }
-                        }                        
-                        IsRunning = false;
+                        }
+                        IsActive = false;
                     }
-                    catch (Exception e)
+                    catch
                     {
-                        IsRunning = false;
+                        IsActive = false;
                     }
                 }
             }
@@ -130,7 +110,7 @@ namespace wallabag.ViewModel
         
         public MainViewModel()
         {
-            refreshCommand = new RelayCommand(async () => await RefreshItems(), () => IsRunning ? false : true);
+            refreshCommand = new RelayCommand(async () => await RefreshItems(), () => IsActive ? false : true);
 
             if (AppSettings["refreshOnStartup", false])
                 refreshCommand.Execute(0);
