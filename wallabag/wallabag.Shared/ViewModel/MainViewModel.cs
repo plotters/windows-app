@@ -35,25 +35,13 @@ namespace wallabag.ViewModel
             }
         }
         
-        private ObservableCollection<ItemViewModel> _unreadItems;
-        private ObservableCollection<ItemViewModel> _favouriteItems;
-        private ObservableCollection<ItemViewModel> _archivedItems;
+        private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
+        private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
+        private ObservableCollection<ItemViewModel> _archivedItems = new ObservableCollection<ItemViewModel>();
 
-        public ObservableCollection<ItemViewModel> unreadItems
-        {
-            get { return _unreadItems; }
-            set { Set(() => unreadItems, ref _unreadItems, value); }
-        }
-        public ObservableCollection<ItemViewModel> favouriteItems
-        {
-            get { return _favouriteItems; }
-            set { Set(() => favouriteItems, ref _favouriteItems, value); }
-        }
-        public ObservableCollection<ItemViewModel> archivedItems
-        {
-            get { return _archivedItems; }
-            set { Set(() => archivedItems, ref _archivedItems, value); }
-        }
+        public ObservableCollection<ItemViewModel> unreadItems { get { return _unreadItems; } }
+        public ObservableCollection<ItemViewModel> favouriteItems { get { return _favouriteItems; } }
+        public ObservableCollection<ItemViewModel> archivedItems { get { return _archivedItems; } }
 
         private bool everythingOkay
         {
@@ -83,15 +71,11 @@ namespace wallabag.ViewModel
         }
 
         public RelayCommand refreshCommand { get; private set; }
-        private async Task refresh()
+        private async Task RefreshItems()
         {
             if (everythingOkay)
             {
                 IsRunning = true;
-
-                var tmpUnread = new ObservableCollection<ItemViewModel>();
-                var tmpFavourites = new ObservableCollection<ItemViewModel>();
-                var tmpArchive = new ObservableCollection<ItemViewModel>();
 
                 Windows.Web.Syndication.SyndicationClient client = new SyndicationClient();
                 string[] parameters = new string[] { "home", "fav", "archive" };
@@ -123,29 +107,22 @@ namespace wallabag.ViewModel
                                 switch (param)
                                 {
                                     case "home":
-                                        tmpUnread.Add(new ItemViewModel(tmpItem));
+                                        unreadItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "fav":
-                                        tmpFavourites.Add(new ItemViewModel(tmpItem));
+                                        favouriteItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "archive":
-                                        tmpArchive.Add(new ItemViewModel(tmpItem));
+                                        archivedItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                 }
                             }
-                        }
-                        unreadItems = tmpUnread;
-                        favouriteItems = tmpFavourites;
-                        archivedItems = tmpArchive;
-                        
+                        }                        
                         IsRunning = false;
                     }
                     catch (Exception e)
                     {
                         IsRunning = false;
-#if DEBUG
-                        throw (e);
-#endif
                     }
                 }
             }
@@ -153,11 +130,7 @@ namespace wallabag.ViewModel
         
         public MainViewModel()
         {
-            unreadItems = new ObservableCollection<ItemViewModel>();
-            favouriteItems = new ObservableCollection<ItemViewModel>();
-            archivedItems = new ObservableCollection<ItemViewModel>();
-
-            refreshCommand = new RelayCommand(async () => await refresh(), () => IsRunning ? false : true);
+            refreshCommand = new RelayCommand(async () => await RefreshItems(), () => IsRunning ? false : true);
 
             if (AppSettings["refreshOnStartup", false])
                 refreshCommand.Execute(0);
