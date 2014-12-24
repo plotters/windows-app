@@ -97,6 +97,11 @@ namespace wallabag.ViewModel
                 CSSproperty("line-height", lineHeight.ToString().Replace(",", ".")) +
                 CSSproperty("color", tmpSettingsVM.textColor.Color) +
                 CSSproperty("background", tmpSettingsVM.Background.Color) +
+#if WINDOWS_APP
+                CSSproperty("max-width", "960px") +
+                CSSproperty("margin", "0 auto") +
+                CSSproperty("padding", "0 20px") +
+#endif
                 "}";
             return "<style>" + css + "</style>";
         }
