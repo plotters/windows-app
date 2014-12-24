@@ -110,7 +110,16 @@
                 </Grid.ColumnDefinitions>
                 <StackPanel Orientation="Horizontal" />
                 <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <AppBarButton x:Uid="addItemButton" Icon="Add" Label="add" Visibility="{Binding AppSettings.Settings.enableAddLink, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    <AppBarButton x:Uid="addItemButton" Icon="Add" Label="add" Visibility="Collapsed" >
+                        <AppBarButton.Flyout>
+                            <Flyout>
+                                <StackPanel Width="300">
+                                    <TextBox Name="saveUrlTextBox" Header="URL" InputScope="Url" PlaceholderText="http://"/>
+                                    <Button x:Uid="saveInWallabagButton" Content="save in wallabag" HorizontalAlignment="Right" />
+                                </StackPanel>
+                            </Flyout>
+                        </AppBarButton.Flyout>
+                    </AppBarButton>
                     <AppBarButton x:Uid="refreshButton" Icon="Refresh" Label="refresh" Command="{Binding refreshCommand}"/>
                 </StackPanel>
             </Grid>
