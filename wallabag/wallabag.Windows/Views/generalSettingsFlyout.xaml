@@ -24,7 +24,6 @@
             <TextBlock Text="App start settings" Style="{StaticResource TitleTextBlockStyle}" />
             <TextBlock Text="The settings below are modifying the startup behaviour." Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,25" />
             <ToggleSwitch x:Uid="refreshOnStartupSwitch" Header="refresh on startup" Margin="0,10,0,0" IsOn="{Binding refreshOnStartup, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <ToggleSwitch x:Uid="enableAddLinkSwitch" Header="enable &quot;add link&quot;" IsOn="{Binding enableAddLink, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
     </StackPanel>
 </SettingsFlyout>
