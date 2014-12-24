@@ -1,4 +1,5 @@
-﻿using wallabag.Common;
+﻿using System;
+using wallabag.Common;
 using wallabag.Views;
 using Windows.UI.Xaml.Controls;
 
@@ -11,9 +12,9 @@ namespace wallabag
             this.InitializeComponent();
         }
 
-        private void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AddLink));
+            await new AddLink().ShowAsync();
         }
 
         private void AppBarButton_Click_1(object sender, Windows.UI.Xaml.RoutedEventArgs e)

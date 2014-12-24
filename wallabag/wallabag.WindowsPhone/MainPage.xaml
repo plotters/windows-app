@@ -25,7 +25,7 @@
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="settingsButton" Label="settings" Click="AppBarButton_Click_1"/>
             </CommandBar.SecondaryCommands>
-            <AppBarButton x:Uid="addItemButton" Icon="Add" IsCompact="True" Label="add" Visibility="{Binding AppSettings.Settings.enableAddLink, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <AppBarButton x:Uid="addItemButton" Icon="Add" IsCompact="True" Label="add" Visibility="{Binding AppSettings.Settings.enableAddLink, Converter={StaticResource BooleanToVisibilityConverter}}" Click="AppBarButton_Click"/>
             <AppBarButton x:Uid="refreshButton" Icon="Refresh" IsCompact="True" Label="refresh" Command="{Binding refreshCommand}"/>
         </CommandBar>
     </common:basicPage.BottomAppBar>
