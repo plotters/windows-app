@@ -30,8 +30,10 @@ namespace wallabag.Views
         void dataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataRequest request = args.Request;
-            request.Data.Properties.Title = ((this.DataContext as ItemPageViewModel).Item as ItemViewModel).Title;
-            request.Data.SetWebLink(((this.DataContext as ItemPageViewModel).Item as ItemViewModel).Url);
+            ItemViewModel item = (this.DataContext as ItemPageViewModel).Item as ItemViewModel;
+            request.Data.Properties.Title = item.Title;
+            request.Data.SetWebLink(item.Url);
+            request.Data.SetHtmlFormat(item.Content);
         }
 
         private async void webView_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
