@@ -123,9 +123,6 @@
   <data name="archive.Header" xml:space="preserve">
     <value>archive</value>
   </data>
-  <data name="enableAddLinkSwitch.Header" xml:space="preserve">
-    <value>activer l'ajout de liens</value>
-  </data>
   <data name="favourites.Header" xml:space="preserve">
     <value>favoris</value>
   </data>
@@ -136,13 +133,10 @@
     <value>rafraichir au lancement</value>
   </data>
   <data name="saveLinkDialog.PrimaryButtonText" xml:space="preserve">
-    <value>fermer</value>
+    <value>sauver</value>
   </data>
   <data name="saveLinkDialog.Title" xml:space="preserve">
     <value>SAUVER UN LIEN</value>
-  </data>
-  <data name="saveSettingsButton.Content" xml:space="preserve">
-    <value>paramètres de sauvegarde de liens</value>
   </data>
   <data name="settingsButton.Label" xml:space="preserve">
     <value>paramètres</value>
@@ -161,9 +155,6 @@
   </data>
   <data name="userIdTextBox.PlaceholderText" xml:space="preserve">
     <value>default 1</value>
-  </data>
-  <data name="validateUrlButton.Content" xml:space="preserve">
-    <value>valider</value>
   </data>
   <data name="wallabagUrlTextBox.Header" xml:space="preserve">
     <value>URL de wallabag</value>
