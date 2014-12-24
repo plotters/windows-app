@@ -41,7 +41,8 @@ namespace wallabag.Common
                 Set(() => StatusText, ref _StatusText, value);
 
 #if WINDOWS_PHONE_APP
-                Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ProgressIndicator.Text = value;
+                if (!string.IsNullOrWhiteSpace(value))
+                    Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ProgressIndicator.Text = value;
 #endif
             }
         }
