@@ -57,6 +57,10 @@ namespace wallabag.ViewModel
                 StatusText = LocalizedString("UpdatingText");
                 IsActive = true;
 
+                unreadItems.Clear();
+                favouriteItems.Clear();
+                archivedItems.Clear();
+
                 Windows.Web.Syndication.SyndicationClient client = new SyndicationClient();
                 string[] parameters = new string[] { "home", "fav", "archive" };
 
@@ -110,7 +114,7 @@ namespace wallabag.ViewModel
         
         public MainViewModel()
         {
-            refreshCommand = new RelayCommand(async () => await RefreshItems(), () => IsActive ? false : true);
+            refreshCommand = new RelayCommand(async () => await RefreshItems());
 
             if (AppSettings["refreshOnStartup", false])
                 refreshCommand.Execute(0);
