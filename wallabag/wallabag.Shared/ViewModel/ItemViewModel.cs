@@ -3,7 +3,6 @@ using System;
 using System.Text.RegularExpressions;
 using wallabag.Common;
 using Windows.UI;
-using Windows.UI.Xaml.Media;
 
 namespace wallabag.ViewModel
 {
@@ -28,6 +27,7 @@ namespace wallabag.ViewModel
                 }
             }
         }
+
         public string Content
         {
             get {
@@ -46,6 +46,7 @@ namespace wallabag.ViewModel
                 }
             }
         }
+
         public string ContentWithTitle
         {
             get
@@ -58,6 +59,7 @@ namespace wallabag.ViewModel
                 return content;
             }
         }
+       
         public Uri Url
         {
             get { return Model.Url; }
@@ -84,54 +86,17 @@ namespace wallabag.ViewModel
                 return string.Format("{0}: {1};", name, tmpColor);
             }
         }
-        
-        private Color textColor
-        {
-             get {
-                 Color resultColor;
-     
-                 if ((bool)AppSettings["isLightMode", false])
-                     resultColor = ColorHelper.FromArgb(255, 0, 0, 0);
-                 else
-                     resultColor = ColorHelper.FromArgb(255, 189,189,189);
-             
-                 AppSettings["textColor"] = new SolidColorBrush(resultColor);
-                 return resultColor;
-            }
-        }
-        private Color Background
-        {
-            get
-            {
-                Color resultColor;
-
-#if WINDOWS_PHONE_APP
-                if ((bool)AppSettings["isLightMode", false])
-                    resultColor = ColorHelper.FromArgb(255, 250, 247, 238);
-                else
-                    resultColor = ColorHelper.FromArgb(255, 0, 0, 0);
-#else
-                if ((bool)AppSettings["isLightMode", false])
-                    resultColor = ColorHelper.FromArgb(255, 250, 247, 238);
-                else
-                    resultColor = ColorHelper.FromArgb(255, 29, 29, 29);
-#endif
-
-                AppSettings["Background"] = new SolidColorBrush(resultColor);
-                return resultColor;
-            }
-        }
-     
         private string generateCSS()
         {
             double fontSize = AppSettings["fontSize", 18];
             double lineHeight = AppSettings["lineHeight", 1.5];
 
+            var tmpSettingsVM = new SettingsViewModel();
             string css = "body {" +
                 CSSproperty("font-size", fontSize + "px") +
                 CSSproperty("line-height", lineHeight.ToString().Replace(",", ".")) +
-                CSSproperty("color", textColor) +
-                CSSproperty("background", Background) +
+                CSSproperty("color", tmpSettingsVM.textColor.Color) +
+                CSSproperty("background", tmpSettingsVM.Background.Color) +
                 "}";
             return "<style>" + css + "</style>";
         }
