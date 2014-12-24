@@ -35,14 +35,6 @@ namespace wallabag.ViewModel
             }
         }
         
-        public Visibility addLinkButtonVisibility
-        {
-            get
-            {
-                if ((bool)AppSettings["enableAddLink", false]) { return Visibility.Visible; } else { return Visibility.Collapsed; }
-            }
-        }
-
         private ObservableCollection<ItemViewModel> _unreadItems;
         private ObservableCollection<ItemViewModel> _favouriteItems;
         private ObservableCollection<ItemViewModel> _archivedItems;
