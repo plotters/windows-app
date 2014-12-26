@@ -39,9 +39,6 @@ namespace wallabag
         {
             if (e.Size.Width >= 500)
             {
-                wallabagLogoSquare.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                wallabagLogoWide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-
                 unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
