@@ -54,7 +54,7 @@ namespace wallabag.ViewModel
         {
             if (everythingOkay)
             {
-                StatusText = LocalizedString("UpdatingText");
+                StatusText = Helpers.LocalizedString("UpdatingText");
                 IsActive = true;
 
                 unreadItems.Clear();

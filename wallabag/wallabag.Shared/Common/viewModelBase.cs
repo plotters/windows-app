@@ -9,10 +9,6 @@ namespace wallabag.Common
     public class viewModelBase : ViewModelBase
     {
         public ApplicationSettings AppSettings { get { return ApplicationSettings.Instance; } }
-
-        public string LocalizedString(string resourceName) {
-            return ResourceLoader.GetForCurrentView().GetString(resourceName);
-        }
         
         private bool _IsActive;
         private string _StatusText;
