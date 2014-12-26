@@ -40,13 +40,13 @@
 
         <Pivot x:Name="mainPivot" Title="WALLABAG">
             <PivotItem x:Uid="unread" Header="unread">
-                <ListView ItemsSource="{Binding unreadItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" ItemClick="ListView_ItemClick" />
+                <ListView x:Name="unreadItems" ItemsSource="{Binding unreadItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" ItemClick="ListView_ItemClick" />
             </PivotItem>
             <PivotItem x:Uid="favourites" Header="favourites">
-                <ListView ItemsSource="{Binding favouriteItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" ItemClick="ListView_ItemClick" />
+                <ListView x:Name="favouriteItems" ItemsSource="{Binding favouriteItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" ItemClick="ListView_ItemClick" />
             </PivotItem>
             <PivotItem x:Uid="archive" Header="archive">
-                <ListView ItemsSource="{Binding archivedItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" ItemClick="ListView_ItemClick" />
+                <ListView x:Name="archivedItems"  ItemsSource="{Binding archivedItems}" IsItemClickEnabled="True" ItemTemplate="{StaticResource ArticleTemplate}" ItemClick="ListView_ItemClick" />
             </PivotItem>
         </Pivot>
     </Grid>

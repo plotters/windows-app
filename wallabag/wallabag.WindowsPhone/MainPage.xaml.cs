@@ -12,6 +12,22 @@ namespace wallabag
             this.InitializeComponent();
         }
 
+        protected override void SaveState(SaveStateEventArgs e)
+        {
+            e.PageState.Add("SelectedPivotItem", mainPivot.SelectedIndex);
+            base.SaveState(e);
+        }
+
+        protected override void LoadState(LoadStateEventArgs e)
+        {
+            if (e.PageState != null)
+            {
+                if (e.PageState.ContainsKey("SelectedPivotItem"))
+                    mainPivot.SelectedIndex = (int)e.PageState["SelectedPivotItem"];
+            }
+            base.LoadState(e);
+        }
+
         private async void AppBarButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             await new AddLink().ShowAsync();
