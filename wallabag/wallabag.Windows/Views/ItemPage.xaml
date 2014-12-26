@@ -19,7 +19,7 @@
 
         <WebView x:Name="webView" NavigationStarting="webView_NavigationStarting" common:WebViewExtensions.HTML="{Binding Item.ContentWithTitle}" />
 
-        <Button x:Name="backButton" Margin="39,59,39,0"
+        <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding GoBackCommand}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"

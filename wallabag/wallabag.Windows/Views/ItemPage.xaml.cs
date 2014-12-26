@@ -13,7 +13,6 @@ namespace wallabag.Views
         public ItemPage()
         {
             this.InitializeComponent();
-            backButton.Command = this.navigationHelper.GoBackCommand;
 
             var dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += dataTransferManager_DataRequested;
