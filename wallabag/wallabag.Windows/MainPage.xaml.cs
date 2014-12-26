@@ -1,6 +1,7 @@
 ﻿using wallabag.Common;
 using wallabag.Views;
 using Windows.UI.ApplicationSettings;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 
 namespace wallabag
@@ -47,7 +48,6 @@ namespace wallabag
                 layoutRoot.RowDefinitions.Clear();
                 layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(100) });
                 layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
-                
 
                 navigationGrid.RowDefinitions.Clear();
                 navigationGrid.ColumnDefinitions.Clear();
@@ -61,13 +61,13 @@ namespace wallabag
                 Grid.SetRow(favouriteItems, 1);
                 Grid.SetRow(archivedItems, 1);
             }
-            if (e.Size.Width >= 800 || e.Size.Height > e.Size.Width)
+            if (e.Size.Width >= 800 || ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Portrait)
             {
                 unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-            if (e.Size.Width >= 1100)
+            if (e.Size.Width >= 1100 && ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Landscape)
             {
                 layoutRoot.RowDefinitions.Clear();
                 layoutRoot.ColumnDefinitions.Clear();
@@ -85,10 +85,6 @@ namespace wallabag
                 Grid.SetRow(unreadItems, 0);
                 Grid.SetRow(favouriteItems, 0);
                 Grid.SetRow(archivedItems, 0);
-            }
-            else
-            {
-
             }
         }
 
