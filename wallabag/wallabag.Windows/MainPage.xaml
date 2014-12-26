@@ -191,9 +191,30 @@
                 </Canvas>
             </Viewbox>
             <StackPanel x:Name="menuStackPanel" Grid.Row="1" Margin="0,30,0,0">
-                <RadioButton x:Uid="unreadItemsMenuButton" x:Name="unreadItemsMenuButton" Content="Unread" Style="{StaticResource MenuButton}" IsChecked="True"/>
-                <RadioButton x:Uid="favouriteItemsMenuButton" x:Name="favouriteItemsMenuButton" Content="Favourites" Style="{StaticResource MenuButton}"/>
-                <RadioButton x:Uid="archivedItemsMenuButton" x:Name="archivedItemsMenuButton" Content="Archive" Style="{StaticResource MenuButton}"/>
+                <RadioButton x:Uid="unreadItemsMenuButton" x:Name="unreadItemsMenuButton" Style="{StaticResource MenuButton}" IsChecked="True">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="View" />
+                            <TextBlock x:Uid="unreadItemsMenuButtonText" Text="Unread" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Uid="favouriteItemsMenuButton" x:Name="favouriteItemsMenuButton" Style="{StaticResource MenuButton}">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Favorite" />
+                            <TextBlock x:Uid="favouriteItemsMenuButtonText" Text="Favourites" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton x:Uid="archivedItemsMenuButton" x:Name="archivedItemsMenuButton" Style="{StaticResource MenuButton}">
+                    <RadioButton.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <SymbolIcon Symbol="Folder" />
+                            <TextBlock x:Uid="archivedItemsMenuButtonText" Text="Archive" Margin="10,0,0,0"/>
+                        </StackPanel>
+                    </RadioButton.Content>
+                </RadioButton>
             </StackPanel>
         </Grid>
         <ListView x:Name="unreadItems" Grid.Column="1" ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadItemsMenuButton}" />
