@@ -28,8 +28,11 @@ namespace wallabag
                 readingFlyout.Show();
             });
 
-            args.Request.ApplicationCommands.Add(generalSettings);
-            args.Request.ApplicationCommands.Add(readingSettings);
+            if (args.Request.ApplicationCommands.Count == 0)
+            {
+                args.Request.ApplicationCommands.Add(generalSettings);
+                args.Request.ApplicationCommands.Add(readingSettings);
+            }
         }
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
