@@ -43,11 +43,14 @@ namespace wallabag
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
+                layoutRoot.ColumnDefinitions.Clear();
+                layoutRoot.RowDefinitions.Clear();
                 layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(100) });
                 layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
-                layoutRoot.ColumnDefinitions.Clear();
+                
 
                 navigationGrid.RowDefinitions.Clear();
+                navigationGrid.ColumnDefinitions.Clear();
                 navigationGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new Windows.UI.Xaml.GridLength(100) });
                 navigationGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
 
@@ -66,7 +69,22 @@ namespace wallabag
             }
             else if (e.Size.Width >= 1100)
             {
+                layoutRoot.RowDefinitions.Clear();
+                layoutRoot.ColumnDefinitions.Clear();
+                layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new Windows.UI.Xaml.GridLength(320) });
+                layoutRoot.ColumnDefinitions.Add(new ColumnDefinition() { Width = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
 
+                navigationGrid.ColumnDefinitions.Clear();
+                navigationGrid.RowDefinitions.Clear();
+                navigationGrid.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(180) });
+                navigationGrid.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
+
+                Grid.SetColumn(menuStackPanel, 0);
+                menuStackPanel.Orientation = Orientation.Vertical;
+
+                Grid.SetRow(unreadItems, 0);
+                Grid.SetRow(favouriteItems, 0);
+                Grid.SetRow(archivedItems, 0);
             }
             else
             {
