@@ -39,14 +39,12 @@ namespace wallabag
         {
             if (e.Size.Width >= 500)
             {
+                wallabagLogoSquare.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                wallabagLogoWide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
                 unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
-            else if (e.Size.Width >= 800)
-            {
-                wallabagLogoSquare.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                wallabagLogoWide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
 
                 layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(100) });
                 layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
@@ -63,11 +61,13 @@ namespace wallabag
                 Grid.SetRow(favouriteItems, 1);
                 Grid.SetRow(archivedItems, 1);
             }
-            else if (e.Size.Width >= 1100)
+            else if (e.Size.Width >= 800 || e.Size.Height > e.Size.Width)
             {
-
+                unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-            else if (e.Size.Height > e.Size.Width) // Portrait mode
+            else if (e.Size.Width >= 1100)
             {
 
             }
