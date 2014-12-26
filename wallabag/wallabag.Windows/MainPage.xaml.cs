@@ -58,7 +58,6 @@ namespace wallabag
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            (sender as ListViewItem).IsSelected = true;
             this.Frame.Navigate(typeof(ItemPage), e.ClickedItem);
         }
     }
