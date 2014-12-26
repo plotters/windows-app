@@ -18,6 +18,12 @@ namespace wallabag
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+            var settings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            if (settings.Values.ContainsKey("isLightMode") && (bool)settings.Values["isLightMode"])
+                RequestedTheme = ApplicationTheme.Light;
+            else
+                RequestedTheme = ApplicationTheme.Dark;
         }
 
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
