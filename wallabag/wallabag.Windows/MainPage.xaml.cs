@@ -1,6 +1,7 @@
-﻿using Windows.UI.Xaml.Controls;
-using wallabag.Common;
+﻿using wallabag.Common;
 using wallabag.Views;
+using Windows.UI.ApplicationSettings;
+using Windows.UI.Xaml.Controls;
 
 namespace wallabag
 {
@@ -9,20 +10,18 @@ namespace wallabag
         public MainPage()
         {
             this.InitializeComponent();
-            Windows.UI.ApplicationSettings.SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
+            SettingsPane.GetForCurrentView().CommandsRequested += MainPage_CommandsRequested;
         }
 
         void MainPage_CommandsRequested(Windows.UI.ApplicationSettings.SettingsPane sender, Windows.UI.ApplicationSettings.SettingsPaneCommandsRequestedEventArgs args)
         {
-            Windows.UI.ApplicationSettings.SettingsCommand generalSettings =
-                new Windows.UI.ApplicationSettings.SettingsCommand("generalSettings", "General", (handler) =>
+            SettingsCommand generalSettings = new SettingsCommand("generalSettings", "General", (handler) =>
             {
                 generalSettingsFlyout settingsFlyout = new generalSettingsFlyout();
                 settingsFlyout.Show();
             });
 
-            Windows.UI.ApplicationSettings.SettingsCommand readingSettings =
-                new Windows.UI.ApplicationSettings.SettingsCommand("readingSettings", "Reading", (handler) =>
+            SettingsCommand readingSettings = new SettingsCommand("readingSettings", "Reading", (handler) =>
             {
                 readingSettingsFlyout readingFlyout = new readingSettingsFlyout();
                 readingFlyout.Show();
