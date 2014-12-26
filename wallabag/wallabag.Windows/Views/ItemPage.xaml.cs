@@ -3,6 +3,8 @@ using wallabag.Common;
 using wallabag.ViewModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.System;
+using Windows.UI.ViewManagement;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -16,6 +18,18 @@ namespace wallabag.Views
 
             var dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += dataTransferManager_DataRequested;
+        }
+
+        protected override void ChangedSize(double width, double height)
+        {
+            if (width >= 500 || ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Portrait)
+            {
+                VisualStateManager.GoToState(this, "Narrow", false);
+            }
+            if (width >= 1100 && ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Landscape)
+            {
+                VisualStateManager.GoToState(this, "Full", false);
+            }
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
