@@ -8,9 +8,7 @@ The old wallabag app for windows devices was crap on new devices (Windows Phone 
 
 It's not perfect, but on a good way ;-)
 
-Unlike the old app, this app is an universal app. Sadly, it only supports Windows Phone at the moment, but I am working on the Desktop app.
-
-You can see the screenshots [here](/additional/screenshots/phone).
+You can see the screenshots [here](/additional/screenshots).
 
 ## Currently supported languages
 - English
