@@ -37,13 +37,13 @@ namespace wallabag
 
         void MainPage_CommandsRequested(Windows.UI.ApplicationSettings.SettingsPane sender, Windows.UI.ApplicationSettings.SettingsPaneCommandsRequestedEventArgs args)
         {
-            SettingsCommand generalSettings = new SettingsCommand("generalSettings", "General", (handler) =>
+            SettingsCommand generalSettings = new SettingsCommand("generalSettings", Helpers.LocalizedString("generalSettingsText"), (handler) =>
             {
                 generalSettingsFlyout settingsFlyout = new generalSettingsFlyout();
                 settingsFlyout.Show();
             });
 
-            SettingsCommand readingSettings = new SettingsCommand("readingSettings", "Reading", (handler) =>
+            SettingsCommand readingSettings = new SettingsCommand("readingSettings", Helpers.LocalizedString("readingSettingsText"), (handler) =>
             {
                 readingSettingsFlyout readingFlyout = new readingSettingsFlyout();
                 readingFlyout.Show();

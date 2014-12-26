@@ -184,9 +184,9 @@
                 </Canvas>
             </Viewbox>
             <StackPanel Grid.Row="1" Margin="0,30,0,0">
-                <RadioButton x:Name="unreadItemsMenuButton" Content="Unread" Style="{StaticResource MenuButton}" IsChecked="True"/>
-                <RadioButton x:Name="favouriteItemsMenuButton" Content="Favourites" Style="{StaticResource MenuButton}"/>
-                <RadioButton x:Name="archivedItemsMenuButton" Content="Archive" Style="{StaticResource MenuButton}"/>
+                <RadioButton x:Uid="unreadItemsMenuButton" x:Name="unreadItemsMenuButton" Content="Unread" Style="{StaticResource MenuButton}" IsChecked="True"/>
+                <RadioButton x:Uid="favouriteItemsMenuButton" x:Name="favouriteItemsMenuButton" Content="Favourites" Style="{StaticResource MenuButton}"/>
+                <RadioButton x:Uid="archivedItemsMenuButton" x:Name="archivedItemsMenuButton" Content="Archive" Style="{StaticResource MenuButton}"/>
             </StackPanel>
         </Grid>
         <ListView x:Name="unreadItems" Grid.Column="1" ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick" Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadItemsMenuButton}" />

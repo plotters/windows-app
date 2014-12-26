@@ -201,4 +201,40 @@
   <data name="UpdatingText" xml:space="preserve">
     <value />
   </data>
+  <data name="AppStartSettingsDescription.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AppStartSettingsHeader.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="archivedItemsMenuButton.Content" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConnectionSettingsDescription.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ConnectionSettingsHeader.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="favouriteItemsMenuButton.Content" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GeneralSettingsFlyout.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="generalSettingsText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ReadingSettingsDescription.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ReadingSettingsFlyout.Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="readingSettingsText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="unreadItemsMenuButton.Content" xml:space="preserve">
+    <value />
+  </data>
 </root>

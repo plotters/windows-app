@@ -201,4 +201,40 @@
   <data name="UpdatingText" xml:space="preserve">
     <value>Loading...</value>
   </data>
+  <data name="AppStartSettingsDescription.Text" xml:space="preserve">
+    <value>The settings below are modifying the startup behaviour.</value>
+  </data>
+  <data name="AppStartSettingsHeader.Text" xml:space="preserve">
+    <value>App start settings</value>
+  </data>
+  <data name="archivedItemsMenuButton.Content" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="ConnectionSettingsDescription.Text" xml:space="preserve">
+    <value>Here you define required settings for the connection to your wallabag instance.</value>
+  </data>
+  <data name="ConnectionSettingsHeader.Text" xml:space="preserve">
+    <value>Connection settings</value>
+  </data>
+  <data name="favouriteItemsMenuButton.Content" xml:space="preserve">
+    <value>Favourites</value>
+  </data>
+  <data name="GeneralSettingsFlyout.Title" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="generalSettingsText" xml:space="preserve">
+    <value>General</value>
+  </data>
+  <data name="ReadingSettingsDescription.Text" xml:space="preserve">
+    <value>In this section, you can define several settings for the text appereance when reading an saved article.</value>
+  </data>
+  <data name="ReadingSettingsFlyout.Title" xml:space="preserve">
+    <value>Reading</value>
+  </data>
+  <data name="readingSettingsText" xml:space="preserve">
+    <value>Reading</value>
+  </data>
+  <data name="unreadItemsMenuButton.Content" xml:space="preserve">
+    <value>Unread</value>
+  </data>
 </root>
