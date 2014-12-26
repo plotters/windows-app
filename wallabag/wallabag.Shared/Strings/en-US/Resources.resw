@@ -207,7 +207,7 @@
   <data name="AppStartSettingsHeader.Text" xml:space="preserve">
     <value>App start settings</value>
   </data>
-  <data name="archivedItemsMenuButton.Content" xml:space="preserve">
+  <data name="archivedItemsMenuButtonText.Text" xml:space="preserve">
     <value>Archive</value>
   </data>
   <data name="ConnectionSettingsDescription.Text" xml:space="preserve">
@@ -216,7 +216,7 @@
   <data name="ConnectionSettingsHeader.Text" xml:space="preserve">
     <value>Connection settings</value>
   </data>
-  <data name="favouriteItemsMenuButton.Content" xml:space="preserve">
+  <data name="favouriteItemsMenuButtonText.Text" xml:space="preserve">
     <value>Favourites</value>
   </data>
   <data name="GeneralSettingsFlyout.Title" xml:space="preserve">
@@ -234,7 +234,7 @@
   <data name="readingSettingsText" xml:space="preserve">
     <value>Reading</value>
   </data>
-  <data name="unreadItemsMenuButton.Content" xml:space="preserve">
+  <data name="unreadItemsMenuButtonText.Text" xml:space="preserve">
     <value>Unread</value>
   </data>
 </root>
