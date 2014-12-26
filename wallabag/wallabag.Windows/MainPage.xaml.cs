@@ -37,7 +37,13 @@ namespace wallabag
 
         protected override void ChangedSize(Windows.UI.Core.WindowSizeChangedEventArgs e)
         {
-            if (e.Size.Width <= 800)
+            if (e.Size.Width >= 500)
+            {
+                unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            }
+            else if (e.Size.Width >= 800)
             {
                 wallabagLogoSquare.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 wallabagLogoWide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -56,6 +62,10 @@ namespace wallabag
                 Grid.SetRow(unreadItems, 1);
                 Grid.SetRow(favouriteItems, 1);
                 Grid.SetRow(archivedItems, 1);
+            }
+            else if (e.Size.Width >= 1100)
+            {
+
             }
             else if (e.Size.Height > e.Size.Width) // Portrait mode
             {

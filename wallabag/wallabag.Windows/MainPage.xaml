@@ -195,7 +195,7 @@
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="View" />
-                            <TextBlock x:Uid="unreadItemsMenuButtonText" Text="Unread" Margin="10,0,0,0"/>
+                            <TextBlock x:Uid="unreadItemsMenuButtonText" x:Name="unreadItemsText" Text="Unread" Margin="10,0,0,0"/>
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
@@ -203,7 +203,7 @@
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Favorite" />
-                            <TextBlock x:Uid="favouriteItemsMenuButtonText" Text="Favourites" Margin="10,0,0,0"/>
+                            <TextBlock x:Uid="favouriteItemsMenuButtonText" x:Name="favouriteItemsText" Text="Favourites" Margin="10,0,0,0"/>
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
@@ -211,7 +211,7 @@
                     <RadioButton.Content>
                         <StackPanel Orientation="Horizontal">
                             <SymbolIcon Symbol="Folder" />
-                            <TextBlock x:Uid="archivedItemsMenuButtonText" Text="Archive" Margin="10,0,0,0"/>
+                            <TextBlock x:Uid="archivedItemsMenuButtonText" x:Name="archivedItemsText" Text="Archive" Margin="10,0,0,0"/>
                         </StackPanel>
                     </RadioButton.Content>
                 </RadioButton>
