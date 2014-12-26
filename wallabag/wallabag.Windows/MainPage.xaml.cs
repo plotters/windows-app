@@ -35,6 +35,38 @@ namespace wallabag
             base.LoadState(e);
         }
 
+        protected override void ChangedSize(Windows.UI.Core.WindowSizeChangedEventArgs e)
+        {
+            if (e.Size.Width <= 800)
+            {
+                wallabagLogoSquare.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                wallabagLogoWide.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
+                layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(100) });
+                layoutRoot.RowDefinitions.Add(new RowDefinition() { Height = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
+                layoutRoot.ColumnDefinitions.Clear();
+
+                navigationGrid.RowDefinitions.Clear();
+                navigationGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new Windows.UI.Xaml.GridLength(100) });
+                navigationGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new Windows.UI.Xaml.GridLength(1, Windows.UI.Xaml.GridUnitType.Star) });
+
+                Grid.SetColumn(menuStackPanel, 1);
+                menuStackPanel.Orientation = Orientation.Horizontal;
+
+                Grid.SetRow(unreadItems, 1);
+                Grid.SetRow(favouriteItems, 1);
+                Grid.SetRow(archivedItems, 1);
+            }
+            else if (e.Size.Height > e.Size.Width) // Portrait mode
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         void MainPage_CommandsRequested(Windows.UI.ApplicationSettings.SettingsPane sender, Windows.UI.ApplicationSettings.SettingsPaneCommandsRequestedEventArgs args)
         {
             SettingsCommand generalSettings = new SettingsCommand("generalSettings", Helpers.LocalizedString("generalSettingsText"), (handler) =>
