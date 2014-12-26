@@ -18,6 +18,7 @@ namespace wallabag.Common
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
             e.PageState.Add(ViewModelPageKey, this.DataContext);
+            SaveState(e);
         }
         void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
@@ -25,7 +26,11 @@ namespace wallabag.Common
             {
                 this.DataContext = e.PageState[ViewModelPageKey];
             }
+            LoadState(e);
         }
+
+        protected virtual void LoadState(LoadStateEventArgs e) { }
+        protected virtual void SaveState(SaveStateEventArgs e) { }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
