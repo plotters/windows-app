@@ -229,10 +229,10 @@
     <value>In this section, you can define several settings for the text appereance when reading an saved article.</value>
   </data>
   <data name="ReadingSettingsFlyout.Title" xml:space="preserve">
-    <value>Reading</value>
+    <value>Reading view</value>
   </data>
   <data name="readingSettingsText" xml:space="preserve">
-    <value>Reading</value>
+    <value>Reading view</value>
   </data>
   <data name="unreadItemsMenuButtonText.Text" xml:space="preserve">
     <value>Unread</value>

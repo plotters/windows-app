@@ -199,42 +199,42 @@
     <value>Clair</value>
   </data>
   <data name="UpdatingText" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="AppStartSettingsDescription.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="AppStartSettingsHeader.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="archivedItemsMenuButtonText.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="ConnectionSettingsDescription.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="ConnectionSettingsHeader.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="favouriteItemsMenuButtonText.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="GeneralSettingsFlyout.Title" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="generalSettingsText" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="ReadingSettingsDescription.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="ReadingSettingsFlyout.Title" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="readingSettingsText" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
   <data name="unreadItemsMenuButtonText.Text" xml:space="preserve">
-    <value />
+    <value></value>
   </data>
 </root>
