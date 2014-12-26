@@ -96,10 +96,10 @@ namespace wallabag
             deferral.Complete();
         }
 
-        protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
-        {
-            var shareTargetPage = new wallabag.Views.ShareTarget();
-            shareTargetPage.Activate(e);
-        }
+        //protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
+        //{
+        //    var shareTargetPage = new wallabag.Views.ShareTarget();
+        //    shareTargetPage.Activate(e);
+        //}
     }
 }
