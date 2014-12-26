@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI.Core;
 
 namespace wallabag.Common
 {
@@ -24,10 +24,10 @@ namespace wallabag.Common
 
         void Window_SizeChanged(object sender, WindowSizeChangedEventArgs e)
         {
-            ChangedSize(e);
+            ChangedSize(e.Size.Width, e.Size.Height);
         }
 
-        protected virtual void ChangedSize(WindowSizeChangedEventArgs e) { }
+        protected virtual void ChangedSize(double width, double height) { }
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
@@ -49,6 +49,7 @@ namespace wallabag.Common
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);
+            ChangedSize(Window.Current.Bounds.Width, Window.Current.Bounds.Height);
         }
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {

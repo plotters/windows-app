@@ -36,9 +36,9 @@ namespace wallabag
             base.LoadState(e);
         }
 
-        protected override void ChangedSize(Windows.UI.Core.WindowSizeChangedEventArgs e)
+        protected override void ChangedSize(double width, double height)
         {
-            if (e.Size.Width >= 500)
+            if (width >= 500)
             {
                 unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -61,13 +61,13 @@ namespace wallabag
                 Grid.SetRow(favouriteItems, 1);
                 Grid.SetRow(archivedItems, 1);
             }
-            if (e.Size.Width >= 800 || ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Portrait)
+            if (width >= 800 || ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Portrait)
             {
                 unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-            if (e.Size.Width >= 1100 && ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Landscape)
+            if (width >= 1100 && ApplicationView.GetForCurrentView().Orientation == ApplicationViewOrientation.Landscape)
             {
                 layoutRoot.RowDefinitions.Clear();
                 layoutRoot.ColumnDefinitions.Clear();
