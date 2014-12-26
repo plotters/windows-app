@@ -61,13 +61,13 @@ namespace wallabag
                 Grid.SetRow(favouriteItems, 1);
                 Grid.SetRow(archivedItems, 1);
             }
-            else if (e.Size.Width >= 800 || e.Size.Height > e.Size.Width)
+            if (e.Size.Width >= 800 || e.Size.Height > e.Size.Width)
             {
                 unreadItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 favouriteItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
                 archivedItemsText.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
-            else if (e.Size.Width >= 1100)
+            if (e.Size.Width >= 1100)
             {
                 layoutRoot.RowDefinitions.Clear();
                 layoutRoot.ColumnDefinitions.Clear();
