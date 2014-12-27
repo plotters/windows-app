@@ -199,42 +199,42 @@
     <value>Clair</value>
   </data>
   <data name="UpdatingText" xml:space="preserve">
-    <value></value>
+    <value>Chargement...</value>
   </data>
   <data name="AppStartSettingsDescription.Text" xml:space="preserve">
-    <value></value>
+    <value>Les paramètres ci-dessous modifient le comportement au démarrage.</value>
   </data>
   <data name="AppStartSettingsHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>Paramètres de démarrage</value>
   </data>
   <data name="archivedItemsMenuButtonText.Text" xml:space="preserve">
-    <value></value>
+    <value>Archive</value>
   </data>
   <data name="ConnectionSettingsDescription.Text" xml:space="preserve">
-    <value></value>
+    <value>Vous définissez ici les paramètres requis pour la connexion à votre instance wallabag.</value>
   </data>
   <data name="ConnectionSettingsHeader.Text" xml:space="preserve">
-    <value></value>
+    <value>Paramètres de connexion</value>
   </data>
   <data name="favouriteItemsMenuButtonText.Text" xml:space="preserve">
-    <value></value>
+    <value>Favoris</value>
   </data>
   <data name="GeneralSettingsFlyout.Title" xml:space="preserve">
-    <value></value>
+    <value>Général</value>
   </data>
   <data name="generalSettingsText" xml:space="preserve">
-    <value></value>
+    <value>Général</value>
   </data>
   <data name="ReadingSettingsDescription.Text" xml:space="preserve">
-    <value></value>
+    <value>Vous définissez ici les paramètres d'apparence du texte lors de la lecture d'un article.</value>
   </data>
   <data name="ReadingSettingsFlyout.Title" xml:space="preserve">
-    <value></value>
+    <value>Vue lecture</value>
   </data>
   <data name="readingSettingsText" xml:space="preserve">
-    <value></value>
+    <value>Vue lecture</value>
   </data>
   <data name="unreadItemsMenuButtonText.Text" xml:space="preserve">
-    <value></value>
+    <value>Non lus</value>
   </data>
 </root>
