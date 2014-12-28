@@ -25,7 +25,7 @@ And even if you're not a developer, **you can help to translate it!**
 **Windows.**
 ![Main page on Windows](additional/screenshots/desktop/mainpage.png)
 **Windows Phone.**
-![Main page on Windows Phone](additional/screenshots/phone/mainpage.png)|
+![Main page on Windows Phone](additional/screenshots/phone/mainpage.png)
 
 ## Why are the screenshots for Windows Phone in the store so bad?
 First of all, sorry for that. My PC is not the newest one, the CPU has no support for the Hyper-V virtualization required by the Windows Phone Emulator.
