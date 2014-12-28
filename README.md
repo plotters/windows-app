@@ -1,7 +1,7 @@
 wallabag for Windows
 ================
-**[Download it from the Windows Phone Store](http://www.windowsphone.com/en-US/store/app/wallabag/d5226cf1-f422-4e00-996c-88e9c5233332)!**
-(*[Alternatively use the old app for WP7 devices.](http://www.windowsphone.com/en-us/store/app/wallabag/ff890514-348c-4d0b-9b43-153fff3f7450)*)
+- **[Download for Windows](http://apps.microsoft.com/windows/app/wallabag/f551b9c4-7346-4509-ae46-c6167c705a30)**
+- **[Download for Windows Phone](http://www.windowsphone.com/s?appid=d5226cf1-f422-4e00-996c-88e9c5233332)**
 
 ## Current features
 - Read your saved articles on the go - even offline!
