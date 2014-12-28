@@ -13,5 +13,10 @@ namespace wallabag.Views
         {
             this.InitializeComponent();
         }
+
+        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        {
+
+        }
     }
 }

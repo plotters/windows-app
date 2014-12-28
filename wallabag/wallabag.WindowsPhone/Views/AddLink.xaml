@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     x:Uid="saveLinkDialog"
     Title="SAVE LINK"
-    PrimaryButtonText="save">
+    PrimaryButtonText="save" PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
 
     <Grid>
         <TextBox Name="saveUrlTextBox" Header="URL" InputScope="Url" PlaceholderText="http://"/>
