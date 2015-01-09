@@ -2,13 +2,13 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using wallabag.Common;
 using wallabag.Models;
 using Windows.ApplicationModel.Resources;
 using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
-using System.Linq;
 using Windows.Web.Syndication;
 
 namespace wallabag.ViewModel
@@ -66,9 +66,7 @@ namespace wallabag.ViewModel
                 StatusText = Helpers.LocalizedString("UpdatingText");
                 IsActive = true;
 
-                unreadItems.Clear();
-                favouriteItems.Clear();
-                archivedItems.Clear();
+                Items.Clear();
 
                 Windows.Web.Syndication.SyndicationClient client = new SyndicationClient();
                 string[] parameters = new string[] { "home", "fav", "archive" };
@@ -100,15 +98,15 @@ namespace wallabag.ViewModel
                                 switch (param)
                                 {
                                     case "home":
-                                        unreadItems.Add(new ItemViewModel(tmpItem));
+                                        Items.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "fav":
                                         tmpItem.IsFavourite = true;
-                                        favouriteItems.Add(new ItemViewModel(tmpItem));
+                                        Items.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "archive":
                                         tmpItem.IsRead = true;
-                                        archivedItems.Add(new ItemViewModel(tmpItem));
+                                        Items.Add(new ItemViewModel(tmpItem));
                                         break;
                                 }
                             }
