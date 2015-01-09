@@ -31,3 +31,6 @@ And even if you're not a developer, **you can help to translate it!**
 First of all, sorry for that. My PC is not the newest one, the CPU has no support for the Hyper-V virtualization required by the Windows Phone Emulator.
 Even if I use my Lumia 930 for the screenshots, Microsoft is not happy. They want the screenshots in a resolution of 1280x768. So the screenshots I made on the phone have to be resized and stretched - so they look very ugly.
 If I will get a new PC, the screenshots are going to become an update.
+
+## License
+This app is released under the MIT license.
