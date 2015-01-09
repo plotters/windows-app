@@ -8,19 +8,28 @@ using wallabag.Models;
 using Windows.ApplicationModel.Resources;
 using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
+using System.Linq;
 using Windows.Web.Syndication;
 
 namespace wallabag.ViewModel
 {
     public class MainViewModel : viewModelBase
-    {        
-        private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
-        private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
-        private ObservableCollection<ItemViewModel> _archivedItems = new ObservableCollection<ItemViewModel>();
+    {
+        private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
+        public ObservableCollection<ItemViewModel> Items { get { return _Items; } }
 
-        public ObservableCollection<ItemViewModel> unreadItems { get { return _unreadItems; } }
-        public ObservableCollection<ItemViewModel> favouriteItems { get { return _favouriteItems; } }
-        public ObservableCollection<ItemViewModel> archivedItems { get { return _archivedItems; } }
+        public ObservableCollection<ItemViewModel> unreadItems
+        {
+            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == false && i.IsFavourite == false)); }
+        }
+        public ObservableCollection<ItemViewModel> favouriteItems
+        {
+            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == false && i.IsFavourite == true)); }
+        }
+        public ObservableCollection<ItemViewModel> archivedItems
+        {
+            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == true)); }
+        }
 
         private bool everythingOkay
         {
@@ -113,7 +122,7 @@ namespace wallabag.ViewModel
                 }
             }
         }
-        
+
         public MainViewModel()
         {
             refreshCommand = new RelayCommand(async () => await RefreshItems());
