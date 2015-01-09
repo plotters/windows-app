@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Resources;
 using Windows.Networking.Connectivity;
 using Windows.UI.Xaml;
 using Windows.Web.Syndication;
+using SQLite;
 
 namespace wallabag.ViewModel
 {
@@ -36,7 +37,6 @@ namespace wallabag.ViewModel
                 return wallabagUrl != string.Empty && userId != 0 && token != string.Empty && internet;
             }
         }
-
         private string buildUrl(string parameter)
         {
             string wallabagUrl = AppSettings["wallabagUrl", string.Empty];
@@ -110,6 +110,13 @@ namespace wallabag.ViewModel
                     }
                 }
             }
+        }
+
+        private async Task SaveItemsInDatabase()
+        {
+            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
+            await conn.CreateTableAsync<Models.Item>();
+            
         }
         
         public MainViewModel()
