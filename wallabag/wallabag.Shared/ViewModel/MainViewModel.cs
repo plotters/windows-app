@@ -31,7 +31,7 @@ namespace wallabag.ViewModel
             get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == true)); }
         }
 
-        private bool everythingOkay
+        private bool everythingFine
         {
             get
             {
@@ -52,7 +52,7 @@ namespace wallabag.ViewModel
             int userId = AppSettings["userId", 1];
             string token = AppSettings["Token", string.Empty];
 
-            if (everythingOkay)
+            if (everythingFine)
                 return string.Format("{0}?feed&type={1}&user_id={2}&token={3}", wallabagUrl, parameter, userId, token);
 
             return string.Empty;
@@ -61,7 +61,7 @@ namespace wallabag.ViewModel
         public RelayCommand refreshCommand { get; private set; }
         private async Task RefreshItems()
         {
-            if (everythingOkay)
+            if (everythingFine)
             {
                 StatusText = Helpers.LocalizedString("UpdatingText");
                 IsActive = true;
