@@ -94,9 +94,11 @@ namespace wallabag.ViewModel
                                         unreadItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "fav":
+                                        tmpItem.IsFavourite = true;
                                         favouriteItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "archive":
+                                        tmpItem.IsRead = true;
                                         archivedItems.Add(new ItemViewModel(tmpItem));
                                         break;
                                 }
