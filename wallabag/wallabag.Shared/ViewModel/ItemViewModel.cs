@@ -9,7 +9,7 @@ namespace wallabag.ViewModel
     public class ItemViewModel : viewModelBase
     {
         public Models.Item Model { get; set; }
-        
+
         public string Title
         {
             get
@@ -27,15 +27,15 @@ namespace wallabag.ViewModel
                 }
             }
         }
-
         public string Content
         {
-            get {
+            get
+            {
                 var content =
                     "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/css/wallabag.css\" type=\"text/css\" media=\"screen\" />" + generateCSS() + "</head>" +
                         Model.Content +
                     "</html>";
-                return content; 
+                return content;
             }
             set
             {
@@ -46,7 +46,6 @@ namespace wallabag.ViewModel
                 }
             }
         }
-
         public string ContentWithTitle
         {
             get
@@ -59,7 +58,6 @@ namespace wallabag.ViewModel
                 return content;
             }
         }
-       
         public Uri Url
         {
             get { return Model.Url; }
@@ -69,6 +67,31 @@ namespace wallabag.ViewModel
                 {
                     Model.Url = value;
                     RaisePropertyChanged(() => Url);
+                }
+            }
+        }
+
+        public bool IsFavourite
+        {
+            get { return Model.IsFavourite; }
+            set
+            {
+                if (value != Model.IsFavourite)
+                {
+                    Model.IsFavourite = value;
+                    RaisePropertyChanged(() => IsFavourite);
+                }
+            }
+        }
+        public bool IsRead
+        {
+            get { return Model.IsRead; }
+            set
+            {
+                if (value != Model.IsRead)
+                {
+                    Model.IsRead = value;
+                    RaisePropertyChanged(() => IsRead);
                 }
             }
         }
