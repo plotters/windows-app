@@ -137,11 +137,12 @@ namespace wallabag.ViewModel
         }
         private async Task LoadItems()
         {
+            _Items = new ObservableCollection<ItemViewModel>();
             SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
             var Items = await conn.Table<Item>().ToListAsync();
             foreach (var itm in Items)
             {
-                _Items.Add(new ItemViewModel() { Model = itm });
+                this.Items.Add(new ItemViewModel() { Model = itm });
             }
 
             RaisePropertyChanged(() => unreadItems);
@@ -153,10 +154,8 @@ namespace wallabag.ViewModel
         {
             refreshCommand = new RelayCommand(async () => await RefreshItems());
 
-            if (AppSettings["refreshOnStartup", false])
+            if (AppSettings["refreshOnStartup", false] || !everythingFine)
                 refreshCommand.Execute(0);
-            if (!everythingFine)
-                LoadItems();
         }
     }
 }
