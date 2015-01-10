@@ -1,5 +1,6 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using SQLite;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace wallabag.ViewModel
 
         public ObservableCollection<ItemViewModel> unreadItems
         {
-            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == false && i.IsFavourite == false)); }
+            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == false)); }
         }
         public ObservableCollection<ItemViewModel> favouriteItems
         {
@@ -45,7 +46,6 @@ namespace wallabag.ViewModel
                 return wallabagUrl != string.Empty && userId != 0 && token != string.Empty && internet;
             }
         }
-
         private string buildUrl(string parameter)
         {
             string wallabagUrl = AppSettings["wallabagUrl", string.Empty];
@@ -118,6 +118,28 @@ namespace wallabag.ViewModel
                         IsActive = false;
                     }
                 }
+            }
+            else { await LoadItems(); }
+        }
+
+        private async Task SaveItem(Item Item)
+        {
+            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
+            await conn.CreateTableAsync<Item>();
+
+            var existingItem = conn.Table<Item>().Where(i => i.Title == Item.Title);
+
+            if (existingItem == null)
+                await conn.InsertAsync(Item);
+        }
+
+        private async Task LoadItems()
+        {
+            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
+            var Items = await conn.Table<Item>().ToListAsync();
+            foreach (var itm in Items)
+            {
+                _Items.Add(new ItemViewModel() { Model = itm });
             }
         }
 
