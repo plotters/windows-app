@@ -2149,9 +2149,9 @@ namespace SQLite
 				SQLite3.BindNull (stmt, index);
 			} else {
 				if (value is Int32) {
-					SQLite3.BindInt (stmt, index, (int)value);
-				} else if (value is String) {
-					SQLite3.BindText (stmt, index, (string)value, -1, NegativePointer);
+                    SQLite3.BindInt(stmt, index, (int)value);
+                } else if (value is String || value is Uri) {
+                    SQLite3.BindText(stmt, index, value.ToString(), -1, NegativePointer);
 				} else if (value is Byte || value is UInt16 || value is SByte || value is Int16) {
 					SQLite3.BindInt (stmt, index, Convert.ToInt32 (value));
 				} else if (value is Boolean) {
