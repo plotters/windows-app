@@ -2247,7 +2247,9 @@ namespace SQLite
 					return SQLite3.ColumnByteArray (stmt, index);
 				} else if (clrType == typeof(Guid)) {
                   var text = SQLite3.ColumnString(stmt, index);
-                  return new Guid(text);
+                    return new Guid(text);
+                } else if (clrType == typeof(Uri)) {
+                    return new Uri(SQLite3.ColumnString(stmt, index));
                 } else{
 					throw new NotSupportedException ("Don't know how to read " + clrType);
 				}
