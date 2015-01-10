@@ -128,10 +128,12 @@ namespace wallabag.ViewModel
             SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
             await conn.CreateTableAsync<Item>();
 
-            var existingItem = conn.Table<Item>().Where(i => i.Title == Item.Title);
+            var existingItem = conn.Table<Item>().Where(i => i.Url == Item.Url);
 
-            if (existingItem == null)
+            if (await existingItem.CountAsync() == 0)
+            {
                 await conn.InsertAsync(Item);
+            }
         }
         private async Task LoadItems()
         {
