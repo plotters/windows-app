@@ -21,15 +21,15 @@ namespace wallabag.ViewModel
 
         public ObservableCollection<ItemViewModel> unreadItems
         {
-            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == false)); }
+            get { return new ObservableCollection<ItemViewModel>(Items.Where(i => i.IsRead == false)); }
         }
         public ObservableCollection<ItemViewModel> favouriteItems
         {
-            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == false && i.IsFavourite == true)); }
+            get { return new ObservableCollection<ItemViewModel>(Items.Where(i => i.IsRead == false && i.IsFavourite == true)); }
         }
         public ObservableCollection<ItemViewModel> archivedItems
         {
-            get { return new ObservableCollection<ItemViewModel>(_Items.Where(i => i.IsRead == true)); }
+            get { return new ObservableCollection<ItemViewModel>(Items.Where(i => i.IsRead == true)); }
         }
 
         private bool everythingFine
@@ -97,21 +97,22 @@ namespace wallabag.ViewModel
                                 }
                                 switch (param)
                                 {
-                                    case "home":
-                                        Items.Add(new ItemViewModel(tmpItem));
-                                        break;
                                     case "fav":
                                         tmpItem.IsFavourite = true;
-                                        Items.Add(new ItemViewModel(tmpItem));
                                         break;
                                     case "archive":
                                         tmpItem.IsRead = true;
-                                        Items.Add(new ItemViewModel(tmpItem));
                                         break;
                                 }
+
+                                await SaveItem(tmpItem);
+                                Items.Add(new ItemViewModel(tmpItem));
                             }
                         }
                         IsActive = false;
+                        RaisePropertyChanged(() => unreadItems);
+                        RaisePropertyChanged(() => favouriteItems);
+                        RaisePropertyChanged(() => archivedItems);
                     }
                     catch
                     {
@@ -132,7 +133,6 @@ namespace wallabag.ViewModel
             if (existingItem == null)
                 await conn.InsertAsync(Item);
         }
-
         private async Task LoadItems()
         {
             SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
@@ -141,6 +141,10 @@ namespace wallabag.ViewModel
             {
                 _Items.Add(new ItemViewModel() { Model = itm });
             }
+
+            RaisePropertyChanged(() => unreadItems);
+            RaisePropertyChanged(() => favouriteItems);
+            RaisePropertyChanged(() => archivedItems);
         }
 
         public MainViewModel()
@@ -149,6 +153,8 @@ namespace wallabag.ViewModel
 
             if (AppSettings["refreshOnStartup", false])
                 refreshCommand.Execute(0);
+            if (!everythingFine)
+                LoadItems();
         }
     }
 }
