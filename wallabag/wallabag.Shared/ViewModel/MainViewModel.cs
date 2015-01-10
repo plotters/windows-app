@@ -137,7 +137,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadItems()
         {
-            _Items = new ObservableCollection<ItemViewModel>();
+            this.Items.Clear();
             SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
             var Items = await conn.Table<Item>().ToListAsync();
             foreach (var itm in Items)
