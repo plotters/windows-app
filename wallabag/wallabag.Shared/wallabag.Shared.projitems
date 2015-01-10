@@ -47,10 +47,4 @@
     </PRIResource>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\fr-FR\Resources.resw" />
   </ItemGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Assets\Styles.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
 </Project>
