@@ -21,7 +21,7 @@ namespace wallabag.ViewModel
 
         public ObservableCollection<ItemViewModel> unreadItems
         {
-            get { return new ObservableCollection<ItemViewModel>(Items.Where(i => i.IsRead == false)); }
+            get { return new ObservableCollection<ItemViewModel>(Items.Where(i => i.IsRead == false && i.IsFavourite == false)); }
         }
         public ObservableCollection<ItemViewModel> favouriteItems
         {
