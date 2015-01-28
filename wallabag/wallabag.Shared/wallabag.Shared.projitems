@@ -48,5 +48,6 @@
       <SubType>Designer</SubType>
     </PRIResource>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\fr-FR\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\hu-HU\Resources.resw" />
   </ItemGroup>
 </Project>
