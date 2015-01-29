@@ -26,13 +26,9 @@ namespace wallabag.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             
             SimpleIoc.Default.Register<MainViewModel>();
-            SimpleIoc.Default.Register<ItemPageViewModel>();
-            SimpleIoc.Default.Register<SettingsViewModel>();
         }
 
         // -----------------------------------
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
-        public ItemPageViewModel Item { get { return ServiceLocator.Current.GetInstance<ItemPageViewModel>(); } }
-        public SettingsViewModel Settings { get { return ServiceLocator.Current.GetInstance<SettingsViewModel>(); } }
     }
 }
