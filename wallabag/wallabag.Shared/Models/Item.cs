@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace wallabag.Models
 {
@@ -10,5 +11,7 @@ namespace wallabag.Models
 
         public bool IsRead { get; set; }
         public bool IsFavourite { get; set; }
+
+        List<Tag> Tags = new List<Tag>();
     }
 }
