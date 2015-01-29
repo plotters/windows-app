@@ -21,14 +21,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\Helpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\viewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\WebViewExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Tag.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
@@ -38,7 +37,6 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Assets\css\reset.css" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\css\wallabag.css" />
-    <Content Include="$(MSBuildThisFileDirectory)Assets\test.html" />
   </ItemGroup>
   <ItemGroup>
     <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw">

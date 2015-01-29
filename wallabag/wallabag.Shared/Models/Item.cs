@@ -1,9 +1,7 @@
 ﻿using System;
-using SQLite;
 
 namespace wallabag.Models
 {
-    [Table("Items")]
     public class Item
     {
         public string Title { get; set; }
