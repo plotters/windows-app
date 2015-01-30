@@ -124,7 +124,14 @@ namespace wallabag.ViewModel
                 }
             }
         }
-        private async Task Delete() { }
+        private async Task<bool> Delete()
+        {
+            using (client)
+            {
+                var response = await client.DeleteAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
+                return response.IsSuccessStatusCode;
+            }
+        }
         private async Task Update() { }
 
         private async Task LoadTags() { }
