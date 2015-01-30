@@ -114,8 +114,8 @@ namespace wallabag.ViewModel
         private async Task Update() { }
 
         private async Task LoadTags() { }
-        private async Task AddTag() { }
-        private async Task RemoveTag() { }
+        private async Task AddTag(string tag) { }
+        private async Task RemoveTag(string tag) { }
 
 
     }
