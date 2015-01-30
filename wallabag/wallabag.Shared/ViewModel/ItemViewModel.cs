@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace wallabag.ViewModel
 {
@@ -99,5 +101,22 @@ namespace wallabag.ViewModel
                 }
             }
         }
+
+        private ObservableCollection<string> _Tags;
+        public ObservableCollection<string> Tags
+        {
+            get { return _Tags; }
+            set { Set(() => Tags, ref _Tags, value); }
+        }
+
+        private async Task Fetch() { }
+        private async Task Delete() { }
+        private async Task Update() { }
+
+        private async Task LoadTags() { }
+        private async Task AddTag() { }
+        private async Task RemoveTag() { }
+
+
     }
 }
