@@ -12,7 +12,6 @@ namespace wallabag.ViewModel
         public Models.Item Model
         {
             get { return _Model; }
-            set { Set(() => Model, ref _Model, value); }
         }
 
         public int Id
@@ -117,6 +116,7 @@ namespace wallabag.ViewModel
         private async Task AddTag(string tag) { }
         private async Task RemoveTag(string tag) { }
 
-
+        public ItemViewModel() { _Model = new Models.Item(); }
+        public ItemViewModel(Models.Item Model) { _Model = Model; }
     }
 }
