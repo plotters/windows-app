@@ -7,15 +7,23 @@ using Windows.Web.Http;
 using Windows.Web.Http.Headers;
 using GalaSoft.MvvmLight.Command;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace wallabag.ViewModel
 {
     public class MainViewModel : viewModelBase
     {
+        private HttpClient client;
+
         private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
         public ObservableCollection<ItemViewModel> Items { get { return _Items; } }
 
-        private HttpClient client;
+        private ObservableCollection<string> _Tags;
+        public ObservableCollection<string> Tags
+        {
+            get { return _Tags; }
+            set { Set(() => Tags, ref _Tags, value); }
+        }
 
         public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
@@ -30,6 +38,16 @@ namespace wallabag.ViewModel
                         Items.Add(new ItemViewModel(item));
                     }
                 }
+
+                // TODO: When the Tag API is working, enable this.
+                //var tagResponse = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags"));
+                //if (tagResponse.IsSuccessStatusCode)
+                //{
+                //    foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
+                //    {
+                //        Tags.Add(tag);
+                //    }
+                //}
             }
         }
 
