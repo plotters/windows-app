@@ -146,11 +146,15 @@ namespace wallabag.ViewModel
         private async Task AddTag(string tag) { }
         private async Task RemoveTag(string tag) { }
 
-        public ItemViewModel() { _Model = new Models.Item(); }
-        public ItemViewModel(Models.Item Model) { _Model = Model; }
-
         public ItemViewModel()
         {
+            _Model = new Models.Item();
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+        }
+        public ItemViewModel(Models.Item Model)
+        {
+            _Model = Model;
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
         }
