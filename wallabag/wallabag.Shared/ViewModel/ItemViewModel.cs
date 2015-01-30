@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Web.Http;
+using Windows.Web.Http.Headers;
 
 namespace wallabag.ViewModel
 {
     public class ItemViewModel : Common.viewModelBase
     {
+        private HttpClient client;
+
         private Models.Item _Model;
         public Models.Item Model
         {
@@ -108,7 +113,17 @@ namespace wallabag.ViewModel
             set { Set(() => Tags, ref _Tags, value); }
         }
 
-        private async Task Fetch() { }
+        private async Task Fetch()
+        {
+            using (client)
+            {
+                var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
+                if (response.IsSuccessStatusCode)
+                {
+                    _Model = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
+                }
+            }
+        }
         private async Task Delete() { }
         private async Task Update() { }
 
@@ -118,5 +133,11 @@ namespace wallabag.ViewModel
 
         public ItemViewModel() { _Model = new Models.Item(); }
         public ItemViewModel(Models.Item Model) { _Model = Model; }
+
+        public ItemViewModel()
+        {
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+        }
     }
 }
