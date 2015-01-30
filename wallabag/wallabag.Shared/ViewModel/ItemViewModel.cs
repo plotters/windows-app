@@ -134,7 +134,10 @@ namespace wallabag.ViewModel
                 return response.IsSuccessStatusCode;
             }
         }
-        private async Task Update() { }
+        private async Task Update()
+        {
+            // TODO: PATCH /api/entries/{entry}
+        }
 
         private async Task LoadTags() { }
         private async Task AddTag(string tag) { }
