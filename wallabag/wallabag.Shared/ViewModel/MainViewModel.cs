@@ -17,7 +17,7 @@ namespace wallabag.ViewModel
 
         private HttpClient client;
 
-        public RelayCommand RefreshCommand;
+        public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
         {
             using (client)
