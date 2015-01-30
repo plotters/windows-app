@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace wallabag.Models
 {
     public class Item
     {
-        public int id { get; set; }
-        public string title { get; set; }
-        public string url { get; set; }
-        public int is_read { get; set; }
-        public int is_fav { get; set; }
-        public string content { get; set; }
-        public int user_id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("title")]
+        public string Title { get; set; }
+        [JsonProperty("url")]
+        public string Url { get; set; }
+        [JsonProperty("is_read")]
+        public int IsRead { get; set; }
+        [JsonProperty("is_fav")]
+        public int IsFavourite { get; set; }
+        [JsonProperty("content")]
+        public string Content { get; set; }
+        [JsonProperty("user_id")]
+        public int UserId { get; set; }
     }
 }
