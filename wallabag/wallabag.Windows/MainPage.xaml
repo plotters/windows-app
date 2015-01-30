@@ -9,7 +9,7 @@
     x:Class="wallabag.MainPage"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
-    
+
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
@@ -50,8 +50,25 @@
                 <Button Content="favoriten"/>
                 <Button Content="archiv"/>
                 <Button Content="tags"/>
-                <Button Content="einen link speichern" />
-                <Button Content="suche"/>
+                <Button Content="einen link speichern">
+                    <Button.Flyout>
+                        <Flyout>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox PlaceholderText="http://..." MinWidth="250" VerticalAlignment="Center" />
+                                <Button Content="&#xE105;" HorizontalAlignment="Stretch">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Height" Value="40" />
+                                            <Setter Property="Width" Value="40" />
+                                            <Setter Property="FontFamily" Value="Segoe UI Symbol" />
+                                            <Setter Property="Padding" Value="0" />
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
                 <Button Content="über"/>
             </StackPanel>
         </Grid>
