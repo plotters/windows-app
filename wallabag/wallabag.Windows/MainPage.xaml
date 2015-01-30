@@ -20,12 +20,12 @@
 
     <Grid x:Name="layoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid Background="{ThemeResource AccentBrush}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="125"/>
+                <RowDefinition Height="150"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Viewbox x:Name="wallabagLogo" Stretch="Uniform">
@@ -73,6 +73,8 @@
                 <Button Content="über"/>
             </StackPanel>
         </Grid>
-        <Grid Grid.Column="1" />
+        <Grid Grid.Column="1">
+            <GridView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}"/>
+        </Grid>
     </Grid>
 </common:basicPage>

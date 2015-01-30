@@ -1,11 +1,34 @@
 ﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:wallabag.Assets">
+    xmlns:local="using:wallabag.Assets" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
             <Color x:Key="AccentColor">#FF333333</Color>
             <SolidColorBrush x:Key="AccentBrush" Color="#FF333333" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
+    <DataTemplate x:Key="ItemTemplate">
+        <Grid Width="500" MinHeight="200" Background="#474747">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="1" Text="{Binding Content}" MaxLines="5" Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontFamily" Value="Segoe UI Symbol" />
+                        <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                </StackPanel.Resources>
+                <Button Content="&#xE10B; "/>
+                <Button Content="&#xE113; "/>
+                <Button Content="&#xE143; "/>
+                <Button Content="&#xE107; "/>
+            </StackPanel>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>
