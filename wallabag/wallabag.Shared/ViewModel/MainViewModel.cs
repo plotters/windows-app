@@ -5,6 +5,8 @@ using System.Collections.ObjectModel;
 using wallabag.Common;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
+using GalaSoft.MvvmLight.Command;
+using System.Threading.Tasks;
 
 namespace wallabag.ViewModel
 {
@@ -15,7 +17,8 @@ namespace wallabag.ViewModel
 
         private HttpClient client;
 
-        private async void Refresh()
+        public RelayCommand RefreshCommand;
+        private async Task Refresh()
         {
             using (client)
             {
@@ -34,6 +37,7 @@ namespace wallabag.ViewModel
         {
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+            RefreshCommand = new RelayCommand(async () => await Refresh());
         }
     }
 }
