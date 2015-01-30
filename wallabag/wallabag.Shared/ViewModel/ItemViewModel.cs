@@ -139,7 +139,10 @@ namespace wallabag.ViewModel
             // TODO: PATCH /api/entries/{entry}
         }
 
-        private async Task LoadTags() { }
+        private async Task LoadTags()
+        {
+            // TODO: GET /api/entries/{entry}/tags
+        }
         private async Task AddTag(string tag) { }
         private async Task RemoveTag(string tag) { }
 
