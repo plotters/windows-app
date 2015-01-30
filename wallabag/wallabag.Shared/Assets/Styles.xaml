@@ -4,6 +4,7 @@
     xmlns:local="using:wallabag.Assets">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">
+            <Color x:Key="AccentColor">#FF288D64</Color>
             <SolidColorBrush x:Key="AccentBrush" Color="#FF288D64" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>

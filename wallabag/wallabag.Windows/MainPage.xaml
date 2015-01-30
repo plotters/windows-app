@@ -46,7 +46,7 @@
                         <Setter Property="FontWeight" Value="SemiLight" />
                     </Style>
                 </StackPanel.Resources>
-                <SearchBox PlaceholderText="Nach Artikeln suchen..." Margin="10"/>
+                <!--<SearchBox PlaceholderText="Nach Artikeln suchen..." Margin="10"/>-->
                 <Button Content="ungelesen"/>
                 <Button Content="favoriten"/>
                 <Button Content="archiv"/>
