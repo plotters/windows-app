@@ -18,7 +18,7 @@ namespace wallabag.ViewModel
             get { return Model.Id; }
             set
             {
-                if (Model.Id != value && value != null)
+                if (Model.Id != value)
                 {
                     Model.Id = value;
                     RaisePropertyChanged("Id");
@@ -30,7 +30,7 @@ namespace wallabag.ViewModel
             get { return Model.Title; }
             set
             {
-                if (Model.Title != value && value != null)
+                if (Model.Title != value)
                 {
                     Model.Title = value;
                     RaisePropertyChanged("Title");
@@ -54,7 +54,7 @@ namespace wallabag.ViewModel
             get { return Model.IsRead == 1; }
             set
             {
-                if ((Model.IsRead == 1) != value && value != null)
+                if ((Model.IsRead == 1) != value)
                 {
                     int tmp = 0; if (value) tmp = 1;
                     Model.IsRead = tmp;
@@ -67,7 +67,7 @@ namespace wallabag.ViewModel
             get { return Model.IsFavourite == 1; }
             set
             {
-                if ((Model.IsFavourite == 1) != value && value != null)
+                if ((Model.IsFavourite == 1) != value)
                 {
                     int tmp = 0; if (value) tmp = 1;
                     Model.IsFavourite = tmp;
@@ -92,7 +92,7 @@ namespace wallabag.ViewModel
             get { return Model.UserId; }
             set
             {
-                if (Model.UserId != value && value != null)
+                if (Model.UserId != value)
                 {
                     Model.UserId = value;
                     RaisePropertyChanged("UserId");
