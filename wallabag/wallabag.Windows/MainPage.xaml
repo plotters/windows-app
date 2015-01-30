@@ -23,7 +23,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid Background="#FF8D2828">
+        <Grid Background="{ThemeResource AccentBrush}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="125"/>
                 <RowDefinition/>
