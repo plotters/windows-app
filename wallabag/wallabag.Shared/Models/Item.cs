@@ -5,13 +5,12 @@ namespace wallabag.Models
 {
     public class Item
     {
-        public string Title { get; set; }
-        public string Content { get; set; }
-        public Uri Url { get; set; }
-
-        public bool IsRead { get; set; }
-        public bool IsFavourite { get; set; }
-
-        List<Tag> Tags = new List<Tag>();
+        public int id { get; set; }
+        public string title { get; set; }
+        public string url { get; set; }
+        public int is_read { get; set; }
+        public int is_fav { get; set; }
+        public string content { get; set; }
+        public int user_id { get; set; }
     }
 }
