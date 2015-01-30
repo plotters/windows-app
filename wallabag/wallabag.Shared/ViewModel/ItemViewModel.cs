@@ -113,7 +113,7 @@ namespace wallabag.ViewModel
             set { Set(() => Tags, ref _Tags, value); }
         }
 
-        private async Task Fetch()
+        private async Task<bool> Fetch()
         {
             using (client)
             {
@@ -121,7 +121,9 @@ namespace wallabag.ViewModel
                 if (response.IsSuccessStatusCode)
                 {
                     _Model = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
+                    return true;
                 }
+                else return false;
             }
         }
         private async Task<bool> Delete()
