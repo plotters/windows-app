@@ -101,6 +101,7 @@ namespace wallabag.ViewModel
         {
             get
             {
+                //TODO: Add user-specific CSS styles.
                 return "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/css/wallabag.css\" type=\"text/css\" media=\"screen\" /></head>" + Model.Content + "</html>";
             }
         }
