@@ -17,7 +17,7 @@ namespace wallabag.ViewModel
         private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
         public ObservableCollection<ItemViewModel> Items { get { return _Items; } }
 
-        private ObservableCollection<string> _Tags;
+        private ObservableCollection<string> _Tags = new ObservableCollection<string>();
         public ObservableCollection<string> Tags
         {
             get { return _Tags; }
@@ -30,6 +30,8 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"));
             if (response.IsSuccessStatusCode)
             {
+                Items.Clear();
+                Tags.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     Items.Add(new ItemViewModel(item));
