@@ -9,26 +9,6 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
     <DataTemplate x:Key="ItemTemplate">
-        <Grid Width="400" Background="#474747" Height="175">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition />
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Margin="10,3"/>
-            <TextBlock Grid.Row="1" Text="{Binding Content}" MaxLines="4" Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="10"/>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Background="#33000000">
-                <StackPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="FontFamily" Value="Segoe UI Symbol" />
-                        <Setter Property="BorderThickness" Value="0" />
-                    </Style>
-                </StackPanel.Resources>
-                <Button Content="&#xE10B; "/>
-                <Button Content="&#xE113; "/>
-                <Button Content="&#xE143; "/>
-                <Button Content="&#xE107; "/>
-            </StackPanel>
-        </Grid>
+        <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Margin="10,3"/>
     </DataTemplate>
 </ResourceDictionary>
