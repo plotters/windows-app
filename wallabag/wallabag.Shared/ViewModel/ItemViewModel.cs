@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
+using wallabag.Common;
 
 namespace wallabag.ViewModel
 {
@@ -118,7 +120,7 @@ namespace wallabag.ViewModel
             }
         }
 
-        private ObservableCollection<string> _Tags;
+        private ObservableCollection<string> _Tags = new ObservableCollection<string>();
         public ObservableCollection<string> Tags
         {
             get { return _Tags; }
@@ -142,7 +144,22 @@ namespace wallabag.ViewModel
         }
         private async Task Update()
         {
-            // TODO: PATCH /api/entries/{entry}
+            string tags = string.Empty;
+            foreach (string tag in Tags) { tags += tag + ","; }
+            if (tags.EndsWith(",")) { tags = tags.Remove(tags.Length - 1); }
+
+            var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
+                 {"title", Title},
+                 {"tags", tags},
+                 {"star", IsFavourite},
+                 {"archive", IsRead},
+                 //{"delete", false} //TODO
+                }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+            var response = await client.PatchAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id), content);
+            if (response.IsSuccessStatusCode)
+            {
+                // TODO: Parse response.
+            }
         }
 
         private async Task LoadTags()
