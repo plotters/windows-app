@@ -10,14 +10,6 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
-    <Page.BottomAppBar>
-        <CommandBar>
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Label="refresh" Command="{Binding RefreshCommand}" Icon="Refresh"/>
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </Page.BottomAppBar>
-
     <Grid x:Name="layoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
@@ -81,7 +73,7 @@
         </ComboBox>
         <WebView Grid.Column="2" Grid.Row="1" />
         <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="aktualisieren" />
+            <Button Content="aktualisieren" Command="{Binding RefreshCommand}"/>
         </StackPanel>
     </Grid>
 </common:basicPage>
