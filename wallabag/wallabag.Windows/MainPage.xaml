@@ -70,6 +70,7 @@
                         </Flyout>
                     </Button.Flyout>
                 </Button>
+                <Button Content="einstellungen"/>
                 <Button Content="über"/>
             </StackPanel>
         </Grid>
