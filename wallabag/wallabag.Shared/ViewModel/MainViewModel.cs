@@ -1,13 +1,12 @@
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using wallabag.Common;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
-using GalaSoft.MvvmLight.Command;
-using System.Threading.Tasks;
-using System.Linq;
 
 namespace wallabag.ViewModel
 {
@@ -48,6 +47,21 @@ namespace wallabag.ViewModel
                 //        Tags.Add(tag);
                 //    }
                 //}
+            }
+        }
+
+        private async Task AddLink(string Link)
+        {
+            using (client)
+            {
+                var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
+                 {"url", Link}
+                }));
+                var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"), content);
+                if (response.IsSuccessStatusCode)
+                {
+
+                }
             }
         }
 
