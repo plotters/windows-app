@@ -72,8 +72,20 @@
         </ComboBox>
         <WebView Grid.Column="2" Grid.Row="1" />
         <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="aktualisieren" Command="{Binding RefreshCommand}" Margin="0,0,20,0"/>
-            <SearchBox VerticalAlignment="Center" MinWidth="300" PlaceholderText="In der Sammlung suchen..." Margin="10"/>
+            <Button Command="{Binding RefreshCommand}" Margin="0,0,20,0">
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Find" />
+                        <TextBlock Text="suchen" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Command="{Binding RefreshCommand}" Margin="0,0,20,0">
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Symbol="Refresh" />
+                    <TextBlock Text="aktualisieren" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
         </StackPanel>
     </Grid>
 </common:basicPage>
