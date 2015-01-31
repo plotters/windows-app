@@ -1,8 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
@@ -33,7 +32,12 @@ namespace wallabag.ViewModel
         }
         public string Title
         {
-            get { return Model.Title; }
+            get
+            {
+                // RegExp to remove multiple whitespaces (including newline etc.) in title.
+                Regex r = new Regex("\\s+");
+                return r.Replace(Model.Title, " ");
+            }
             set
             {
                 if (Model.Title != value)
@@ -91,6 +95,13 @@ namespace wallabag.ViewModel
                     Model.Content = value;
                     RaisePropertyChanged("Content");
                 }
+            }
+        }
+        public string ContentWithCSS
+        {
+            get
+            {
+                return "<html><head><link rel=\"stylesheet\" href=\"ms-appx-web:///Assets/css/wallabag.css\" type=\"text/css\" media=\"screen\" /></head>" + Model.Content + "</html>";
             }
         }
         public int UserId
