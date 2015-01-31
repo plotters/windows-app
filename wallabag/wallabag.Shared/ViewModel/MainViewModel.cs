@@ -27,7 +27,6 @@ namespace wallabag.ViewModel
         public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
         {
-
             var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"));
             if (response.IsSuccessStatusCode)
             {

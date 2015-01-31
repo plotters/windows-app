@@ -127,24 +127,18 @@ namespace wallabag.ViewModel
 
         private async Task<bool> Fetch()
         {
-            using (client)
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
+            if (response.IsSuccessStatusCode)
             {
-                var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
-                if (response.IsSuccessStatusCode)
-                {
-                    _Model = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
-                    return true;
-                }
-                else return false;
+                _Model = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
+                return true;
             }
+            else return false;
         }
         private async Task<bool> Delete()
         {
-            using (client)
-            {
-                var response = await client.DeleteAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
-                return response.IsSuccessStatusCode;
-            }
+            var response = await client.DeleteAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
+            return response.IsSuccessStatusCode;
         }
         private async Task Update()
         {
@@ -163,12 +157,14 @@ namespace wallabag.ViewModel
             _Model = new Models.Item();
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.UserAgent.Add(new HttpProductInfoHeaderValue("wallabag for WinRT"));
         }
         public ItemViewModel(Models.Item Model)
         {
             _Model = Model;
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.UserAgent.Add(new HttpProductInfoHeaderValue("wallabag for WinRT"));
         }
     }
 }
