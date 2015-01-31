@@ -9,15 +9,15 @@
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
     <DataTemplate x:Key="ItemTemplate">
-        <Grid Width="500" MinHeight="200" Background="#474747">
+        <Grid Width="400" Background="#474747" Height="175">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition />
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="{Binding Title}" Style="{ThemeResource TitleTextBlockStyle}" TextWrapping="Wrap"/>
-            <TextBlock Grid.Row="1" Text="{Binding Content}" MaxLines="5" Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis"/>
-            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Margin="10,3"/>
+            <TextBlock Grid.Row="1" Text="{Binding Content}" MaxLines="4" Style="{ThemeResource BaseTextBlockStyle}" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" Margin="10"/>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Background="#33000000">
                 <StackPanel.Resources>
                     <Style TargetType="Button">
                         <Setter Property="FontFamily" Value="Segoe UI Symbol" />
