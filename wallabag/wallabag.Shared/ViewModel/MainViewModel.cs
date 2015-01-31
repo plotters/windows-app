@@ -27,43 +27,38 @@ namespace wallabag.ViewModel
         public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
         {
-            using (client)
-            {
-                var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"));
-                if (response.IsSuccessStatusCode)
-                {
-                    foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
-                    {
-                        Items.Add(new ItemViewModel(item));
-                    }
-                }
 
-                // TODO: When the Tag API is working, enable this.
-                //var tagResponse = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags"));
-                //if (tagResponse.IsSuccessStatusCode)
-                //{
-                //    foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
-                //    {
-                //        Tags.Add(tag);
-                //    }
-                //}
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"));
+            if (response.IsSuccessStatusCode)
+            {
+                foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
+                {
+                    Items.Add(new ItemViewModel(item));
+                }
             }
+
+            // TODO: When the Tag API is working, enable this.
+            //var tagResponse = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags"));
+            //if (tagResponse.IsSuccessStatusCode)
+            //{
+            //    foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
+            //    {
+            //        Tags.Add(tag);
+            //    }
+            //}
         }
 
         public RelayCommand<string> AddLinkCommand { get; private set; }
         private async Task AddLink(string Link)
         {
-            using (client)
-            {
-                var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
+            var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"url", Link}
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-                var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"), content);
-                if (response.IsSuccessStatusCode)
-                {
-                    var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
-                    Items.Add(new ItemViewModel(result));
-                }
+            var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"), content);
+            if (response.IsSuccessStatusCode)
+            {
+                var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
+                Items.Add(new ItemViewModel(result));
             }
         }
 
