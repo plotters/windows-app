@@ -50,6 +50,7 @@ namespace wallabag.ViewModel
             }
         }
 
+        public RelayCommand<string> AddLinkCommand { get; private set; }
         private async Task AddLink(string Link)
         {
             using (client)
@@ -71,7 +72,9 @@ namespace wallabag.ViewModel
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.UserAgent.Add(new HttpProductInfoHeaderValue("wallabag for WinRT"));
+
             RefreshCommand = new RelayCommand(async () => await Refresh());
+            AddLinkCommand = new RelayCommand<string>(async t => await AddLink(t));
 
             if (IsInDesignMode)
             {

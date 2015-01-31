@@ -55,8 +55,8 @@
                 <Button.Flyout>
                     <Flyout>
                         <StackPanel Orientation="Horizontal">
-                            <TextBox PlaceholderText="http://..." MinWidth="250" VerticalAlignment="Center" />
-                            <Button Content="&#xE105;" HorizontalAlignment="Stretch">
+                            <TextBox x:Name="addLinkTextBox" PlaceholderText="http://..." MinWidth="250" VerticalAlignment="Center" />
+                            <Button Content="&#xE105;" HorizontalAlignment="Stretch" Command="{Binding AddLinkCommand}" CommandParameter="{Binding Text, ElementName=addLinkTextBox}">
                                 <Button.Style>
                                     <Style TargetType="Button">
                                         <Setter Property="Height" Value="40" />
