@@ -60,7 +60,8 @@ namespace wallabag.ViewModel
                 var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"), content);
                 if (response.IsSuccessStatusCode)
                 {
-
+                    var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
+                    Items.Add(new ItemViewModel(result));
                 }
             }
         }
