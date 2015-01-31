@@ -56,7 +56,7 @@ namespace wallabag.ViewModel
             {
                 var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"url", Link}
-                }));
+                }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
                 var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"), content);
                 if (response.IsSuccessStatusCode)
                 {
