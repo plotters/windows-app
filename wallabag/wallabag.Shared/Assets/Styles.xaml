@@ -46,6 +46,6 @@
         <Setter Property="Padding" Value="20,8"/>
     </Style>
     <Style TargetType="ComboBox">
-        <Setter Property="Padding" Value="16,4" />
+        <Setter Property="Padding" Value="10" />
     </Style>
 </ResourceDictionary>
