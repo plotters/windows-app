@@ -4,15 +4,39 @@
     xmlns:local="using:wallabag.Assets" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Dark">
+            <!-- Color references -->
             <Color x:Key="AccentColor">#FF333333</Color>
-            <Color x:Key="AccentColorLight">#FF474747</Color>
-            <Color x:Key="AccentColorExtraLight">#FF5B5B5B</Color>
+            <Color x:Key="AccentColorLight">#FF5B5B5B</Color>
+            <Color x:Key="AccentColorExtraLight">#FF848484</Color>
             <SolidColorBrush x:Key="AccentBrush" Color="{ThemeResource AccentColor}" />
             <SolidColorBrush x:Key="AccentBrushLight" Color="{ThemeResource AccentColorLight}" />
             <SolidColorBrush x:Key="AccentBrushExtraLight" Color="{ThemeResource AccentColorExtraLight}" />
 
+            <!-- Button styles -->
             <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
             <x:Double x:Key="ButtonBorderThemeThickness">0</x:Double>
+
+            <!-- ComboBox styles-->
+            <SolidColorBrush x:Key="ComboBoxItemPointerOverBackgroundThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
+            <SolidColorBrush x:Key="ComboBoxItemPointerOverForegroundThemeBrush" Color="White" />
+            <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
+            <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
+
+            <SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
+            <SolidColorBrush x:Key="ComboBoxForegroundThemeBrush" Color="White" />
+            <SolidColorBrush x:Key="ComboBoxBorderThemeBrush" Color="{ThemeResource AccentColorLight}" />
+            <SolidColorBrush x:Key="ComboBoxFocusedBackgroundThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
+            <SolidColorBrush x:Key="ComboBoxFocusedBorderThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
+            <SolidColorBrush x:Key="ComboBoxPointerOverBackgroundThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
+            <SolidColorBrush x:Key="ComboBoxPointerOverBorderThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
+            <SolidColorBrush x:Key="ComboBoxPressedBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
+            <SolidColorBrush x:Key="ComboBoxPressedBorderThemeBrush" Color="{ThemeResource AccentColorLight}" />
+
+            <SolidColorBrush x:Key="ComboBoxPressedForegroundThemeBrush" Color="White" />
+            <SolidColorBrush x:Key="ComboBoxPressedHighlightThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
+
+            <SolidColorBrush x:Key="ComboBoxArrowForegroundThemeBrush" Color="White" />
+            <SolidColorBrush x:Key="ComboBoxArrowPressedForegroundThemeBrush" Color="White" />
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
     <DataTemplate x:Key="ItemTemplate">
@@ -20,5 +44,8 @@
     </DataTemplate>
     <Style TargetType="Button">
         <Setter Property="Padding" Value="20,8"/>
+    </Style>
+    <Style TargetType="ComboBox">
+        <Setter Property="Padding" Value="16,4" />
     </Style>
 </ResourceDictionary>
