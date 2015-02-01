@@ -16,12 +16,6 @@
         <common:BooleanNegationConverter x:Key="BooleanNegationConverter"/>
     </Page.Resources>
 
-    <!--
-        Dieses Raster fungiert als Stammbereich für die Seite, die drei Zeilen definiert:
-        * Zeile 0 enthält den Standardheader des Freigabeziels,
-        * Zeile 1 enthält ein Textfeld zum Hinzufügen eines Kommentars,
-        * Zeile 2 enthält den Standardfooter des Freigabeziels.
-    -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -48,22 +42,15 @@
                     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                     Style="{StaticResource BodyTextBlockStyle}"/>
             </StackPanel>
-
-            <Grid Grid.Row="1" Grid.ColumnSpan="2">
-                <!-- TODO: Feigegebene Benutzeroberfläche hinzufügen, die spezifisch für das Anwendungsszenario ist -->
-            </Grid>
-
             <TextBox
                 Grid.Row="1"
-                Grid.ColumnSpan="2"
                 Margin="0,0,0,27"
                 Text="{Binding Url}"
-                PlaceholderText="{Binding Placeholder}"               
+                IsReadOnly="True"
                 Visibility="{Binding SupportsComment, Converter={StaticResource BooleanToVisibilityConverter}}"
                 IsEnabled="{Binding Sharing, Converter={StaticResource BooleanNegationConverter}}"/>
 
-            <!-- Standardfooter für das Freigabeziel -->
-            <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid Grid.Row="2">
                 <ProgressRing
                     IsActive="{Binding Sharing}"
                     MinWidth="20"
@@ -71,6 +58,12 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Margin="0,5,0,0"/>
+                <TextBlock
+                    Text="Sharing&#x2026;"
+                    Visibility="{Binding Sharing, Converter={StaticResource BooleanToVisibilityConverter}}"
+                    HorizontalAlignment="Left"
+                    Margin="25,0,0,0"
+                    Style="{StaticResource BaseTextBlockStyle}"/>
                 <Button
                     AutomationProperties.AutomationId="ShareButton"
                     AutomationProperties.Name="Share"
