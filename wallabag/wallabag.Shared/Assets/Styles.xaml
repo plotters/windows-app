@@ -3,12 +3,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:wallabag.Assets" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Default">
+        <ResourceDictionary x:Key="Dark">
             <Color x:Key="AccentColor">#FF333333</Color>
-            <SolidColorBrush x:Key="AccentBrush" Color="#FF333333" />
+            <Color x:Key="AccentColorLight">#FF474747</Color>
+            <Color x:Key="AccentColorExtraLight">#FF5B5B5B</Color>
+            <SolidColorBrush x:Key="AccentBrush" Color="{ThemeResource AccentColor}" />
+            <SolidColorBrush x:Key="AccentBrushLight" Color="{ThemeResource AccentColorLight}" />
+            <SolidColorBrush x:Key="AccentBrushExtraLight" Color="{ThemeResource AccentColorExtraLight}" />
+
+            <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
+            <x:Double x:Key="ButtonBorderThemeThickness">0</x:Double>
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
     <DataTemplate x:Key="ItemTemplate">
         <TextBlock Text="{Binding Title}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Margin="10,3"/>
     </DataTemplate>
+    <Style TargetType="Button">
+        <Setter Property="Padding" Value="20,8"/>
+    </Style>
 </ResourceDictionary>
