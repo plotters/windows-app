@@ -9,6 +9,11 @@
     x:Class="wallabag.MainPage"
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    <common:basicPage.Resources>
+        <Storyboard x:Name="RefreshAnimation">
+            <DoubleAnimation Duration="0:0:1" To="359" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True" RepeatBehavior="Forever"/>
+        </Storyboard>
+    </common:basicPage.Resources>
 
     <Grid x:Name="layoutRoot" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ColumnDefinitions>
@@ -132,7 +137,11 @@
             </Button>
             <Button Command="{Binding RefreshCommand}" Margin="0,0,20,0">
                 <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Symbol="Refresh" />
+                    <SymbolIcon x:Name="symbolIcon" Symbol="Refresh" RenderTransformOrigin="0.5,0.5" >
+                        <SymbolIcon.RenderTransform>
+                            <CompositeTransform/>
+                        </SymbolIcon.RenderTransform>
+                    </SymbolIcon>
                     <TextBlock Text="aktualisieren" VerticalAlignment="Center" Margin="10,0,0,0"/>
                 </StackPanel>
             </Button>
