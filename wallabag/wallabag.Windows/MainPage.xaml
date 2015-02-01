@@ -32,17 +32,40 @@
         <StackPanel Grid.Row="1">
             <StackPanel.Resources>
                 <Style TargetType="Button">
-                    <Setter Property="BorderThickness" Value="0" />
-                    <Setter Property="FontSize" Value="20" />
+                    <Setter Property="Background" Value="{x:Null}" />
                     <Setter Property="HorizontalAlignment" Value="Stretch" />
                     <Setter Property="HorizontalContentAlignment" Value="Left" />
                     <Setter Property="Padding" Value="15,10" />
-                    <Setter Property="FontWeight" Value="SemiLight" />
+                    <Setter Property="Margin" Value="0,2.5" />
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Margin" Value="10,0,0,0" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
                 </Style>
             </StackPanel.Resources>
-            <Button Content="sammlung"/>
-            <Button Content="schlagworte"/>
-            <Button Content="einen link speichern">
+            <Button>
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="ViewAll" />
+                        <TextBlock Text="Sammlung" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button>
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Tag" />
+                        <TextBlock Text="Schlagworte" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button>
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Save" />
+                        <TextBlock Text="Link speichern" />
+                    </StackPanel>
+                </Button.Content>
                 <Button.Flyout>
                     <Flyout>
                         <StackPanel Orientation="Horizontal">
@@ -61,8 +84,14 @@
                     </Flyout>
                 </Button.Flyout>
             </Button>
-            <Button Content="einstellungen"/>
-            <Button Content="über"/>
+            <Button>
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal">
+                        <SymbolIcon Symbol="Setting" />
+                        <TextBlock Text="Einstellungen" />
+                    </StackPanel>
+                </Button.Content>
+            </Button>
         </StackPanel>
         <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1"/>
         <ComboBox Grid.Column="1" VerticalAlignment="Center" Margin="20" SelectedIndex="0" Width="200">
