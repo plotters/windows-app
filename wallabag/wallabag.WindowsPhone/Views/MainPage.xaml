@@ -33,7 +33,7 @@
 
         <Pivot Title="WALLABAG">
             <PivotItem Header="ungelesen">
-                <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True"/>
+                <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="favoriten">
                 <ListView />

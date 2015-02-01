@@ -11,5 +11,10 @@ namespace wallabag.Views
             this.InitializeComponent();
         }
 
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ItemPage));
+        }
+
     }
 }
