@@ -7,6 +7,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+    <Page.BottomAppBar>
+        <CommandBar ClosedDisplayMode="Minimal">
+            <CommandBar.PrimaryCommands>
+                <AppBarToggleButton Icon="View" IsCompact="True"/>
+                <AppBarToggleButton Icon="Favorite" IsCompact="True"/>
+                <AppBarToggleButton Icon="Delete" IsCompact="True"/>
+            </CommandBar.PrimaryCommands>            
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid>
 
