@@ -11,6 +11,19 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
+    <common:basicPage.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="hinzufügen" Icon="Add" />
+                <AppBarButton Label="aktualisieren" Icon="Refresh" Command="{Binding RefreshCommand}"/>
+                <AppBarButton Label="suche" Icon="Find"/>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="einstellungen" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </common:basicPage.BottomAppBar>
+
     <Grid x:Name="LayoutRoot">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -20,7 +33,7 @@
 
         <Pivot Title="WALLABAG">
             <PivotItem Header="ungelesen">
-                <ListView />
+                <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True"/>
             </PivotItem>
             <PivotItem Header="favoriten">
                 <ListView />
@@ -29,7 +42,7 @@
                 <ListView />
             </PivotItem>
             <PivotItem Header="schlagworte">
-                <ListView />
+                <ListView ItemsSource="{Binding Tags}" />
             </PivotItem>
         </Pivot>
     </Grid>
