@@ -46,7 +46,7 @@
             <Button>
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
-                        <SymbolIcon Symbol="ViewAll" />
+                        <SymbolIcon Symbol="Home" />
                         <TextBlock Text="Sammlung" />
                     </StackPanel>
                 </Button.Content>
@@ -94,10 +94,31 @@
             </Button>
         </StackPanel>
         <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1"/>
-        <ComboBox Grid.Column="1" VerticalAlignment="Center" Margin="20" SelectedIndex="0" Width="200">
-            <ComboBoxItem Content="ungelesen" />
-            <ComboBoxItem Content="favoriten" />
-            <ComboBoxItem Content="archiv" />
+        <ComboBox Grid.Column="1" VerticalAlignment="Center" SelectedIndex="0" Width="200">
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE18B;" FontFamily="Segoe UI Symbol" />
+                    <TextBlock Text="ungelesen" Margin="10,0,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE113;" FontFamily="Segoe UI Symbol" />
+                    <TextBlock Text="favoriten" Margin="10,0,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE1D3;" FontFamily="Segoe UI Symbol" />
+                    <TextBlock Text="archiv" Margin="10,0,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE107;" FontFamily="Segoe UI Symbol" />
+                    <TextBlock Text="gelöscht" Margin="10,0,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
         </ComboBox>
         <WebView Grid.Column="2" Grid.Row="1" />
         <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
