@@ -3,7 +3,7 @@ using Windows.UI.ApplicationSettings;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 
-namespace wallabag
+namespace wallabag.Views
 {
     public sealed partial class MainPage : basicPage
     {

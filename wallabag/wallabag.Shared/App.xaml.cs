@@ -66,7 +66,7 @@ namespace wallabag
                 // Wenn der Navigationsstapel nicht wiederhergestellt wird, zur ersten Seite navigieren
                 // und die neue Seite konfigurieren, indem die erforderlichen Informationen als Navigationsparameter
                 // übergeben werden
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                if (!rootFrame.Navigate(typeof(Views.MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }
@@ -95,6 +95,18 @@ namespace wallabag
             await wallabag.Common.SuspensionManager.SaveAsync();            
             deferral.Complete();
         }
+
+#if WINDOWS_APP
+        /// <summary>
+        /// Wird aufgerufen, wenn die Anwendung als Ziel eines Freigabevorgangs aktiviert wird.
+        /// </summary>
+        /// <param name="e">Details zur Aktivierungsanforderung.</param>
+        protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
+        {
+            var shareTargetPage = new wallabag.Views.ShareTargetPage();
+            shareTargetPage.Activate(e);
+        }
+#endif
 
         //protected override void OnShareTargetActivated(Windows.ApplicationModel.Activation.ShareTargetActivatedEventArgs e)
         //{
