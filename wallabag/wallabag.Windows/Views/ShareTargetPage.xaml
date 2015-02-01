@@ -36,11 +36,6 @@
                     TextWrapping="NoWrap"
                     Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
                     Style="{StaticResource SubheaderTextBlockStyle}"/>
-                <TextBlock
-                    Text="{Binding Description}"
-                    MaxHeight="60"
-                    Foreground="{ThemeResource ApplicationSecondaryForegroundThemeBrush}"
-                    Style="{StaticResource BodyTextBlockStyle}"/>
             </StackPanel>
             <TextBox
                 Grid.Row="1"
