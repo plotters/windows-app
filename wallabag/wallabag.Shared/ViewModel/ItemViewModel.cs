@@ -144,15 +144,11 @@ namespace wallabag.ViewModel
         }
         private async Task Update()
         {
-            string tags = string.Empty;
-            foreach (string tag in Tags) { tags += tag + ","; }
-            if (tags.EndsWith(",")) { tags = tags.Remove(tags.Length - 1); }
-
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"title", Title},
-                 {"tags", tags},
-                 {"star", IsFavourite}, // TODO
-                 {"archive", IsRead}, //TODO
+                 {"tags", Tags.ToCommaSeperatedString()},
+                 {"star", IsFavourite.ToInteger()},
+                 {"archive", IsRead.ToInteger()},
                  //{"delete", false} //TODO
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             var response = await client.PatchAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)), content);

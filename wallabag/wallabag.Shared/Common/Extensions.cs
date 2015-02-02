@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -31,7 +32,6 @@ namespace wallabag.Common
             }
         }
     }
-
     public static class HttpClientExtensions
     {
         public async static Task<HttpResponseMessage> PatchAsync(this HttpClient client, Uri requestUri, IHttpContent content)
@@ -43,6 +43,34 @@ namespace wallabag.Common
             };
 
             return await client.SendRequestAsync(request);
+        }
+    }
+    public static class BooleanExtensions
+    {
+        public static int ToInteger(this bool Boolean)
+        {
+            if (Boolean == true) return 1;
+            else return 0;
+        }
+    }
+    public static class CollectionExtensions
+    {
+        public static string ToCommaSeperatedString(this ICollection collection)
+        {
+            if (collection.Count > 0)
+            {
+                string result = string.Empty;
+                foreach (string s in collection)
+                {
+                    result += s + ",";
+                }
+                if (result.EndsWith(","))
+                {
+                    result = result.Remove(result.Length - 1);
+                }
+                return result;
+            }
+            else return string.Empty;
         }
     }
 }
