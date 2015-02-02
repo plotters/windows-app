@@ -27,7 +27,7 @@ namespace wallabag.ViewModel
         public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"));
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json"));
             if (response.IsSuccessStatusCode)
             {
                 Items.Clear();
@@ -39,7 +39,7 @@ namespace wallabag.ViewModel
             }
 
             // TODO: When the Tag API is working, enable this.
-            //var tagResponse = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags"));
+            //var tagResponse = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags.json"));
             //if (tagResponse.IsSuccessStatusCode)
             //{
             //    foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
@@ -55,7 +55,7 @@ namespace wallabag.ViewModel
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"url", Link}
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries"), content);
+            var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json"), content);
             if (response.IsSuccessStatusCode)
             {
                 var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());

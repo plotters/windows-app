@@ -129,7 +129,7 @@ namespace wallabag.ViewModel
 
         private async Task<bool> Fetch()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
+            var response = await client.GetAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)));
             if (response.IsSuccessStatusCode)
             {
                 _Model = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
@@ -139,7 +139,7 @@ namespace wallabag.ViewModel
         }
         private async Task<bool> Delete()
         {
-            var response = await client.DeleteAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id));
+            var response = await client.DeleteAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)));
             return response.IsSuccessStatusCode;
         }
         private async Task Update()
@@ -151,11 +151,11 @@ namespace wallabag.ViewModel
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"title", Title},
                  {"tags", tags},
-                 {"star", IsFavourite},
-                 {"archive", IsRead},
+                 {"star", IsFavourite}, // TODO
+                 {"archive", IsRead}, //TODO
                  //{"delete", false} //TODO
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            var response = await client.PatchAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries/" + Id), content);
+            var response = await client.PatchAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)), content);
             if (response.IsSuccessStatusCode)
             {
                 // TODO: Parse response.
@@ -164,7 +164,8 @@ namespace wallabag.ViewModel
 
         private async Task LoadTags()
         {
-            // TODO: GET /api/entries/{entry}/tags
+            var response = await client.GetAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags.json", Id)));
+            // TODO: Parse response!
         }
         private async Task AddTag(string tag) { }
         private async Task RemoveTag(string tag) { }
