@@ -13,11 +13,33 @@ namespace wallabag.ViewModel
     public class MainViewModel : viewModelBase
     {
         private HttpClient client;
-
+        
         private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
-        public ObservableCollection<ItemViewModel> Items { get { return _Items; } }
-
+        private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
+        private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
+        private ObservableCollection<ItemViewModel> _archivedItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<string> _Tags = new ObservableCollection<string>();
+
+        public ObservableCollection<ItemViewModel> Items
+        {
+            get { return _Items; }
+            set { Set(() => Items, ref _Items, value); }
+        }
+        public ObservableCollection<ItemViewModel> unreadItems
+        {
+            get { return _unreadItems; }
+            set { Set(() => unreadItems, ref _unreadItems, value); }
+        }
+        public ObservableCollection<ItemViewModel> favouriteItems
+        {
+            get { return _favouriteItems; }
+            set { Set(() => favouriteItems, ref _favouriteItems, value); }
+        }
+        public ObservableCollection<ItemViewModel> archivedItems
+        {
+            get { return _archivedItems; }
+            set { Set(() => archivedItems, ref _archivedItems, value); }
+        }
         public ObservableCollection<string> Tags
         {
             get { return _Tags; }
@@ -27,26 +49,38 @@ namespace wallabag.ViewModel
         public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json"));
+            await LoadUnreadItems();
+            await LoadFavouriteItems();
+            await LoadArchivedItems();
+            await LoadDeletedItems();
+            await LoadTags();
+        }
+
+        private async Task LoadAllItems(); // for search only, I think
+        private async Task LoadUnreadItems()
+        {
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0&star=1"));
             if (response.IsSuccessStatusCode)
             {
-                Items.Clear();
-                Tags.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     Items.Add(new ItemViewModel(item));
                 }
             }
-
-            // TODO: When the Tag API is working, enable this.
-            //var tagResponse = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags.json"));
-            //if (tagResponse.IsSuccessStatusCode)
-            //{
-            //    foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
-            //    {
-            //        Tags.Add(tag);
-            //    }
-            //}
+        }
+        private async Task LoadFavouriteItems();
+        private async Task LoadArchivedItems();
+        private async Task LoadDeletedItems();
+        private async Task LoadTags()
+        {
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags.json"));
+            if (response.IsSuccessStatusCode)
+            {
+                foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
+                {
+                    Tags.Add(tag);
+                }
+            }
         }
 
         public RelayCommand<string> AddLinkCommand { get; private set; }
