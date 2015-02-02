@@ -18,6 +18,7 @@ namespace wallabag.ViewModel
         private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _archivedItems = new ObservableCollection<ItemViewModel>();
+        private ObservableCollection<ItemViewModel> _deletedItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<string> _Tags = new ObservableCollection<string>();
 
         public ObservableCollection<ItemViewModel> Items
@@ -40,6 +41,12 @@ namespace wallabag.ViewModel
             get { return _archivedItems; }
             set { Set(() => archivedItems, ref _archivedItems, value); }
         }
+        public ObservableCollection<ItemViewModel> deletedItems
+        {
+            get { return _deletedItems; }
+            set { Set(() => deletedItems, ref _deletedItems, value); }
+        }
+
         public ObservableCollection<string> Tags
         {
             get { return _Tags; }
@@ -56,8 +63,7 @@ namespace wallabag.ViewModel
             await LoadTags();
         }
 
-        private async Task LoadAllItems(); // for search only, I think
-        private async Task LoadUnreadItems()
+        private async Task LoadAllItems()
         {
             var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0&star=1"));
             if (response.IsSuccessStatusCode)
@@ -67,10 +73,51 @@ namespace wallabag.ViewModel
                     Items.Add(new ItemViewModel(item));
                 }
             }
+        } // for search only, I think
+        private async Task LoadUnreadItems()
+        {
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0&star=1"));
+            if (response.IsSuccessStatusCode)
+            {
+                foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
+                {
+                    unreadItems.Add(new ItemViewModel(item));
+                }
+            }
         }
-        private async Task LoadFavouriteItems();
-        private async Task LoadArchivedItems();
-        private async Task LoadDeletedItems();
+        private async Task LoadFavouriteItems()
+        {
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?star=1"));
+            if (response.IsSuccessStatusCode)
+            {
+                foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
+                {
+                    favouriteItems.Add(new ItemViewModel(item));
+                }
+            }
+        }
+        private async Task LoadArchivedItems()
+        {
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0"));
+            if (response.IsSuccessStatusCode)
+            {
+                foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
+                {
+                    archivedItems.Add(new ItemViewModel(item));
+                }
+            }
+        }
+        private async Task LoadDeletedItems()
+        {
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?delete=1"));
+            if (response.IsSuccessStatusCode)
+            {
+                foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
+                {
+                    deletedItems.Add(new ItemViewModel(item));
+                }
+            }
+        }
         private async Task LoadTags()
         {
             var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags.json"));
