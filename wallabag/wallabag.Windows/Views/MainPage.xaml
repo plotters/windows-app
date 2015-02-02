@@ -10,6 +10,7 @@
     mc:Ignorable="d"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
     <common:basicPage.Resources>
+        <Converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <Storyboard x:Name="RefreshAnimation">
             <DoubleAnimation Duration="0:0:1" To="359" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="symbolIcon" d:IsOptimized="True" RepeatBehavior="Forever"/>
         </Storyboard>
@@ -98,27 +99,30 @@
                 </Button.Content>
             </Button>
         </StackPanel>
-        <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1"/>
+        <ListView ItemsSource="{Binding unreadItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadFilter}"/>
+        <ListView ItemsSource="{Binding favouriteItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouritesFilter}"/>
+        <ListView ItemsSource="{Binding archivedItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archivedFilter}"/>
+        <ListView ItemsSource="{Binding deletedItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=deletedFilter}"/>
         <ComboBox Grid.Column="1" VerticalAlignment="Center" SelectedIndex="0" Width="200">
-            <ComboBoxItem>
+            <ComboBoxItem x:Name="unreadFilter">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xE18B;" FontFamily="Segoe UI Symbol" />
                     <TextBlock Text="ungelesen" Margin="10,0,0,0" />
                 </StackPanel>
             </ComboBoxItem>
-            <ComboBoxItem>
+            <ComboBoxItem x:Name="favouritesFilter">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xE113;" FontFamily="Segoe UI Symbol" />
                     <TextBlock Text="favoriten" Margin="10,0,0,0" />
                 </StackPanel>
             </ComboBoxItem>
-            <ComboBoxItem>
+            <ComboBoxItem x:Name="archivedFilter">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xE1D3;" FontFamily="Segoe UI Symbol" />
                     <TextBlock Text="archiv" Margin="10,0,0,0" />
                 </StackPanel>
             </ComboBoxItem>
-            <ComboBoxItem>
+            <ComboBoxItem x:Name="deletedFilter">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xE107;" FontFamily="Segoe UI Symbol" />
                     <TextBlock Text="gelöscht" Margin="10,0,0,0" />
