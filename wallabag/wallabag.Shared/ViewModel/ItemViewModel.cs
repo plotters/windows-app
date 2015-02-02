@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using wallabag.Common;
 using Windows.Web.Http;
 using Windows.Web.Http.Headers;
-using wallabag.Common;
 
 namespace wallabag.ViewModel
 {
@@ -163,8 +163,19 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags.json", Id)));
             // TODO: Parse response!
         }
-        private async Task AddTag(string tag) { }
-        private async Task RemoveTag(string tag) { }
+        private async Task AddTag(string tags)
+        {
+            var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
+                 {"tags", tags}
+                }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
+            var response = await client.PostAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags.json", Id)), content);
+            // TODO: Parse response.
+        }
+        private async Task<bool> RemoveTag(string tag)
+        {
+            var response = await client.DeleteAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags/{1}.json", Id, tag)));
+            return response.IsSuccessStatusCode;
+        }
 
         public ItemViewModel()
         {
