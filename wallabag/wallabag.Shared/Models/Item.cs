@@ -13,9 +13,9 @@ namespace wallabag.Models
         [JsonProperty("url")]
         public string Url { get; set; }
         [JsonProperty("is_read")]
-        public int IsRead { get; set; }
+        public bool IsRead { get; set; }
         [JsonProperty("is_fav")]
-        public int IsFavourite { get; set; }
+        public bool IsFavourite { get; set; }
         [JsonProperty("content")]
         public string Content { get; set; }
         [JsonProperty("user_id")]

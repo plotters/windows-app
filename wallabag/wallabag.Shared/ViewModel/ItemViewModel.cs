@@ -63,26 +63,24 @@ namespace wallabag.ViewModel
         }
         public bool IsRead
         {
-            get { return Model.IsRead == 1; }
+            get { return Model.IsRead; }
             set
             {
-                if ((Model.IsRead == 1) != value)
+                if (Model.IsRead != value)
                 {
-                    int tmp = 0; if (value) tmp = 1;
-                    Model.IsRead = tmp;
+                    Model.IsRead = value;
                     RaisePropertyChanged("IsRead");
                 }
             }
         }
         public bool IsFavourite
         {
-            get { return Model.IsFavourite == 1; }
+            get { return Model.IsFavourite; }
             set
             {
-                if ((Model.IsFavourite == 1) != value)
+                if (Model.IsFavourite != value)
                 {
-                    int tmp = 0; if (value) tmp = 1;
-                    Model.IsFavourite = tmp;
+                    Model.IsFavourite = value;
                     RaisePropertyChanged("IsFavourite");
                 }
             }
@@ -147,8 +145,8 @@ namespace wallabag.ViewModel
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"title", Title},
                  {"tags", Tags.ToCommaSeperatedString()},
-                 {"star", IsFavourite.ToInteger()},
-                 {"archive", IsRead.ToInteger()},
+                 {"star", IsFavourite},
+                 {"archive", IsRead},
                  //{"delete", false} //TODO
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
             var response = await client.PatchAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}.json", Id)), content);
