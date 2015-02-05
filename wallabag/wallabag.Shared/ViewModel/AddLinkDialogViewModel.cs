@@ -34,7 +34,7 @@ namespace wallabag.ViewModel
                  {"tags", Tags}
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
                 var response = await client.PostAsync(new Uri("http://v2.wallabag.org/api/entries.json"), content);
-                if (!response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     // TODO: Handle this.
                 }
