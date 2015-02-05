@@ -1,0 +1,17 @@
+﻿<ContentDialog
+    x:Class="wallabag.Views.AddLinkDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:wallabag.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="SAVE LINK"
+    PrimaryButtonText="save"  
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+
+    <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <TextBox Name="UrlTextBox" Header="The adress of the article" PlaceholderText="http://..." InputScope="Url"/>
+        <TextBox Name="TagTextBox" Header="Tags (comma seperated)" />
+    </StackPanel>
+</ContentDialog>
