@@ -10,8 +10,39 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
-    
+
     <common:basicPage.Resources>
+        <Style TargetType="Pivot">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Pivot">
+                        <Grid x:Name="RootElement" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid VerticalAlignment="Center" Background="{ThemeResource DarkBackgroundBrush}">
+                                <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" Style="{StaticResource PivotTitleContentControlStyle}" FontWeight="Thin" Foreground="{ThemeResource PhoneAccentBrush}"/>
+                            </Grid>
+                            <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
+                                <PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
+                                    <PivotHeaderPanel Background="{ThemeResource DarkBackgroundBrush}" x:Name="Header" >
+                                        <PivotHeaderPanel.RenderTransform>
+                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0"/>
+                                        </PivotHeaderPanel.RenderTransform>
+                                    </PivotHeaderPanel>
+                                    <ItemsPresenter x:Name="PivotItemPresenter">
+                                        <ItemsPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0"/>
+                                        </ItemsPresenter.RenderTransform>
+                                    </ItemsPresenter>
+                                </PivotPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <DataTemplate x:Key="PivotHeaderStyle">
             <Grid Margin="0,15,0,0">
                 <TextBlock Text="{Binding}" FontSize="32" />

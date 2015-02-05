@@ -12,6 +12,9 @@
             <SolidColorBrush x:Key="AccentBrushLight" Color="{ThemeResource AccentColorLight}" />
             <SolidColorBrush x:Key="AccentBrushExtraLight" Color="{ThemeResource AccentColorExtraLight}" />
 
+            <Color x:Key="DarkBackgroundColor">#FF1F1F1F</Color>
+            <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{ThemeResource DarkBackgroundColor}" />
+
             <!-- Button styles -->
             <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
             <x:Double x:Key="ButtonBorderThemeThickness">0</x:Double>
