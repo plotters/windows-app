@@ -16,7 +16,6 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="hinzufügen" Icon="Add" />
                 <AppBarButton Label="aktualisieren" Icon="Refresh" Command="{Binding RefreshCommand}"/>
-                <AppBarButton Label="suche" Icon="Find"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="einstellungen" />
@@ -33,13 +32,13 @@
 
         <Pivot Title="WALLABAG">
             <PivotItem Header="ungelesen">
-                <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
+                <ListView ItemsSource="{Binding unreadItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="favoriten">
-                <ListView />
+                <ListView ItemsSource="{Binding favouriteItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="archiv">
-                <ListView />
+                <ListView ItemsSource="{Binding archivedItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="schlagworte">
                 <ListView ItemsSource="{Binding Tags}" />
