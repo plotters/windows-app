@@ -31,15 +31,15 @@ namespace wallabag.Common
 
         void navigationHelper_SaveState(object sender, SaveStateEventArgs e)
         {
-            e.PageState.Add(ViewModelPageKey, this.DataContext);
+            //e.PageState.Add(ViewModelPageKey, this.DataContext);
             SaveState(e);
         }
         void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            if (e.PageState != null && e.PageState.ContainsKey(ViewModelPageKey))
-            {
-                this.DataContext = e.PageState[ViewModelPageKey];
-            }
+            //if (e.PageState != null && e.PageState.ContainsKey(ViewModelPageKey))
+            //{
+            //    this.DataContext = e.PageState[ViewModelPageKey];
+            //}
             LoadState(e);
         }
 
