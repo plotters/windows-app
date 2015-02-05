@@ -129,7 +129,7 @@ namespace wallabag.ViewModel
 
         private async Task<bool> Fetch()
         {
-            var response = await client.GetAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)));
+            var response = await client.GetAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}.json", Id)));
             if (response.IsSuccessStatusCode)
             {
                 _Model = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
@@ -139,7 +139,7 @@ namespace wallabag.ViewModel
         }
         private async Task<bool> Delete()
         {
-            var response = await client.DeleteAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)));
+            var response = await client.DeleteAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}.json", Id)));
             return response.IsSuccessStatusCode;
         }
         private async Task Update()
@@ -151,7 +151,7 @@ namespace wallabag.ViewModel
                  {"archive", IsRead.ToInteger()},
                  //{"delete", false} //TODO
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            var response = await client.PatchAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}.json", Id)), content);
+            var response = await client.PatchAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}.json", Id)), content);
             if (response.IsSuccessStatusCode)
             {
                 // TODO: Parse response.
@@ -160,7 +160,7 @@ namespace wallabag.ViewModel
 
         private async Task LoadTags()
         {
-            var response = await client.GetAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags.json", Id)));
+            var response = await client.GetAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}/tags.json", Id)));
             // TODO: Parse response!
         }
         private async Task AddTag(string tags)
@@ -168,12 +168,12 @@ namespace wallabag.ViewModel
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"tags", tags}
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            var response = await client.PostAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags.json", Id)), content);
+            var response = await client.PostAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}/tags.json", Id)), content);
             // TODO: Parse response.
         }
         private async Task<bool> RemoveTag(string tag)
         {
-            var response = await client.DeleteAsync(new Uri(string.Format("http://wallabag-v2.jlnostr.de/api/entries/{0}/tags/{1}.json", Id, tag)));
+            var response = await client.DeleteAsync(new Uri(string.Format("http://v2.wallabag.org/api/entries/{0}/tags/{1}.json", Id, tag)));
             return response.IsSuccessStatusCode;
         }
 

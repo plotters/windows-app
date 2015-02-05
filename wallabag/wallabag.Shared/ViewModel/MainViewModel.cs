@@ -66,7 +66,7 @@ namespace wallabag.ViewModel
 
         private async Task LoadAllItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json"));
+            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -77,7 +77,7 @@ namespace wallabag.ViewModel
         } // for search only, I think
         private async Task LoadUnreadItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0"));
+            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?archive=0"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -88,7 +88,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadFavouriteItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?star=1"));
+            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?star=1"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -99,7 +99,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadArchivedItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=1"));
+            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?archive=1"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -110,7 +110,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadDeletedItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?delete=1"));
+            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?delete=1"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -121,7 +121,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadTags()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/tags.json"));
+            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/tags.json"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
@@ -137,7 +137,7 @@ namespace wallabag.ViewModel
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"url", Link}
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            var response = await client.PostAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json"), content);
+            var response = await client.PostAsync(new Uri("http://v2.wallabag.org/api/entries.json"), content);
             if (response.IsSuccessStatusCode)
             {
                 var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
