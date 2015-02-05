@@ -30,6 +30,7 @@ namespace wallabag.ViewModel
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
 
             SimpleIoc.Default.Register<MainViewModel>();
+            SimpleIoc.Default.Register<AddLinkDialogViewModel>();
         }
 
         private INavigationService CreateNavigationService()
@@ -43,5 +44,6 @@ namespace wallabag.ViewModel
 
         // -----------------------------------
         public MainViewModel Main { get { return ServiceLocator.Current.GetInstance<MainViewModel>(); } }
+        public AddLinkDialogViewModel AddLink { get { return ServiceLocator.Current.GetInstance<AddLinkDialogViewModel>(); } }
     }
 }

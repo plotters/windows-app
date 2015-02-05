@@ -13,20 +13,5 @@ namespace wallabag.Views
         {
             this.InitializeComponent();
         }
-
-        private async void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
-        {
-            // TODO: Replace by ViewModel.
-            HttpClient client = new HttpClient();
-            var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
-                 {"url", UrlTextBox.Text},
-                 {"tags", TagTextBox.Text}
-                }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
-            var response = await client.PostAsync(new Uri("http://v2.wallabag.org/api/entries.json"), content);
-            if (response.IsSuccessStatusCode)
-            {
-                var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
-            }
-        }
     }
 }

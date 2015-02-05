@@ -6,12 +6,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    DataContext="{Binding Source={StaticResource Locator}, Path=AddLink}"
     Title="SAVE LINK"
-    PrimaryButtonText="save"  
-    PrimaryButtonClick="ContentDialog_PrimaryButtonClick">
+    PrimaryButtonText="save"
+    PrimaryButtonCommand="{Binding AddLinkCommand, Mode=OneWay}">
 
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-        <TextBox Name="UrlTextBox" Header="The adress of the article" PlaceholderText="http://..." InputScope="Url"/>
-        <TextBox Name="TagTextBox" Header="Tags (comma seperated)" />
+        <TextBox Name="UrlTextBox" Header="The adress of the article" PlaceholderText="http://..." InputScope="Url" Text="{Binding Url, Mode=TwoWay}"/>
+        <TextBox Name="TagTextBox" Header="Tags (comma seperated)" Text="{Binding Tags, Mode=TwoWay}" />
     </StackPanel>
 </ContentDialog>

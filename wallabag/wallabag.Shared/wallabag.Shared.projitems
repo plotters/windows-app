@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanNegationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Item.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\AddLinkDialogViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
