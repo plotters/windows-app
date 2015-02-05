@@ -44,7 +44,7 @@
             </Setter>
         </Style>
         <DataTemplate x:Key="PivotHeaderStyle">
-            <Grid Margin="0,15,0,0">
+            <Grid Margin="0,12.5,15,5">
                 <TextBlock Text="{Binding}" FontSize="32" />
             </Grid>
         </DataTemplate>
