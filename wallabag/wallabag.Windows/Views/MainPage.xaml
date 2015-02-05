@@ -99,11 +99,18 @@
                 </Button.Content>
             </Button>
         </StackPanel>
+        <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=noFilter}"/>
         <ListView ItemsSource="{Binding unreadItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=unreadFilter}"/>
         <ListView ItemsSource="{Binding favouriteItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=favouritesFilter}"/>
         <ListView ItemsSource="{Binding archivedItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=archivedFilter}"/>
         <ListView ItemsSource="{Binding deletedItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Visibility="{Binding IsSelected, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=deletedFilter}"/>
-        <ComboBox Grid.Column="1" VerticalAlignment="Center" SelectedIndex="0" Width="200">
+        <ComboBox Grid.Column="1" VerticalAlignment="Center" SelectedIndex="1" Width="200">
+            <ComboBoxItem x:Name="noFilter">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#xE138;" FontFamily="Segoe UI Symbol" />
+                    <TextBlock Text="alles" Margin="10,0,0,0" />
+                </StackPanel>
+            </ComboBoxItem>
             <ComboBoxItem x:Name="unreadFilter">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#xE18B;" FontFamily="Segoe UI Symbol" />
