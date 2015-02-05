@@ -10,6 +10,18 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+    
+    <common:basicPage.Resources>
+        <DataTemplate x:Key="PivotHeaderStyle">
+            <Grid Margin="0,15,0,0">
+                <TextBlock Text="{Binding}" FontSize="32" />
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="ListView">
+            <Setter Property="IsItemClickEnabled" Value="True" />
+            <Setter Property="ItemTemplate" Value="{StaticResource ItemTemplate}" />
+        </Style>
+    </common:basicPage.Resources>
 
     <common:basicPage.BottomAppBar>
         <CommandBar>
@@ -30,15 +42,15 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Pivot Title="WALLABAG">
+        <Pivot Title="WALLABAG" HeaderTemplate="{StaticResource PivotHeaderStyle}">
             <PivotItem Header="ungelesen">
-                <ListView ItemsSource="{Binding unreadItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
+                <ListView ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="favoriten">
-                <ListView ItemsSource="{Binding favouriteItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
+                <ListView ItemsSource="{Binding favouriteItems}" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="archiv">
-                <ListView ItemsSource="{Binding archivedItems}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
+                <ListView ItemsSource="{Binding archivedItems}" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="schlagworte">
                 <ListView ItemsSource="{Binding Tags}" />
