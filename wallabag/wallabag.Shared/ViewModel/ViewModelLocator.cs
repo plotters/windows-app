@@ -16,6 +16,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using Microsoft.Practices.ServiceLocation;
+using wallabag.Views;
 
 namespace wallabag.ViewModel
 {
@@ -24,8 +25,21 @@ namespace wallabag.ViewModel
         public ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-            
+
+            var navigationService = this.CreateNavigationService();
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+
             SimpleIoc.Default.Register<MainViewModel>();
+        }
+
+        private INavigationService CreateNavigationService()
+        {
+            var navigationService = new NavigationService();
+#if WINDOWS_PHONE_APP
+            navigationService.Configure("Item", typeof(ItemPage));
+            navigationService.Configure("AddLink", typeof(AddLinkDialog));
+#endif
+            return navigationService;
         }
 
         // -----------------------------------

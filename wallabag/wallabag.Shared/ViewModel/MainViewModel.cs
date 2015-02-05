@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace wallabag.ViewModel
 {
     public class MainViewModel : viewModelBase
     {
+        private INavigationService navigationService;
         private HttpClient client;
         
         private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
@@ -151,8 +153,9 @@ namespace wallabag.ViewModel
             }
         }
 
-        public MainViewModel()
+        public MainViewModel(INavigationService navigationService)
         {
+            this.navigationService = navigationService;
             client = new HttpClient();
             client.DefaultRequestHeaders.Accept.Add(new HttpMediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.UserAgent.Add(new HttpProductInfoHeaderValue("wallabag for WinRT"));
