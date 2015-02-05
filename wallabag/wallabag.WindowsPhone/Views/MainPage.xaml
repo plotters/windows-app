@@ -1,0 +1,49 @@
+﻿<common:basicPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:wallabag"    
+    xmlns:common="using:wallabag.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Converter="using:wallabag.Converter"
+    x:Class="wallabag.Views.MainPage"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+
+    <common:basicPage.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="hinzufügen" Icon="Add" />
+                <AppBarButton Label="aktualisieren" Icon="Refresh" Command="{Binding RefreshCommand}"/>
+                <AppBarButton Label="suche" Icon="Find"/>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="einstellungen" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </common:basicPage.BottomAppBar>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Pivot Title="WALLABAG">
+            <PivotItem Header="ungelesen">
+                <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
+            </PivotItem>
+            <PivotItem Header="favoriten">
+                <ListView />
+            </PivotItem>
+            <PivotItem Header="archiv">
+                <ListView />
+            </PivotItem>
+            <PivotItem Header="schlagworte">
+                <ListView ItemsSource="{Binding Tags}" />
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</common:basicPage>
