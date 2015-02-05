@@ -37,7 +37,6 @@ namespace wallabag.ViewModel
             var navigationService = new NavigationService();
 #if WINDOWS_PHONE_APP
             navigationService.Configure("Item", typeof(ItemPage));
-            navigationService.Configure("AddLink", typeof(AddLinkDialog));
 #endif
             return navigationService;
         }
