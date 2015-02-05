@@ -11,12 +11,54 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
+    <common:basicPage.Resources>
+        <Style TargetType="Pivot">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Pivot">
+                        <Grid x:Name="RootElement" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid VerticalAlignment="Center" Background="{ThemeResource DarkBackgroundBrush}">
+                                <ContentControl x:Name="TitleContentControl" ContentTemplate="{TemplateBinding TitleTemplate}" Content="{TemplateBinding Title}" Style="{StaticResource PivotTitleContentControlStyle}" FontWeight="Thin"/>
+                            </Grid>
+                            <ScrollViewer x:Name="ScrollViewer" HorizontalSnapPointsAlignment="Center" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="Hidden" Margin="{TemplateBinding Padding}" Grid.Row="1" Template="{StaticResource ScrollViewerScrollBarlessTemplate}" VerticalSnapPointsType="None" VerticalScrollBarVisibility="Disabled" VerticalScrollMode="Disabled" VerticalContentAlignment="Stretch" ZoomMode="Disabled">
+                                <PivotPanel x:Name="Panel" VerticalAlignment="Stretch">
+                                    <PivotHeaderPanel Background="{ThemeResource DarkBackgroundBrush}" x:Name="Header">
+                                        <PivotHeaderPanel.RenderTransform>
+                                            <CompositeTransform x:Name="HeaderTranslateTransform" TranslateX="0"/>
+                                        </PivotHeaderPanel.RenderTransform>
+                                    </PivotHeaderPanel>
+                                    <ItemsPresenter x:Name="PivotItemPresenter">
+                                        <ItemsPresenter.RenderTransform>
+                                            <TranslateTransform x:Name="ItemsPresenterTranslateTransform" X="0"/>
+                                        </ItemsPresenter.RenderTransform>
+                                    </ItemsPresenter>
+                                </PivotPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="PivotHeaderStyle">
+            <Grid Margin="0,12.5,15,5">
+                <TextBlock Text="{Binding}" FontSize="32" />
+            </Grid>
+        </DataTemplate>
+        <Style TargetType="ListView">
+            <Setter Property="IsItemClickEnabled" Value="True" />
+            <Setter Property="ItemTemplate" Value="{StaticResource ItemTemplate}" />
+        </Style>
+    </common:basicPage.Resources>
+
     <common:basicPage.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="hinzufügen" Icon="Add" />
                 <AppBarButton Label="aktualisieren" Icon="Refresh" Command="{Binding RefreshCommand}"/>
-                <AppBarButton Label="suche" Icon="Find"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="einstellungen" />
@@ -31,15 +73,15 @@
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Pivot Title="WALLABAG">
+        <Pivot Title="WALLABAG" HeaderTemplate="{StaticResource PivotHeaderStyle}">
             <PivotItem Header="ungelesen">
-                <ListView ItemsSource="{Binding Items}" ItemTemplate="{StaticResource ItemTemplate}" IsItemClickEnabled="True" ItemClick="ListView_ItemClick"/>
+                <ListView ItemsSource="{Binding unreadItems}" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="favoriten">
-                <ListView />
+                <ListView ItemsSource="{Binding favouriteItems}" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="archiv">
-                <ListView />
+                <ListView ItemsSource="{Binding archivedItems}" ItemClick="ListView_ItemClick"/>
             </PivotItem>
             <PivotItem Header="schlagworte">
                 <ListView ItemsSource="{Binding Tags}" />
