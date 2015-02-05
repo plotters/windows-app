@@ -56,6 +56,7 @@ namespace wallabag.ViewModel
         public RelayCommand RefreshCommand { get; private set; }
         private async Task Refresh()
         {
+            await LoadAllItems();
             await LoadUnreadItems();
             await LoadFavouriteItems();
             await LoadArchivedItems();
@@ -65,7 +66,7 @@ namespace wallabag.ViewModel
 
         private async Task LoadAllItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0&star=1"));
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -76,7 +77,7 @@ namespace wallabag.ViewModel
         } // for search only, I think
         private async Task LoadUnreadItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0&star=1"));
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
@@ -98,7 +99,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadArchivedItems()
         {
-            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=0"));
+            var response = await client.GetAsync(new Uri("http://wallabag-v2.jlnostr.de/api/entries.json?archive=1"));
             if (response.IsSuccessStatusCode)
             {
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
