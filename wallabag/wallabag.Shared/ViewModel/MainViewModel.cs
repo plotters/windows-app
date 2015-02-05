@@ -69,6 +69,7 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json"));
             if (response.IsSuccessStatusCode)
             {
+                Items.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     Items.Add(new ItemViewModel(item));
@@ -80,6 +81,7 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?archive=0"));
             if (response.IsSuccessStatusCode)
             {
+                unreadItems.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     unreadItems.Add(new ItemViewModel(item));
@@ -91,6 +93,7 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?star=1"));
             if (response.IsSuccessStatusCode)
             {
+                favouriteItems.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     favouriteItems.Add(new ItemViewModel(item));
@@ -102,6 +105,7 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?archive=1"));
             if (response.IsSuccessStatusCode)
             {
+                archivedItems.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     archivedItems.Add(new ItemViewModel(item));
@@ -113,6 +117,7 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?delete=1"));
             if (response.IsSuccessStatusCode)
             {
+                deletedItems.Clear();
                 foreach (Models.Item item in JsonConvert.DeserializeObject<ObservableCollection<Models.Item>>(await response.Content.ReadAsStringAsync()))
                 {
                     deletedItems.Add(new ItemViewModel(item));
@@ -124,6 +129,7 @@ namespace wallabag.ViewModel
             var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/tags.json"));
             if (response.IsSuccessStatusCode)
             {
+                Tags.Clear();
                 foreach (string tag in JsonConvert.DeserializeObject<ObservableCollection<string>>(await response.Content.ReadAsStringAsync()))
                 {
                     Tags.Add(tag);
