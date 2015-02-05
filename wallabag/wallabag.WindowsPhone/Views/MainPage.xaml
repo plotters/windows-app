@@ -57,7 +57,7 @@
     <common:basicPage.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="hinzufügen" Icon="Add" />
+                <AppBarButton Label="hinzufügen" Icon="Add" Command="{Binding AddLinkCommand}"/>
                 <AppBarButton Label="aktualisieren" Icon="Refresh" Command="{Binding RefreshCommand}"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>

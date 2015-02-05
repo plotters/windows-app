@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using wallabag.Common;
@@ -15,7 +14,7 @@ namespace wallabag.ViewModel
     {
         private INavigationService navigationService;
         private HttpClient client;
-        
+
         private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
@@ -142,6 +141,7 @@ namespace wallabag.ViewModel
         public RelayCommand<string> AddLinkCommand { get; private set; }
         private async Task AddLink(string Link)
         {
+#if WINDOWS_APP
             var content = new HttpStringContent(JsonConvert.SerializeObject(new Dictionary<string, object>() {
                  {"url", Link}
                 }), Windows.Storage.Streams.UnicodeEncoding.Utf8, "application/json");
@@ -151,6 +151,9 @@ namespace wallabag.ViewModel
                 var result = JsonConvert.DeserializeObject<Models.Item>(await response.Content.ReadAsStringAsync());
                 Items.Add(new ItemViewModel(result));
             }
+#else
+            await new Views.AddLinkDialog().ShowAsync();
+#endif
         }
 
         public MainViewModel(INavigationService navigationService)
