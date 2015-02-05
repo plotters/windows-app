@@ -6,27 +6,21 @@ wallabag for Windows
 ## Current features
 - Read your saved articles on the go - even offline!
 
-## Planned features (with wallabag v2)
-- Add new articles easily to wallabag
-- Mark articles as read
+## Planned features
 - Make downloading of pictures optional
 
 ## Currently supported languages
 - English
 - German
-- French
-- Hungarian
+- ~~French~~
+- ~~Hungarian~~
 
 ## Improve the app!
 You can simply fork this repository and add some nice features to it.
 And even if you're not a developer, **you can help to translate it!**
 
-
 ## Screenshots
-**Windows.**
-![Main page on Windows](additional/screenshots/desktop/mainpage.png)
-**Windows Phone.**
-![Main page on Windows Phone](additional/screenshots/phone/mainpage.png)
+TODO
 
 ## Why are the screenshots for Windows Phone in the store so bad?
 First of all, sorry for that. My PC is not the newest one, the CPU has no support for the Hyper-V virtualization required by the Windows Phone Emulator.
