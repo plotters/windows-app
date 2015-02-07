@@ -45,6 +45,14 @@ namespace wallabag.Common
             return await client.SendRequestAsync(request);
         }
     }
+    public static class BooleanExtensions
+    {
+        public static int ToInteger(this bool Boolean)
+        {
+            if (Boolean == true) return 1;
+            else return 0;
+        }
+    }
     public static class CollectionExtensions
     {
         public static string ToCommaSeperatedString(this ICollection collection)
