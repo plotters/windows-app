@@ -16,6 +16,10 @@ namespace wallabag.ViewModel
         private INavigationService navigationService;
         private HttpClient client;
 
+        private string Username = "wallabag";
+        private string Password = "wallabag";
+        private string wallabagUrl = "http://v2.wallabag.org/";
+
         private ObservableCollection<ItemViewModel> _Items = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _unreadItems = new ObservableCollection<ItemViewModel>();
         private ObservableCollection<ItemViewModel> _favouriteItems = new ObservableCollection<ItemViewModel>();
@@ -68,7 +72,7 @@ namespace wallabag.ViewModel
 
         private async Task LoadAllItems()
         {
-            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json"));
+            var response = await client.GetAsync(new Uri(string.Format("{0}/api/entries.json", wallabagUrl)));
             if (response.IsSuccessStatusCode)
             {
                 Items.Clear();
@@ -80,7 +84,7 @@ namespace wallabag.ViewModel
         } // for search only, I think
         private async Task LoadUnreadItems()
         {
-            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?archive=0"));
+            var response = await client.GetAsync(new Uri(string.Format("{0}/api/entries.json?archive=0", wallabagUrl)));
             if (response.IsSuccessStatusCode)
             {
                 unreadItems.Clear();
@@ -92,7 +96,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadFavouriteItems()
         {
-            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?star=1"));
+            var response = await client.GetAsync(new Uri(string.Format("{0}/api/entries.json?star=1", wallabagUrl)));
             if (response.IsSuccessStatusCode)
             {
                 favouriteItems.Clear();
@@ -104,7 +108,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadArchivedItems()
         {
-            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?archive=1"));
+            var response = await client.GetAsync(new Uri(string.Format("{0}/api/entries.json&archive=1", wallabagUrl)));
             if (response.IsSuccessStatusCode)
             {
                 archivedItems.Clear();
@@ -116,7 +120,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadDeletedItems()
         {
-            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/entries.json?delete=1"));
+            var response = await client.GetAsync(new Uri(string.Format("{0}/api/entries.json?delete=1", wallabagUrl)));
             if (response.IsSuccessStatusCode)
             {
                 deletedItems.Clear();
@@ -128,7 +132,7 @@ namespace wallabag.ViewModel
         }
         private async Task LoadTags()
         {
-            var response = await client.GetAsync(new Uri("http://v2.wallabag.org/api/tags.json"));
+            var response = await client.GetAsync(new Uri(string.Format("{0}/api/tags.json", wallabagUrl)));
             if (response.IsSuccessStatusCode)
             {
                 Tags.Clear();
