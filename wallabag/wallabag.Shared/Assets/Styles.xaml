@@ -18,28 +18,7 @@
             <!-- Button styles -->
             <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
             <x:Double x:Key="ButtonBorderThemeThickness">0</x:Double>
-
-            <!-- ComboBox styles-->
-            <SolidColorBrush x:Key="ComboBoxItemPointerOverBackgroundThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
-            <SolidColorBrush x:Key="ComboBoxItemPointerOverForegroundThemeBrush" Color="White" />
-            <SolidColorBrush x:Key="ComboBoxItemSelectedBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
-            <SolidColorBrush x:Key="ComboBoxItemSelectedPointerOverBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
-
-            <SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
-            <SolidColorBrush x:Key="ComboBoxForegroundThemeBrush" Color="White" />
-            <SolidColorBrush x:Key="ComboBoxBorderThemeBrush" Color="{ThemeResource AccentColorLight}" />
-            <SolidColorBrush x:Key="ComboBoxFocusedBackgroundThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
-            <SolidColorBrush x:Key="ComboBoxFocusedBorderThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
-            <SolidColorBrush x:Key="ComboBoxPointerOverBackgroundThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
-            <SolidColorBrush x:Key="ComboBoxPointerOverBorderThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
-            <SolidColorBrush x:Key="ComboBoxPressedBackgroundThemeBrush" Color="{ThemeResource AccentColorLight}" />
-            <SolidColorBrush x:Key="ComboBoxPressedBorderThemeBrush" Color="{ThemeResource AccentColorLight}" />
-
-            <SolidColorBrush x:Key="ComboBoxPressedForegroundThemeBrush" Color="White" />
-            <SolidColorBrush x:Key="ComboBoxPressedHighlightThemeBrush" Color="{ThemeResource AccentColorExtraLight}" />
-
-            <SolidColorBrush x:Key="ComboBoxArrowForegroundThemeBrush" Color="White" />
-            <SolidColorBrush x:Key="ComboBoxArrowPressedForegroundThemeBrush" Color="White" />
+            
         </ResourceDictionary>
     </ResourceDictionary.ThemeDictionaries>
     <DataTemplate x:Key="ItemTemplate">
