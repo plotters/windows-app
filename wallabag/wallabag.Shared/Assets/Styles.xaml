@@ -3,16 +3,16 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:wallabag.Assets" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
     <ResourceDictionary.ThemeDictionaries>
-        <ResourceDictionary x:Key="Dark">
+        <ResourceDictionary x:Key="Default">
             <!-- Color references -->
-            <Color x:Key="AccentColor">#FF333333</Color>
+            <Color x:Key="AccentColor">#ff3ea055</Color>
             <Color x:Key="AccentColorLight">#FF5B5B5B</Color>
             <Color x:Key="AccentColorExtraLight">#FF848484</Color>
             <SolidColorBrush x:Key="AccentBrush" Color="{ThemeResource AccentColor}" />
             <SolidColorBrush x:Key="AccentBrushLight" Color="{ThemeResource AccentColorLight}" />
             <SolidColorBrush x:Key="AccentBrushExtraLight" Color="{ThemeResource AccentColorExtraLight}" />
 
-            <Color x:Key="DarkBackgroundColor">#FF1F1F1F</Color>
+            <Color x:Key="DarkBackgroundColor">#ff4c544b</Color>
             <SolidColorBrush x:Key="DarkBackgroundBrush" Color="{ThemeResource DarkBackgroundColor}" />
 
             <!-- Button styles -->
