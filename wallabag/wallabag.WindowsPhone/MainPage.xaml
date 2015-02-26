@@ -15,7 +15,7 @@
         <Converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <DataTemplate x:Key="ArticleTemplate">
             <Grid>
-                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" Style="{StaticResource ListViewItemTextBlockStyle}" Margin="0,7.5"/>
+                <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" Style="{StaticResource ListViewItemContentTextBlockStyle}" Margin="0,5" FontSize="20" />
             </Grid>
         </DataTemplate>
     </common:basicPage.Resources>
