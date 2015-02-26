@@ -21,8 +21,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Common\Helpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\NavigationHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\ObservableDictionary.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SQLite.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SQLiteAsync.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\SuspensionManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\viewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Common\WebViewExtensions.cs" />

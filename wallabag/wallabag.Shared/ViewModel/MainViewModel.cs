@@ -1,15 +1,11 @@
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using SQLite;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using wallabag.Common;
 using wallabag.Models;
-using Windows.ApplicationModel.Resources;
 using Windows.Networking.Connectivity;
-using Windows.UI.Xaml;
 using Windows.Web.Syndication;
 
 namespace wallabag.ViewModel
@@ -104,9 +100,10 @@ namespace wallabag.ViewModel
                                         tmpItem.IsRead = true;
                                         break;
                                 }
-
-                                await SaveItem(tmpItem);
-                                Items.Add(new ItemViewModel(tmpItem));
+                                if (!Items.Contains(new ItemViewModel(tmpItem)))
+                                {
+                                    Items.Add(new ItemViewModel(tmpItem));
+                                }
                             }
                         }
                         IsActive = false;
@@ -120,34 +117,6 @@ namespace wallabag.ViewModel
                     }
                 }
             }
-            else { await LoadItems(); }
-        }
-
-        private async Task SaveItem(Item Item)
-        {
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
-            await conn.CreateTableAsync<Item>();
-
-            var existingItem = conn.Table<Item>().Where(i => i.Url == Item.Url);
-
-            if (await existingItem.CountAsync() == 0)
-            {
-                await conn.InsertAsync(Item);
-            }
-        }
-        private async Task LoadItems()
-        {
-            this.Items.Clear();
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
-            var Items = await conn.Table<Item>().ToListAsync();
-            foreach (var itm in Items)
-            {
-                this.Items.Add(new ItemViewModel() { Model = itm });
-            }
-
-            RaisePropertyChanged(() => unreadItems);
-            RaisePropertyChanged(() => favouriteItems);
-            RaisePropertyChanged(() => archivedItems);
         }
 
         public MainViewModel()
