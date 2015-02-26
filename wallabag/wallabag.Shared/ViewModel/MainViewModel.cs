@@ -1,15 +1,11 @@
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using SQLite;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using wallabag.Common;
 using wallabag.Models;
-using Windows.ApplicationModel.Resources;
 using Windows.Networking.Connectivity;
-using Windows.UI.Xaml;
 using Windows.Web.Syndication;
 
 namespace wallabag.ViewModel
@@ -105,7 +101,7 @@ namespace wallabag.ViewModel
                                         break;
                                 }
 
-                                await SaveItem(tmpItem);
+                                SaveItem(tmpItem);
                                 Items.Add(new ItemViewModel(tmpItem));
                             }
                         }
@@ -120,27 +116,20 @@ namespace wallabag.ViewModel
                     }
                 }
             }
-            else { await LoadItems(); }
+            else { LoadItems(); }
         }
 
-        private async Task SaveItem(Item Item)
+        private void SaveItem(Item Item)
         {
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
-            await conn.CreateTableAsync<Item>();
-
-            var existingItem = conn.Table<Item>().Where(i => i.Url == Item.Url);
-
-            if (await existingItem.CountAsync() == 0)
+            if (Database.Items.Contains(Item))
             {
-                await conn.InsertAsync(Item);
+                Database.Items.Add(Item);
             }
         }
-        private async Task LoadItems()
+        private void LoadItems()
         {
             this.Items.Clear();
-            SQLiteAsyncConnection conn = new SQLiteAsyncConnection("wallabag.db");
-            var Items = await conn.Table<Item>().ToListAsync();
-            foreach (var itm in Items)
+            foreach (var itm in Database.Items)
             {
                 this.Items.Add(new ItemViewModel() { Model = itm });
             }

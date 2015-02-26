@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace wallabag.Common
 {
-    class Database
+    public class Database
     {
-        public string Name { get; set; }
-               
-        public async Task Database(string databaseName)
+        private static Database _instance;
+        private Database() { }
+        public static Database Instance { get { return _instance ?? (_instance = Initialize()); } }
+
+        private static Database Initialize()
         {
-            this.Name = databaseName;
-            await ApplicationData.Current.LocalFolder.CreateFileAsync(Name + ".db");
+            throw new System.NotImplementedException();
         }
+        public ObservableCollection<Models.Item> Items { get; set; }
     }
 }

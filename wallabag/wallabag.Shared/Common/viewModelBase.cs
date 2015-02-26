@@ -9,6 +9,7 @@ namespace wallabag.Common
     public class viewModelBase : ViewModelBase
     {
         public ApplicationSettings AppSettings { get { return ApplicationSettings.Instance; } }
+        public Database Database { get { return Database.Instance; } }
         
         private bool _IsActive;
         private string _StatusText;
