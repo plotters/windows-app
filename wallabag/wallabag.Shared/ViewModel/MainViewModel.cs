@@ -100,9 +100,10 @@ namespace wallabag.ViewModel
                                         tmpItem.IsRead = true;
                                         break;
                                 }
-
-                                SaveItem(tmpItem);
-                                Items.Add(new ItemViewModel(tmpItem));
+                                if (!Items.Contains(new ItemViewModel(tmpItem)))
+                                {
+                                    Items.Add(new ItemViewModel(tmpItem));
+                                }
                             }
                         }
                         IsActive = false;
@@ -116,27 +117,6 @@ namespace wallabag.ViewModel
                     }
                 }
             }
-            else { LoadItems(); }
-        }
-
-        private void SaveItem(Item Item)
-        {
-            if (Database.Items.Contains(Item))
-            {
-                Database.Items.Add(Item);
-            }
-        }
-        private void LoadItems()
-        {
-            this.Items.Clear();
-            foreach (var itm in Database.Items)
-            {
-                this.Items.Add(new ItemViewModel() { Model = itm });
-            }
-
-            RaisePropertyChanged(() => unreadItems);
-            RaisePropertyChanged(() => favouriteItems);
-            RaisePropertyChanged(() => archivedItems);
         }
 
         public MainViewModel()
